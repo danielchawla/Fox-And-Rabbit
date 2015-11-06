@@ -43,19 +43,18 @@ public class RabbitAI extends AbstractAI {
 	    Location currentLoc = animal.getLocation();
 	    foxFound = false;
 	   // int rabbitCount = 0;
-	    
-	    for (Item item : neighbours) {
+
+	    for (Item item : neighbours) {      
 	        if (currentLoc.getDistance(item.getLocation()) == 1){
 	            immediateNeighbours.add(item);
 	            if (item instanceof Fox) foxFound = true;
-	       //     if (item instanceof Rabbit) rabbitCount++;
 	        }
 	    }
 	    
+	    System.out.println("size " + immediateNeighbours.size());
 	    if(foxFound){
-	        if (immediateNeighbours.size() < 4){
-              //  return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
-	            return new MoveCommand(animal, Util.getRandomLegalMoveLoc((World) world, currentLoc));
+	        if (Util.getRandomLegalMoveLoc((World) world, currentLoc) != null){
+              return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
 	        }
 	        else if (animal.getMinimumBreedingEnergy() <= animal.getEnergy()){
 	            return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
@@ -67,14 +66,13 @@ public class RabbitAI extends AbstractAI {
 	               return new EatCommand(animal, immediateNeighbours.get(i));
 	           }
 	       
-	    if((animal.getMinimumBreedingEnergy() <= animal.getEnergy()) && (immediateNeighbours.size() < 4)){
+	    if((animal.getMinimumBreedingEnergy() <= animal.getEnergy()) && (Util.getRandomEmptyAdjacentLocation((World) world, currentLoc) != null)){
 	        return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
 	    }
 	    
 	    
-	    if (immediateNeighbours.size() < 4){
-                //return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
-                return new MoveCommand(animal, Util.getRandomLegalMoveLoc((World) world, currentLoc));
+	    if (Util.getRandomLegalMoveLoc((World) world, currentLoc) != null){
+               return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
 	    }
 
 		return new WaitCommand();

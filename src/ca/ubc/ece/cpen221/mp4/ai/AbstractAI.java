@@ -58,11 +58,8 @@ public class AbstractAI implements AI {
 	    Location currentLoc = animal.getLocation();
 	    Location targetLoc;
 	    
-	    targetLoc = Util.getRandomEmptyAdjacentLocation((World) world, currentLoc);
+	    targetLoc = Util.getRandomLegalMoveLoc((World) world, currentLoc);
 	    
-	    while((currentLoc.getDistance(targetLoc) != 1) && (targetLoc != null)) {
-	        targetLoc = Util.getRandomEmptyAdjacentLocation((World) world, currentLoc);
-	    }
 	    
 	    for (Item item : neighbours){
 	        if (item.getName().equals(foodSource)) {
@@ -73,7 +70,8 @@ public class AbstractAI implements AI {
 	    if(!closeFood.isEmpty()){
 	    foodLoc = closeFood.firstEntry().getValue().getLocation();
 	    Direction dir = Util.getDirectionTowards(currentLoc, foodLoc);
-	    targetLoc = new Location(currentLoc, dir);
+	    Location targetLocBeta = new Location(currentLoc, dir);
+	    if (Util.isLocationEmpty((World) world, targetLocBeta)) targetLoc = new Location(targetLocBeta);
 	    }
 	    
 	    return targetLoc;
