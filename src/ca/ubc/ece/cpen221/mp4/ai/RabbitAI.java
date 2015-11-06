@@ -39,7 +39,7 @@ public class RabbitAI extends AbstractAI {
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
 	    Set<Item> neighbours = world.searchSurroundings(animal);
-	    Set<Item> immediateNeighbours = new HashSet<Item>();
+	    List<Item> immediateNeighbours = new LinkedList<Item>();
 	    Location currentLoc = animal.getLocation();
 	    foxFound = false;
 	   // int rabbitCount = 0;
@@ -52,22 +52,29 @@ public class RabbitAI extends AbstractAI {
 	        }
 	    }
 	    
-	    if(foxFound && (immediateNeighbours.size() < 4) && (towardsClosestFood(world, animal, "grass") != null )){
-                return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
+	    if(foxFound){
+	        if (immediateNeighbours.size() < 4){
+              //  return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
+	            return new MoveCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
+	        }
+	        else if (animal.getMinimumBreedingEnergy() <= animal.getEnergy()){
+	            return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
+	        }
 	    }
 	 
-	       for ( Item item : immediateNeighbours) {
-	           if(item instanceof Grass)
-	               return new EatCommand(animal, item);
+	       for (int i = 0; i < immediateNeighbours.size(); i++) {
+	           if(immediateNeighbours.get(i).getName().equals("grass"))
+	               return new EatCommand(animal, immediateNeighbours.get(i));
 	           }
 	       
-	    if((animal.getMinimumBreedingEnergy() <= animal.getEnergy())&& (immediateNeighbours.size() < 4)){
+	    if((animal.getMinimumBreedingEnergy() <= animal.getEnergy()) && (immediateNeighbours.size() < 4)){
 	        return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
 	    }
 	    
 	    
-	    if ((immediateNeighbours.size() < 4) && (towardsClosestFood(world, animal, "grass") != null )){
-                return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
+	    if (immediateNeighbours.size() < 4){
+                //return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
+                return new MoveCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
 	    }
 
 		return new WaitCommand();
