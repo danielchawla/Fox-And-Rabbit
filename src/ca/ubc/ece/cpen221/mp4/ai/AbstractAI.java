@@ -2,6 +2,7 @@ package ca.ubc.ece.cpen221.mp4.ai;
 
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeMap;
 
 import ca.ubc.ece.cpen221.mp4.ArenaWorld;
 import ca.ubc.ece.cpen221.mp4.Direction;
@@ -49,4 +50,33 @@ public class AbstractAI implements AI {
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
 		return new WaitCommand();
 	}
-}
+	
+	public Location towardsClosestFood(ArenaWorld world, ArenaAnimal animal, String foodSource){
+	    Set<Item> neighbours = world.searchSurroundings(animal);
+	    TreeMap<Integer, Item> closeFood = new TreeMap<Integer, Item>();
+	    Location foodLoc;
+	    Location currentLoc = animal.getLocation();
+	    Location targetLoc;
+	    
+	    targetLoc = Util.getRandomEmptyAdjacentLocation((World) world, currentLoc);
+	    
+	    while((currentLoc.getDistance(targetLoc) != 1) && (targetLoc != null)) {
+	        targetLoc = Util.getRandomEmptyAdjacentLocation((World) world, currentLoc);
+	    }
+	    
+	    for (Item item : neighbours){
+	        if (item.getName().equals(foodSource)) {
+	            closeFood.put(currentLoc.getDistance(item.getLocation()), item);
+	        }
+	    }
+	    
+	    if(!closeFood.isEmpty()){
+	    foodLoc = closeFood.firstEntry().getValue().getLocation();
+	    Direction dir = Util.getDirectionTowards(currentLoc, foodLoc);
+	    targetLoc = new Location(currentLoc, dir);
+	    }
+	    
+	    return targetLoc;
+	    }
+	}
+
