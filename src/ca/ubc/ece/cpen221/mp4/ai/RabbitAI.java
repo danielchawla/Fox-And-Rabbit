@@ -55,7 +55,7 @@ public class RabbitAI extends AbstractAI {
 	    if(foxFound){
 	        if (immediateNeighbours.size() < 4){
               //  return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
-	            return new MoveCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
+	            return new MoveCommand(animal, Util.getRandomLegalMoveLoc((World) world, currentLoc));
 	        }
 	        else if (animal.getMinimumBreedingEnergy() <= animal.getEnergy()){
 	            return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
@@ -74,7 +74,7 @@ public class RabbitAI extends AbstractAI {
 	    
 	    if (immediateNeighbours.size() < 4){
                 //return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
-                return new MoveCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
+                return new MoveCommand(animal, Util.getRandomLegalMoveLoc((World) world, currentLoc));
 	    }
 
 		return new WaitCommand();

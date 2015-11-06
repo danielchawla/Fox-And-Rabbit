@@ -1,6 +1,8 @@
 package ca.ubc.ece.cpen221.mp4;
 
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -202,6 +204,20 @@ public final class Util {
 			throw new RuntimeException("images not available, check resources");
 		}
 		return new ImageIcon(resource);
+	}
+	
+	public static Location getRandomLegalMoveLoc(World world, Location loc){
+	    List<Location> neighbours = new LinkedList<Location>();
+	    Location targetLoc;
+	    for (Direction dir : Direction.values()){
+	        targetLoc = new Location(loc, dir);
+	        if (isValidLocation(world,targetLoc) && isLocationEmpty(world,targetLoc)){
+	            neighbours.add(targetLoc);
+	        }
+	    }
+	    if (neighbours.isEmpty()) return null;
+        return neighbours.get(RAND.nextInt(neighbours.size()));
+
 	}
 
 }
