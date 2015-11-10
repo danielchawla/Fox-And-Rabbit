@@ -32,7 +32,7 @@ public class RabbitAI extends AbstractAI {
 	private int temp;
 	private boolean foxFound;
 	private final int MAX_RABBITS = 2;
-	private final int ENERGY_THRESH_EAT = 30;
+	private final int ENERGY_THRESH_EAT = 40;
 	private final int ENERGY_THRESH_MOVE = 10;
 
 	public RabbitAI() {
@@ -67,15 +67,16 @@ public class RabbitAI extends AbstractAI {
 	           }
 	    }
 	    
-	    if (Math.random() > 0.7){
+	    if (Math.random() > 0.9){
 	    if((rabbitCount < MAX_RABBITS) && (animal.getMinimumBreedingEnergy() <= animal.getEnergy()) && (Util.getRandomEmptyAdjacentLocation((World) world, currentLoc) != null)){
 	        return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
 	    }
 	    }
 	    
+	    if (Math.random() > 0.5){
 	    if (Util.getRandomLegalMoveLoc((World) world, currentLoc) != null){
-	        if(animal.getEnergy() < ENERGY_THRESH_MOVE)return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
-               
+	        return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));        
+	    }
 	    }
 
 		return new WaitCommand();

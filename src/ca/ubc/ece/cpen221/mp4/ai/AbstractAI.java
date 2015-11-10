@@ -69,7 +69,7 @@ public class AbstractAI implements AI {
 	    Location currentLoc = animal.getLocation();
 	    Location targetLoc;
 	    
-	    targetLoc = Util.getRandomLegalMoveLoc((World) world, currentLoc);
+	    targetLoc = rove(world, animal);
 	    
 	    
 	    for (Item item : neighbours){

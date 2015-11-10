@@ -50,7 +50,7 @@ public class FoxAI extends AbstractAI {
                    return new EatCommand(animal, immediateNeighbours.get(i));
               }
            
-        if (Math.random() > 0.7){
+        if (Math.random() > 0.9){
         if((foxCount < MAX_FOXES) && (animal.getMinimumBreedingEnergy() <= animal.getEnergy()) && (Util.getRandomEmptyAdjacentLocation((World) world, currentLoc) != null)){
             return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
         }
