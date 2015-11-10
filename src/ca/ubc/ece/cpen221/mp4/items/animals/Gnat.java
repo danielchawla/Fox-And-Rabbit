@@ -17,13 +17,15 @@ import ca.ubc.ece.cpen221.mp4.items.LivingItem;
  * random directions.
  */
 public class Gnat implements LivingItem {
-	private static final ImageIcon gnatImage = Util.loadImage("gnat.gif");
+	private static final ImageIcon image = Util.loadImage("gnat.gif");
 
 	private static final int MEAT_CALORIES = 100;
+	private static final int ENERGY = 100;
 	private static final int STRENGTH = 10;
 
 	private Location location;
 	private boolean isDead;
+	private int energy = ENERGY;
 
 	/**
 	 * Create a new Gnat at <code>initialLocation</code>. The
@@ -39,7 +41,7 @@ public class Gnat implements LivingItem {
 
 	@Override
 	public ImageIcon getImage() {
-		return gnatImage;
+		return image;
 	}
 
 	@Override
@@ -105,7 +107,7 @@ public class Gnat implements LivingItem {
 	@Override
 	public int getEnergy() {
 		// doesn't every die, except when run over by a Vehicle
-		return 100;
+		return energy;
 	}
 
 	@Override
