@@ -54,12 +54,9 @@ public class RabbitAI extends AbstractAI {
 	        }
 	    }
 
-	    if(foxFound){
+	    if(itemFound(world, animal, "Fox")){
 	        if (Util.getRandomLegalMoveLoc((World) world, currentLoc) != null){
               return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
-	        }
-	        else if (animal.getMinimumBreedingEnergy() <= animal.getEnergy()){
-	            return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
 	        }
 	    }
 	 
@@ -70,15 +67,14 @@ public class RabbitAI extends AbstractAI {
 	           }
 	    }
 	    
-	    
+	    if (Math.random() > 0.7){
 	    if((rabbitCount < MAX_RABBITS) && (animal.getMinimumBreedingEnergy() <= animal.getEnergy()) && (Util.getRandomEmptyAdjacentLocation((World) world, currentLoc) != null)){
 	        return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
 	    }
-	    
+	    }
 	    
 	    if (Util.getRandomLegalMoveLoc((World) world, currentLoc) != null){
 	        if(animal.getEnergy() < ENERGY_THRESH_MOVE)return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
-	          return new MoveCommand(animal, Util.getRandomLegalMoveLoc((World) world, currentLoc));
                
 	    }
 

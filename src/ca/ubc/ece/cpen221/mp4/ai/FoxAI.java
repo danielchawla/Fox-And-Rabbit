@@ -35,11 +35,13 @@ public class FoxAI extends AbstractAI {
         List<Item> immediateNeighbours = new LinkedList<Item>();
         Location currentLoc = animal.getLocation();
         int foxCount = 0;
+        Boolean foodFound = false;
 
         for (Item item : neighbours) {      
             if (currentLoc.getDistance(item.getLocation()) == 1){
                 immediateNeighbours.add(item);
                 if (item instanceof Fox) foxCount++;
+                if (item instanceof Rabbit) foodFound = true;
             }
         }
 
@@ -48,13 +50,18 @@ public class FoxAI extends AbstractAI {
                    return new EatCommand(animal, immediateNeighbours.get(i));
               }
            
+        if (Math.random() > 0.7){
         if((foxCount < MAX_FOXES) && (animal.getMinimumBreedingEnergy() <= animal.getEnergy()) && (Util.getRandomEmptyAdjacentLocation((World) world, currentLoc) != null)){
             return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
         }
+        }
         
-        
-        if (Util.getRandomLegalMoveLoc((World) world, currentLoc) != null){
+        if ((Util.getRandomLegalMoveLoc((World) world, currentLoc) != null) && foodFound) {
                return new MoveCommand(animal, towardsClosestFood(world, animal, "Rabbit"));
+        }
+        
+        if (Util.getRandomLegalMoveLoc((World) world, currentLoc) != null) {
+            return new MoveCommand(animal, rove(world, animal));
         }
 
         return new WaitCommand();

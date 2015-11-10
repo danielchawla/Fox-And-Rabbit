@@ -10,11 +10,7 @@ import ca.ubc.ece.cpen221.mp4.ai.AI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
-public abstract class AbstractArenaAnimal implements ArenaAnimal { // abstract
-																	// class for
-																	// other
-																	// arena
-																	// animals
+public abstract class AbstractArenaAnimal implements ArenaAnimal { 
 	private int INITIAL_ENERGY;
 	private int MAX_ENERGY;
 	private int STRENGTH;
@@ -22,7 +18,6 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal { // abstract
 	private int MIN_BREEDING_ENERGY;
 	private int COOLDOWN;
 	private ImageIcon image;
-	private boolean isDead;
 
 	private AI ai;
 
