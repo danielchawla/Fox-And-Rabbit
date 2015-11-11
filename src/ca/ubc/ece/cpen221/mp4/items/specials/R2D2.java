@@ -1,5 +1,20 @@
 package ca.ubc.ece.cpen221.mp4.items.specials;
 
-public class R2D2 {
+import ca.ubc.ece.cpen221.mp4.items.LivingItem;
+import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
+
+public class R2D2 extends AbstractArenaAnimal {
+
+    @Override
+    public LivingItem breed() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }
