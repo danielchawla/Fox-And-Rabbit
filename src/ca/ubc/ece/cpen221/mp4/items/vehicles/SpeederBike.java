@@ -13,7 +13,6 @@ public class SpeederBike extends AbstractArenaVehicle {
         this.MIN_COOLDOWN = 2;
         this.MAX_COOLDOWN = 5;
         this.VIEW_RANGE = 15;
-
         this.speed = 0;
         this.location = startPoint;
         this.direction = Util.getRandomDirection();

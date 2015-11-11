@@ -4,12 +4,14 @@ import javax.swing.ImageIcon;
 
 import ca.ubc.ece.cpen221.mp4.Food;
 import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 public class Wookie implements ArenaAnimal {
 
+    private static final ImageIcon cloneImage = Util.loadImage("wookie.gif");
     @Override
     public int getEnergy() {
         // TODO Auto-generated method stub

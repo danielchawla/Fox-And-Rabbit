@@ -19,7 +19,7 @@ public class Clone implements ArenaAnimal {
     private static final int MOVING_RANGE = 1;
     private static final int MIN_BREEDING_ENERGY = 20;
     private static final int COOLDOWN = 3;
-    private static final ImageIcon cloneImage = Util.loadImage("woman.gif");
+    private static final ImageIcon cloneImage = Util.loadImage("clone.gif");
 
     private final AI ai;
 

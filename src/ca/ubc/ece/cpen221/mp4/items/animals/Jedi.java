@@ -18,7 +18,7 @@ public class Jedi implements ArenaAnimal {
     private static final int MOVING_RANGE = 5;
     private static final int COOLDOWN = 1;
     private static final int KILL_RANGE = 5;
-    private static final ImageIcon jediImage = Util.loadImage("hunter.gif");
+    private static final ImageIcon jediImage = Util.loadImage("jedi.gif");
 
     private final AI ai;
 

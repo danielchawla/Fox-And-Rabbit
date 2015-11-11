@@ -64,7 +64,7 @@ public class Main {
 		addClones(world);
 		addJedis(world);
 
-		addATATs(world);
+		//addATATs(world);
 //		addSpeederBikes(world);
 //		addLandSpeeders(world);
 	}
