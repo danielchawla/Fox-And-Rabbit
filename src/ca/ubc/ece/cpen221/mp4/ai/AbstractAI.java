@@ -92,18 +92,7 @@ public class AbstractAI implements AI {
         
         return null;
 	}
-	
-//	public Boolean itemFound(ArenaWorld world, ArenaAnimal animal, String itemName) {
-//	    Set<Item> neighbours = world.searchSurroundings(animal);
-//	    Boolean itemFound = false;
-//	    
-//	    for (Item item : neighbours) {    
-//            if (item.getName().equals(itemName)) itemFound = true;
-//        }
-//	    
-//	    return itemFound;
-//	}
-//	
+
 	public Location towardsItem(ArenaWorld world, ArenaAnimal animal, String itemName){
 	    List<Location> itemLocs = itemLocations(world, animal, itemName);
 	    TreeMap<Integer, Direction> closeItem = new TreeMap<Integer, Direction>();
@@ -144,56 +133,5 @@ public class AbstractAI implements AI {
 	    
 	    return targetLoc;
 	}
-//	
-//	public Location rove(ArenaWorld world, ArenaAnimal animal){
-//	    Location targetLoc;
-//	    Location currentLoc = animal.getLocation();
-//	    Direction dir = Direction.WEST;
-//	    int index = animal.getEnergy() % 20;
-//	    
-//	    if (itemFound(world, animal, animal.getName())){
-//	    return Util.getRandomLegalMoveLoc((World) world, currentLoc);  
-//	    }
-//	    
-//	    switch (index){
-//	    case 13: case 11: case 9: case 7: case 5: case 3: case 1:
-//	        dir = Direction.NORTH;
-//	    break;
-//	    case 6: case 4: case 2: case 0:
-//	        dir = Direction.EAST;
-//	        break;
-//	    case 19: case 17: case 15:
-//	        dir = Direction.SOUTH;
-//	        break;
-//	    case 18: case 16: case 14: case 12: case 10: case 8:
-//	        dir = Direction.WEST;
-//	        break;
-//	    }
-//	    
-//	    targetLoc = new Location(currentLoc, dir);
-//	    if (Util.isValidLocation(world, targetLoc) && Util.isLocationEmpty((World) world, targetLoc)) { return targetLoc;}
-//	    else {return Util.getRandomLegalMoveLoc((World) world, currentLoc);}
-//	}
-//	
-//	public Location spreadOut(ArenaWorld world, ArenaAnimal animal){
-//	    Location targetLoc = Util.getRandomLegalMoveLoc((World) world, animal.getLocation());
-//	    Set<Item> neighbours = world.searchSurroundings(animal);
-//	    List<Direction> awayDirections = new LinkedList<Direction>();
-//	    Location currentLoc = animal.getLocation();
-//	    Direction directionAway;
-//	    Location targetLocBeta;
-//	    
-//	    for (Item item : neighbours){
-//	        if (item.getName().equals(animal.getName())){
-//	            awayDirections.add(oppositeDir(Util.getDirectionTowards(currentLoc, item.getLocation())));
-//	        }
-//	    }
-//	    if (awayDirections.isEmpty()) return targetLoc;
-//	    directionAway = awayDirections.get(RAND.nextInt(awayDirections.size()));
-//	    targetLocBeta = new Location(currentLoc, directionAway);
-//	    if (isLocationEmpty(world, animal, targetLocBeta)) return targetLocBeta;
-//	    
-//	    return targetLoc;
-//	}
 	}
 
