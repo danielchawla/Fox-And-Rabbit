@@ -40,7 +40,6 @@ public class RabbitAI extends AbstractAI {
 
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
-	    Set<Item> neighbours = world.searchSurroundings(animal);
 	    List<Location> foxLocations = itemLocations(world, animal, "Fox");
 	    List<Location> grassLocations = itemLocations(world, animal, "grass");
 	    List<Location> rabbitLocations = itemLocations(world, animal, "Rabbit");

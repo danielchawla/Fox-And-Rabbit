@@ -31,7 +31,6 @@ public class FoxAI extends AbstractAI {
 
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
-	    Set<Item> neighbours = world.searchSurroundings(animal);
 	    List<Location> rabbitLocations = itemLocations(world, animal, "Rabbit");
 	    Location currentLoc = animal.getLocation();
         
