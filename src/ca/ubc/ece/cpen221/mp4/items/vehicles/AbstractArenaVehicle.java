@@ -134,13 +134,13 @@ public abstract class AbstractArenaVehicle implements Vehicle {
     @Override
     public Command getNextAction(World world){
         if (distanceToEdge(world) <= (this.MAX_COOLDOWN - this.speed)){
-            this.slowDown();
+            //this.slowDown();
             if (this.speed == MAX_COOLDOWN){
                 this.setDirection(world);
             }
         }
         else if (speed > MIN_COOLDOWN){
-            this.speedUp();
+            //this.speedUp();
         }
 
 
