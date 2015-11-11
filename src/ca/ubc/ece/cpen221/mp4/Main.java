@@ -6,6 +6,7 @@ import ca.ubc.ece.cpen221.mp4.ai.*;
 import ca.ubc.ece.cpen221.mp4.items.Gardener;
 import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
+import ca.ubc.ece.cpen221.mp4.items.vehicles.ATAT;
 import ca.ubc.ece.cpen221.mp4.staff.WorldImpl;
 import ca.ubc.ece.cpen221.mp4.staff.WorldUI;
 
@@ -29,7 +30,7 @@ public class Main {
 	static final int INITIAL_BEARS = INITIAL_GRASS / 40;
 	static final int INITIAL_HYENAS = INITIAL_GRASS / 32;
 	static final int INITIAL_CARS = INITIAL_GRASS / 100;
-	static final int INITIAL_TRUCKS = INITIAL_GRASS / 150;
+	static final int INITIAL_ATAT = INITIAL_GRASS / 150;
 	static final int INITIAL_MOTORCYCLES = INITIAL_GRASS / 64;
 	static final int INITIAL_MANS = INITIAL_GRASS / 150;
 	static final int INITIAL_WOMANS = INITIAL_GRASS / 100;
@@ -58,6 +59,7 @@ public class Main {
 		addRabbits(world);
 		addFoxes(world);
 		// TODO: You may add your own creatures here!
+		addATATs(world);
 	}
 
 	private void addGrass(World world) {
@@ -95,4 +97,13 @@ public class Main {
 			world.addActor(rabbit);
 		}
 	}
+	
+	private void addATATs(World world) {
+        for (int i = 0; i < INITIAL_ATAT; i++) {
+            Location loc = Util.getRandomEmptyLocation(world);
+            ATAT atat = new ATAT(loc);
+            world.addItem(atat);
+            world.addActor(atat);
+        }
+    }
 }
