@@ -28,12 +28,8 @@ import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
  */
 public class RabbitAI extends AbstractAI {
 
-	private int closest = 10; // max number; greater than rabbit's view range
-	private int temp;
-	private boolean foxFound;
 	private final int MAX_RABBITS = 2;
 	private final int ENERGY_THRESH_EAT = 40;
-	private final int ENERGY_THRESH_MOVE = 10;
 
 	public RabbitAI() {
 	}

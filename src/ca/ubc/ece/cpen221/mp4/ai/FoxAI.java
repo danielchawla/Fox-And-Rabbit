@@ -23,7 +23,7 @@ import ca.ubc.ece.cpen221.mp4.items.animals.*;
  */
 public class FoxAI extends AbstractAI {
 	private int closest = 2; // max number; greater than fox's view range
-	private final int MAX_FOXES = 1;
+	private final int MAX_FOXES = 3;
 
 	public FoxAI() {
 
@@ -32,6 +32,7 @@ public class FoxAI extends AbstractAI {
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
 	    List<Location> rabbitLocations = itemLocations(world, animal, "Rabbit");
+	    List<Location> foxLocations = itemLocations(world, animal, "Fox");
 	    Location currentLoc = animal.getLocation();
         
 	    if (eatYourNeighbour(world, animal, "Rabbit") != null) {
@@ -42,7 +43,7 @@ public class FoxAI extends AbstractAI {
 	        return new MoveCommand(animal, towardsItem(world, animal, "Rabbit"));
 	    }
 	    
-	    if ((rabbitLocations.size() < MAX_FOXES) && (animal.getEnergy() > animal.getMinimumBreedingEnergy())
+	    if ((foxLocations.size() < MAX_FOXES) && (animal.getEnergy() > animal.getMinimumBreedingEnergy())
                 && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)) {
             return new BreedCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc));
         }
