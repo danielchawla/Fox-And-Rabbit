@@ -142,7 +142,7 @@ public class Rabbit implements ArenaAnimal {
 
 	@Override
 	public void moveTo(Location targetLocation) {
-		location = targetLocation;
+		this.location = targetLocation;
 
 	}
 }
