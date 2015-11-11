@@ -55,87 +55,82 @@ public class AbstractAI implements AI {
 		return new WaitCommand();
 	}
 	
-	public Boolean itemFound(ArenaWorld world, ArenaAnimal animal, String itemName) {
-	    Set<Item> neighbours = world.searchSurroundings(animal);
-	    Boolean itemFound = false;
-	    
-	    for (Item item : neighbours) {    
-            if (item.getName().equals(itemName)) itemFound = true;
+    public Location getRandomLegalMoveLoc(ArenaWorld world, ArenaAnimal animal, Location loc){
+        List<Location> neighbours = new LinkedList<Location>();
+        Location targetLoc;
+        for (Direction dir : Direction.values()){
+            targetLoc = new Location(loc, dir);
+            if (isLocationEmpty(world, animal, targetLoc)){
+                neighbours.add(targetLoc);
+            }
         }
-	    
-	    return itemFound;
-	}
-	
-	public Location towardsClosestFood(ArenaWorld world, ArenaAnimal animal, String foodSource){
+        if (neighbours.isEmpty()) return null;
+        return neighbours.get(RAND.nextInt(neighbours.size()));
+
+    }
+    
+	public List<Location> itemLocations (ArenaWorld world, ArenaAnimal animal, String itemName){
 	    Set<Item> neighbours = world.searchSurroundings(animal);
-	    TreeMap<Integer, Item> closeFood = new TreeMap<Integer, Item>();
-	    Location foodLoc;
-	    Location currentLoc = animal.getLocation();
-	    Location targetLoc;
-	    
-	    targetLoc = rove(world, animal);
-	    
-	    
+	    List<Location> itemLocs = new LinkedList<Location>();
 	    for (Item item : neighbours){
-	        if (item.getName().equals(foodSource)) {
-	            closeFood.put(currentLoc.getDistance(item.getLocation()), item);
+	        if (item.getName().equals(itemName)){
+	            itemLocs.add(item.getLocation());
 	        }
 	    }
+	    return itemLocs;
+	}
+	
+	public Item eatYourNeighbour (ArenaWorld world, ArenaAnimal animal, String preyName){
+	    Set<Item> neighbours = world.searchSurroundings(animal);
+	    Location currentLoc = animal.getLocation();
 	    
-	    if(!closeFood.isEmpty()){
-	    foodLoc = closeFood.firstEntry().getValue().getLocation();
-	    Direction dir = Util.getDirectionTowards(currentLoc, foodLoc);
-	    Location targetLocBeta = new Location(currentLoc, dir);
-	    if (Util.isLocationEmpty((World) world, targetLocBeta)) targetLoc = new Location(targetLocBeta);
+        for (Item item : neighbours){
+            if (item.getName().equals(preyName) && (item.getLocation().getDistance(currentLoc) ==1)){
+                return item;
+            }
+        }
+        
+        return null;
+	}
+
+	public Location towardsItem(ArenaWorld world, ArenaAnimal animal, String itemName){
+	    List<Location> itemLocs = itemLocations(world, animal, itemName);
+	    TreeMap<Integer, Direction> closeItem = new TreeMap<Integer, Direction>();
+	    Direction itemDir;
+	    Location currentLoc = animal.getLocation();
+	    Location targetLoc = getRandomLegalMoveLoc(world, animal, currentLoc);
+	    Location targetLocBeta;
+	    
+	    for (int i = 0; i < itemLocs.size(); i++){
+	            closeItem.put(currentLoc.getDistance(itemLocs.get(i)), Util.getDirectionTowards(currentLoc, itemLocs.get(i)));
+	    }
+	    
+	    if(!closeItem.isEmpty()){
+	    itemDir = closeItem.firstEntry().getValue();
+	    targetLocBeta = new Location(currentLoc, itemDir);
+	    if (isLocationEmpty( world, animal, targetLocBeta)) return targetLocBeta;
 	    }
 	    
 	    return targetLoc;
 	    }
 	
-	public Location rove(ArenaWorld world, ArenaAnimal animal){
-	    Location targetLoc;
+	public Location awayFromItem(ArenaWorld world, ArenaAnimal animal, String itemName){
+	    List<Location> itemLocs = itemLocations(world, animal, itemName);
 	    Location currentLoc = animal.getLocation();
-	    Direction dir = Direction.WEST;
-	    int index = animal.getEnergy() % 20;
+	    Location targetLoc = getRandomLegalMoveLoc(world,animal,currentLoc);
+	    Location targetLocBeta;
+	    List<Direction> awayDirs = new LinkedList<Direction>();
 	    
-	    if (itemFound(world, animal, animal.getName())){
-	    return Util.getRandomLegalMoveLoc((World) world, currentLoc);  
+	    for(int i = 0; i < itemLocs.size(); i++){
+	        Direction testDir = Util.getDirectionTowards(currentLoc, itemLocs.get(i));
+	        if (awayDirs.contains(testDir)) awayDirs.remove(testDir);
+	        else awayDirs.add(oppositeDir(testDir));
+	    }
+	    for (int i = 0; i < awayDirs.size() ; i++){
+	    targetLocBeta = new Location(currentLoc, awayDirs.get(i));
+	    if (isLocationEmpty(world, animal, targetLocBeta)) return targetLocBeta;
 	    }
 	    
-	    switch (index){
-	    case 13: case 11: case 9: case 7: case 5: case 3: case 1:
-	        dir = Direction.NORTH;
-	    break;
-	    case 6: case 4: case 2: case 0:
-	        dir = Direction.EAST;
-	        break;
-	    case 19: case 17: case 15:
-	        dir = Direction.SOUTH;
-	        break;
-	    case 18: case 16: case 14: case 12: case 10: case 8:
-	        dir = Direction.WEST;
-	        break;
-	    }
-	    
-	    targetLoc = new Location(currentLoc, dir);
-	    if (Util.isValidLocation(world, targetLoc) && Util.isLocationEmpty((World) world, targetLoc)) { return targetLoc;}
-	    else {return Util.getRandomLegalMoveLoc((World) world, currentLoc);}
-	}
-	
-	public Location spreadOut(ArenaWorld world, ArenaAnimal animal){
-	    Location targetLoc = Util.getRandomLegalMoveLoc((World) world, animal.getLocation());
-	    Set<Item> neighbours = world.searchSurroundings(animal);
-	    List<Direction> awayDirections = new LinkedList<Direction>();
-	    Location currentLoc = animal.getLocation();
-	    Direction directionAway;
-	    
-	    for (Item item : neighbours){
-	        if (item.getName().equals(animal.getName())){
-	            awayDirections.add(oppositeDir(Util.getDirectionTowards(currentLoc, item.getLocation())));
-	        }
-	    }
-	    if (awayDirections.isEmpty()) return rove(world, animal);
-	    directionAway = awayDirections.get(RAND.nextInt(awayDirections.size())-1);
 	    return targetLoc;
 	}
 	}

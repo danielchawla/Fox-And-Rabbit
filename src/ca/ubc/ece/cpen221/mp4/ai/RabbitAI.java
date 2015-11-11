@@ -28,57 +28,42 @@ import ca.ubc.ece.cpen221.mp4.items.animals.Rabbit;
  */
 public class RabbitAI extends AbstractAI {
 
-	private int closest = 10; // max number; greater than rabbit's view range
-	private int temp;
-	private boolean foxFound;
 	private final int MAX_RABBITS = 2;
 	private final int ENERGY_THRESH_EAT = 40;
-	private final int ENERGY_THRESH_MOVE = 10;
 
 	public RabbitAI() {
 	}
 
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
-	    Set<Item> neighbours = world.searchSurroundings(animal);
-	    List<Item> immediateNeighbours = new LinkedList<Item>();
+	    List<Location> foxLocations = itemLocations(world, animal, "Fox");
+	    List<Location> grassLocations = itemLocations(world, animal, "grass");
+	    List<Location> rabbitLocations = itemLocations(world, animal, "Rabbit");
 	    Location currentLoc = animal.getLocation();
-	    foxFound = false;
-	    int rabbitCount = 0;
-
-	    for (Item item : neighbours) {    
-	        if (item.getName().equals("Rabbit")) rabbitCount++;
-	        if (currentLoc.getDistance(item.getLocation()) == 1){
-	            immediateNeighbours.add(item);
-	            if (item instanceof Fox) foxFound = true;
-	        }
+	    
+	    if(!foxLocations.isEmpty() && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)){
+	        return new MoveCommand(animal, awayFromItem(world, animal, "Fox"));
 	    }
-
-	    if(itemFound(world, animal, "Fox")){
-	        if (Util.getRandomLegalMoveLoc((World) world, currentLoc) != null){
-              return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));
-	        }
-	    }
-	 
+	    
 	    if(animal.getEnergy() < ENERGY_THRESH_EAT){
-	       for (int i = 0; i < immediateNeighbours.size(); i++) {
-	           if(immediateNeighbours.get(i).getName().equals("grass"))
-	               return new EatCommand(animal, immediateNeighbours.get(i));
-	           }
+	        if (eatYourNeighbour(world, animal, "grass") != null) {
+	            return new EatCommand(animal, eatYourNeighbour(world, animal, "grass"));
+	        }
+	      }
+	    
+	    if (!grassLocations.isEmpty() && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)){
+	        return new MoveCommand(animal, towardsItem(world, animal, "grass"));
 	    }
 	    
-	    if (Math.random() > 0.9){
-	    if((rabbitCount < MAX_RABBITS) && (animal.getMinimumBreedingEnergy() <= animal.getEnergy()) && (Util.getRandomEmptyAdjacentLocation((World) world, currentLoc) != null)){
-	        return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
-	    }
+	    if ((rabbitLocations.size() < MAX_RABBITS) && (animal.getEnergy() > animal.getMinimumBreedingEnergy())
+	            && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)) {
+	        return new BreedCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc));
 	    }
 	    
-	    if (Math.random() > 0.5){
-	    if (Util.getRandomLegalMoveLoc((World) world, currentLoc) != null){
-	        return new MoveCommand(animal, towardsClosestFood(world, animal, "grass"));        
+	    if (getRandomLegalMoveLoc(world, animal, currentLoc) != null){
+	        return new MoveCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc));
 	    }
-	    }
-
-		return new WaitCommand();
+	    
+	    return new WaitCommand();
 	}
 }
