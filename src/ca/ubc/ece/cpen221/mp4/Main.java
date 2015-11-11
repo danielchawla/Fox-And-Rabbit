@@ -33,8 +33,8 @@ public class Main {
 	static final int INITIAL_ATAT = INITIAL_GRASS / 150;
 	static final int INITIAL_MOTORCYCLES = INITIAL_GRASS / 64;
 	static final int INITIAL_MANS = INITIAL_GRASS / 150;
-	static final int INITIAL_WOMANS = INITIAL_GRASS / 100;
-	static final int INITIAL_HUNTERS = INITIAL_GRASS / 150;
+	static final int INITIAL_CLONES = 4;
+	static final int INITIAL_JEDIS = 7;
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -58,7 +58,8 @@ public class Main {
     	addGnats(world);
 		addRabbits(world);
 		addFoxes(world);
-		// TODO: You may add your own creatures here!
+		addClones(world);
+		addJedis(world);
 		addATATs(world);
 	}
 
@@ -97,6 +98,26 @@ public class Main {
 			world.addActor(rabbit);
 		}
 	}
+	
+	   private void addJedis(World world) {
+	        JediAI jediAI = new JediAI();
+	        for (int i = 0; i < INITIAL_JEDIS; i++) {
+	            Location loc = Util.getRandomEmptyLocation(world);
+	            Jedi jedi = new Jedi(jediAI, loc);
+	            world.addItem(jedi);
+	            world.addActor(jedi);
+	        }
+	    }
+	   
+       private void addClones(World world) {
+           CloneAI cloneAI = new CloneAI();
+           for (int i = 0; i < INITIAL_CLONES; i++) {
+               Location loc = Util.getRandomEmptyLocation(world);
+               Clone clone = new Clone(cloneAI, loc);
+               world.addItem(clone);
+               world.addActor(clone);
+           }
+       }
 	
 	private void addATATs(World world) {
         for (int i = 0; i < INITIAL_ATAT; i++) {
