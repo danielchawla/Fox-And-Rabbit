@@ -32,40 +32,28 @@ public class FoxAI extends AbstractAI {
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
 	    Set<Item> neighbours = world.searchSurroundings(animal);
-        List<Item> immediateNeighbours = new LinkedList<Item>();
-        Location currentLoc = animal.getLocation();
-        int foxCount = 0;
-        Boolean foodFound = false;
-
-        for (Item item : neighbours) {      
-            if (currentLoc.getDistance(item.getLocation()) == 1){
-                immediateNeighbours.add(item);
-                if (item instanceof Fox) foxCount++;
-                if (item instanceof Rabbit) foodFound = true;
-            }
+	    List<Location> rabbitLocations = itemLocations(world, animal, "Rabbit");
+	    Location currentLoc = animal.getLocation();
+        
+	    if (eatYourNeighbour(world, animal, "Rabbit") != null) {
+	        return new EatCommand(animal,(eatYourNeighbour(world, animal, "Rabbit")));
+	    }
+	    
+	    if (!rabbitLocations.isEmpty() && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)){
+	        return new MoveCommand(animal, towardsItem(world, animal, "Rabbit"));
+	    }
+	    
+	    if ((rabbitLocations.size() < MAX_FOXES) && (animal.getEnergy() > animal.getMinimumBreedingEnergy())
+                && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)) {
+            return new BreedCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc));
         }
-
-           for (int i = 0; i < immediateNeighbours.size(); i++) {
-               if(immediateNeighbours.get(i).getName().equals("Rabbit"))
-                   return new EatCommand(animal, immediateNeighbours.get(i));
-              }
-           
-        if (Math.random() > 0.9){
-        if((foxCount < MAX_FOXES) && (animal.getMinimumBreedingEnergy() <= animal.getEnergy()) && (Util.getRandomEmptyAdjacentLocation((World) world, currentLoc) != null)){
-            return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, currentLoc));
-        }
+	    
+	    if (getRandomLegalMoveLoc(world, animal, currentLoc) != null){
+            return new MoveCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc));
         }
         
-        if ((Util.getRandomLegalMoveLoc((World) world, currentLoc) != null) && foodFound) {
-               return new MoveCommand(animal, towardsClosestFood(world, animal, "Rabbit"));
-        }
-        
-        if (Util.getRandomLegalMoveLoc((World) world, currentLoc) != null) {
-            return new MoveCommand(animal, rove(world, animal));
-        }
-
         return new WaitCommand();
-    }
 	}
+}
 
 
