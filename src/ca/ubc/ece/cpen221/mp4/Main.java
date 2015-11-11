@@ -6,6 +6,9 @@ import ca.ubc.ece.cpen221.mp4.ai.*;
 import ca.ubc.ece.cpen221.mp4.items.Gardener;
 import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
+import ca.ubc.ece.cpen221.mp4.items.specials.C3P0;
+import ca.ubc.ece.cpen221.mp4.items.specials.R2D2;
+import ca.ubc.ece.cpen221.mp4.items.specials.Sith;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.ATAT;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.Landspeeder;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.SpeederBike;
@@ -63,6 +66,10 @@ public class Main {
 
 		addClones(world);
 		addJedis(world);
+		
+		addR2D2(world);
+		addC3P0(world);
+		addSith(world);
 
 		//addATATs(world);
 //		addSpeederBikes(world);
@@ -124,6 +131,30 @@ public class Main {
                world.addItem(clone);
                world.addActor(clone);
            }
+       }
+       
+       private void addR2D2(World world) {
+           SpecialsAI specialsAI = new SpecialsAI();
+           Location loc = Util.getRandomEmptyLocation(world);
+           R2D2 R2D2 = new R2D2(specialsAI, loc);
+           world.addItem(R2D2);
+           world.addActor(R2D2);
+       }
+       
+       private void addC3P0(World world) {
+           SpecialsAI specialsAI = new SpecialsAI();
+           Location loc = Util.getRandomEmptyLocation(world);
+           C3P0 C3P0 = new C3P0(specialsAI, loc);
+           world.addItem(C3P0);
+           world.addActor(C3P0);
+       }
+       
+       private void addSith(World world) {
+           SpecialsAI specialsAI = new SpecialsAI();
+           Location loc = Util.getRandomEmptyLocation(world);
+           Sith sith = new Sith(specialsAI, loc);
+           world.addItem(sith);
+           world.addActor(sith);
        }
        
        private void addSpeederBikes(World world) {
