@@ -5,21 +5,21 @@ import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 
-public class Landspeeder extends AbstractArenaVehicle {
+public class SpeederBike extends AbstractArenaVehicle {
 
-    public Landspeeder(Location startPoint) {
-        this.MAX_FUEL = 200;
-        this.STRENGTH = 100;
-        this.MIN_SPEED = 3;
-        this.TURNING_SPEED = 6;
-        this.VIEW_RANGE = 40;
+    public SpeederBike(Location startPoint) {
+        this.MAX_FUEL = 100;
+        this.STRENGTH = 50;
+        this.MIN_SPEED = 2;
+        this.TURNING_SPEED = 5;
+        this.VIEW_RANGE = 15;
 
-        this.speed = 3;
+        this.speed = 1;
         this.location = startPoint;
         this.direction = Util.getRandomDirection();
-        this.fuel = 200;  
-        this.image = Util.loadImage("landspeeder.gif");
-        this.name = "Landspeeder";
+        this.fuel = 100;  
+        this.image = Util.loadImage("motorcycles.gif");
+        this.name = "SpeederBike";
     }
 
     @Override

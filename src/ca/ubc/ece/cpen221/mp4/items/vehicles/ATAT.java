@@ -2,9 +2,6 @@ package ca.ubc.ece.cpen221.mp4.items.vehicles;
 
 import java.util.*;
 
-import javax.swing.ImageIcon;
-
-import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Direction;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
@@ -13,79 +10,27 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
-import ca.ubc.ece.cpen221.mp4.items.MoveableItem;
 
-public class ATAT implements MoveableItem, Actor {
-    private static final int MAX_ENERGY = 100;
-    private static final int STRENGTH = 1000;    
-    private static final int COOLDOWN = 20;
-    private static final int INITIAL_ENERGY = 40;
-    private static final int STARTING_FUEL = 500;
-    private static final int VIEW_RANGE = 40;
-    private static final int MAX_MOMENTUM = 3;
-    private static final ImageIcon ATAT_IMAGE = Util.loadImage("motorcycles.gif");
+public class ATAT extends AbstractArenaVehicle {
     
-    private Location location;
-    private int momentum;
-    private int fuel;
-    
-    public ATAT(Location startPoint){
+    public ATAT (Location startPoint) {
+        this.MAX_FUEL = 1000;
+        this.STRENGTH = 1000;
+        this.MIN_SPEED = 7;
+        this.TURNING_SPEED = 10;
+        this.VIEW_RANGE = 100;
+
+        this.speed = 7;
         this.location = startPoint;
-        this.fuel = STARTING_FUEL;
-        this.momentum = MAX_MOMENTUM;
+        this.direction = Util.getRandomDirection();
+        this.fuel = 1000;  
+        this.image = Util.loadImage("ATAT.gif");
+        this.name = "ATAT";
     }
-
-    @Override
-    public ImageIcon getImage() {
-        return ATAT_IMAGE;
-    }
-
-    @Override
-    public String getName() {
-        return "ATAT";
-    }
-
-    @Override
-    public Location getLocation() {
-        return this.location;
-    }
-
-    @Override
-    public int getStrength() {
-        return STRENGTH;
-    }
-
-    @Override
-    public void loseEnergy(int energy) {
-        this.fuel -= energy;
-    }
-
-    @Override
-    public boolean isDead() {
-        return (fuel <= 0);
-    }
-
-    @Override
-    public int getPlantCalories() {
-        // none 
-        return 0;
-    }
-
-    @Override
-    public int getMeatCalories() {
-        // none
-        return 0;
-    }
-
-    @Override
-    public int getCoolDownPeriod() {
-        return COOLDOWN;
-    }
-
+    
     @Override
     public Command getNextAction(World world) {
         
-        // TODO: Add momentum
         Location nextPoint;
         Direction currentDirection;
         
@@ -117,18 +62,5 @@ public class ATAT implements MoveableItem, Actor {
         
       
         return new WaitCommand();
-    }
-
-    @Override
-    public void moveTo(Location targetLocation) {
-        this.location = targetLocation;
-    }
-
-    @Override
-    public int getMovingRange() {
-        // Can only move one space at a time
-        return 1;
-    }
-    
- 
+    } 
 }
