@@ -9,41 +9,12 @@ import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
-public class Wookie implements ArenaAnimal {
+public class Wookie extends AbstractArenaAnimal {
 
-    private static final ImageIcon cloneImage = Util.loadImage("wookie.gif");
-    @Override
-    public int getEnergy() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+    private static final ImageIcon wookieImage = Util.loadImage("wookie.gif");
 
     @Override
     public LivingItem breed() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void eat(Food food) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void moveTo(Location targetLocation) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public int getMovingRange() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public ImageIcon getImage() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -54,70 +25,8 @@ public class Wookie implements ArenaAnimal {
         return null;
     }
 
-    @Override
-    public Location getLocation() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
-    @Override
-    public int getStrength() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
 
-    @Override
-    public void loseEnergy(int energy) {
-        // TODO Auto-generated method stub
-        
-    }
 
-    @Override
-    public boolean isDead() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public int getPlantCalories() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getMeatCalories() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getCoolDownPeriod() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public Command getNextAction(World world) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public int getMaxEnergy() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getViewRange() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int getMinimumBreedingEnergy() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
 
 }
