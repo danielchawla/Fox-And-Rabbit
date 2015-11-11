@@ -10,14 +10,14 @@ public class SpeederBike extends AbstractArenaVehicle {
     public SpeederBike(Location startPoint) {
         this.MAX_FUEL = 100;
         this.STRENGTH = 50;
-        this.MIN_SPEED = 2;
-        this.TURNING_SPEED = 5;
+        this.MIN_COOLDOWN = 2;
+        this.MAX_COOLDOWN = 5;
         this.VIEW_RANGE = 15;
 
-        this.speed = 1;
+        this.speed = 0;
         this.location = startPoint;
         this.direction = Util.getRandomDirection();
-        this.fuel = 100;  
+        this.fuel_level = 100;  
         this.image = Util.loadImage("motorcycles.gif");
         this.name = "SpeederBike";
     }

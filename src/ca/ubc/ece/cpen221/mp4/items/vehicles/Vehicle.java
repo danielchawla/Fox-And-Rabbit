@@ -2,6 +2,7 @@ package ca.ubc.ece.cpen221.mp4.items.vehicles;
 
 import ca.ubc.ece.cpen221.mp4.Actor;
 import ca.ubc.ece.cpen221.mp4.Direction;
+import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.MoveableItem;
 
@@ -32,26 +33,16 @@ public interface Vehicle extends MoveableItem, Actor {
     
     /**
      * 
+     * @return
      */
-    void speedUp();
+    int getMinCoolDown();
     
     /**
      * 
      * @return
      */
-    int getMINSpeed();
+    int getMaxCoolDown();
     
-    /**
-     * 
-     * @return
-     */
-    int getTurningSpeed();
-    
-    /**
-     * The vehicle also must be able to slow down, as it can only change
-     * direction at low speeds.
-     */
-    void slowDown();
     
     /**
      * 
@@ -63,6 +54,6 @@ public interface Vehicle extends MoveableItem, Actor {
      * 
      * @param collided
      */
-    void collision(Item collided);
+    void collide(World world);
 
 }

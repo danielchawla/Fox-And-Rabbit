@@ -1,32 +1,34 @@
 package ca.ubc.ece.cpen221.mp4.items.vehicles;
 
+import java.util.Set;
+
 import javax.swing.ImageIcon;
 
 import ca.ubc.ece.cpen221.mp4.Direction;
 import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
+import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 
 public abstract class AbstractArenaVehicle implements Vehicle {
     
     protected int MAX_FUEL;
     protected int STRENGTH;
-    protected int MIN_SPEED;
-    protected int TURNING_SPEED;
+    protected int MAX_COOLDOWN;
+    protected int MIN_COOLDOWN;
     protected int VIEW_RANGE;
     protected final int MOVING_RANGE = 1; // all vehicles can only move one space at a time
     protected Location location;
     protected ImageIcon image;
     
     protected Direction direction;
-    protected int fuel;
+    protected int fuel_level;
     protected String name;
-    protected int speed; // the lower the number for speed, the faster object moves
+    protected int speed;
     
-    @Override
-    public abstract Command getNextAction(World world);
-
+    
     @Override
     public ImageIcon getImage(){
         return this.image;
@@ -64,44 +66,29 @@ public abstract class AbstractArenaVehicle implements Vehicle {
 
     @Override
     public void loseEnergy(int energy) {
-        this.fuel-= energy; // fuel is energy for vehicles
+        this.fuel_level-= energy; // fuel is energy for vehicles
         
     }
 
     @Override
     public boolean isDead() {
-        return this.fuel <= 0;
+        return this.fuel_level <= 0;
     }
 
     @Override
     public int getFuelLevel() {
-        return this.fuel;
+        return this.fuel_level;
     }
 
     @Override
     public int getMaxFuel() {
         return this.MAX_FUEL;
     }
-
-
-    @Override
-    public void speedUp() {
-       if (this.speed > TURNING_SPEED){
-           this.speed--;
-       } 
-    }
-
-    @Override
-    public void slowDown() {
-        if (this.speed < MIN_SPEED){
-            this.speed++;
-        } 
-    }
     
     @Override
     public int getPlantCalories() {
-        // Vehicles are not plants
-        return 0;
+        // assume vehicles run on biodiesel and thus plant calories = fuel level
+        return this.fuel_level; 
     }
 
     @Override
@@ -112,17 +99,17 @@ public abstract class AbstractArenaVehicle implements Vehicle {
 
     @Override
     public int getCoolDownPeriod() {
-        return this.speed;
+        return 10 / this.speed;
     }
     
     @Override
-    public int getTurningSpeed(){
-        return this.TURNING_SPEED;
+    public int getMaxCoolDown(){
+        return this.MAX_COOLDOWN;
     }
     
     @Override
-    public int getMINSpeed(){
-        return this.MIN_SPEED;
+    public int getMinCoolDown(){
+        return this.MIN_COOLDOWN;
     }
     
     @Override
@@ -130,30 +117,118 @@ public abstract class AbstractArenaVehicle implements Vehicle {
         return this.direction;
     }
     
-    @Override
-    public void collision(Item collided){
-        // dies if hits stronger object
-        if (this.STRENGTH < collided.getStrength()){
-            this.fuel = 0;
-        }
-        else {
-            // kills weaker animals
-            if(collided.getMeatCalories() > 0){
-                this.fuel += collided.getMeatCalories();
-                collided.loseEnergy(collided.getMeatCalories());
-            }
-            // kills weaker plants
-            else if(collided.getPlantCalories() > 0){
-                this.fuel += collided.getPlantCalories();
-                collided.loseEnergy(collided.getPlantCalories());
-            }
-            // kills other weaker vehicles
-            // TODO: tweak this to avoid casting
-            else if(((AbstractArenaVehicle) collided).getFuelLevel() > 0){
-                this.fuel += ((AbstractArenaVehicle) collided).getFuelLevel();
-                collided.loseEnergy( ((AbstractArenaVehicle) collided).getFuelLevel());
-            }
-        }       
+    /**
+     * 
+     * @param world
+     */
+    protected void setDirection(World world) {
+        Direction previousDirection = this.direction;
+        while (!Util.isValidLocation(world, new Location(this.location, this.direction)) || this.direction == previousDirection)
+            this.direction = Util.getRandomDirection();
     }
+    
+    
+    /**
+     * 
+     */
+    @Override
+    public Command getNextAction(World world){
+//        if (distanceToEdge(world) <= (this.MAX_COOLDOWN - this.speed)){
+//            this.slowDown();
+//            if (this.speed == MAX_COOLDOWN){
+//                this.setDirection(world);
+//            }
+//        }
+//        else if (speed > MIN_COOLDOWN){
+//            this.speedUp();
+//        }
+        
+
+        
+        if (distanceToEdge(world) >= speed) {
+            if (speed != MIN_COOLDOWN)
+                speed++;
+            else if (speed != MAX_COOLDOWN)
+                speed--;
+            else if (speed == MAX_COOLDOWN)
+                setDirection(world);
+
+        } else {
+            if (distanceToEdge(world) < speed)
+                setDirection(world);
+            else if (speed > MAX_COOLDOWN)
+                speed--;
+            else if (speed == MAX_COOLDOWN)
+                setDirection(world);
+        }
+
+        collide(world);
+        return new MoveCommand(this, new Location(location, this.direction));
+    }
+    
+    /**
+     * 
+     * @param world
+     * @return
+     */
+    public int distanceToEdge(World world){
+      Location location = this.getLocation();
+      
+//      if(this.direction == Direction.WEST){
+//          return location.getY();
+//      } else if (this.direction == Direction.NORTH){
+//          return location.getY();
+//      } else if (this.direction == Direction.EAST) {
+//          return (-1)*(location.getX()-(world.getWidth()-1));
+//      } else if (this.direction == Direction.SOUTH){
+//          return (-1)*(location.getY()-(world.getHeight()-1));
+//      } else
+//        return -1;
+      
+      int distance = 1;
+
+      for (int i = 1; i <= speed; i++, distance++) {
+          if (this.direction == Direction.NORTH) {
+              if (!Util.isValidLocation(world, new Location(location.getX(), location.getY() - i)))
+                  break;
+          } else if (this.direction == Direction.SOUTH) {
+              if (!Util.isValidLocation(world, new Location(location.getX(), location.getY() + i)))
+                  break;
+          } else if (this.direction == Direction.EAST) {
+              if (!Util.isValidLocation(world, new Location(location.getX() + i, location.getY())))
+                  break;
+          } else {
+              if (!Util.isValidLocation(world, new Location(location.getX() - i, location.getY())))
+                  break;
+          }
+      }
+      return distance;
+    }
+    
+    /**
+     * 
+     * @param world
+     * @param collided
+     */
+    @Override
+    public void collide(World world){
+        Set<Item> neighbors = world.searchSurroundings(this.location, 1);
+        
+        for (Item neighbor : neighbors) {
+            if (neighbor.getLocation().equals(new Location(location, this.direction)))
+
+                if (this.getStrength() > neighbor.getStrength()){
+                    this.fuel_level += neighbor.getMeatCalories() + neighbor.getPlantCalories();
+                    if (this.fuel_level > MAX_FUEL){
+                        this.fuel_level = MAX_FUEL;
+                    }
+                    neighbor.loseEnergy(neighbor.getMeatCalories());
+                    neighbor.loseEnergy(neighbor.getPlantCalories());
+                }
+                else if (this.getStrength() < neighbor.getStrength()){
+                    this.loseEnergy(this.fuel_level);
+                }
+        }       
+    }    
     
 }

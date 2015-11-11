@@ -22,7 +22,12 @@ import ca.ubc.ece.cpen221.mp4.items.animals.*;
 
 public class AbstractAI implements AI {
     public static final Random RAND = new Random(2013);
-
+    
+    /**
+     * 
+     * @param dir
+     * @return
+     */
 	public Direction oppositeDir(Direction dir) { 
 		if (dir == Direction.EAST) {
 			return Direction.WEST;
@@ -35,6 +40,13 @@ public class AbstractAI implements AI {
 		}
 	}
 
+	/**
+	 * 
+	 * @param world
+	 * @param animal
+	 * @param location
+	 * @return
+	 */
 	public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) { 
 		if (!Util.isValidLocation(world, location)) {
 			return false;
@@ -49,12 +61,21 @@ public class AbstractAI implements AI {
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 */
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
 		return new WaitCommand();
 	}
 	
+	/**
+	 * 
+	 * @param world
+	 * @param animal
+	 * @param loc
+	 * @return
+	 */
     public Location getRandomLegalMoveLoc(ArenaWorld world, ArenaAnimal animal, Location loc){
         List<Location> neighbours = new LinkedList<Location>();
         Location targetLoc;
@@ -68,7 +89,13 @@ public class AbstractAI implements AI {
         return neighbours.get(RAND.nextInt(neighbours.size()));
 
     }
-    
+    /**
+     * 
+     * @param world
+     * @param animal
+     * @param itemName
+     * @return
+     */
 	public List<Location> itemLocations (ArenaWorld world, ArenaAnimal animal, String itemName){
 	    Set<Item> neighbours = world.searchSurroundings(animal);
 	    List<Location> itemLocs = new LinkedList<Location>();
@@ -80,6 +107,13 @@ public class AbstractAI implements AI {
 	    return itemLocs;
 	}
 	
+	/**
+	 * 
+	 * @param world
+	 * @param animal
+	 * @param preyName
+	 * @return
+	 */
 	public Item eatYourNeighbour (ArenaWorld world, ArenaAnimal animal, String preyName){
 	    Set<Item> neighbours = world.searchSurroundings(animal);
 	    Location currentLoc = animal.getLocation();
@@ -92,7 +126,13 @@ public class AbstractAI implements AI {
         
         return null;
 	}
-
+	/**
+	 * 
+	 * @param world
+	 * @param animal
+	 * @param itemName
+	 * @return
+	 */
 	public Location towardsItem(ArenaWorld world, ArenaAnimal animal, String itemName){
 	    List<Location> itemLocs = itemLocations(world, animal, itemName);
 	    TreeMap<Integer, Direction> closeItem = new TreeMap<Integer, Direction>();
@@ -114,6 +154,13 @@ public class AbstractAI implements AI {
 	    return targetLoc;
 	    }
 	
+	/**
+	 * 
+	 * @param world
+	 * @param animal
+	 * @param itemName
+	 * @return
+	 */
 	public Location awayFromItem(ArenaWorld world, ArenaAnimal animal, String itemName){
 	    List<Location> itemLocs = itemLocations(world, animal, itemName);
 	    Location currentLoc = animal.getLocation();
@@ -133,5 +180,6 @@ public class AbstractAI implements AI {
 	    
 	    return targetLoc;
 	}
-	}
+	
+}
 

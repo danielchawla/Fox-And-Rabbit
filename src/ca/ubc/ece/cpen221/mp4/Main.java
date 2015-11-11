@@ -7,6 +7,8 @@ import ca.ubc.ece.cpen221.mp4.items.Gardener;
 import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
 import ca.ubc.ece.cpen221.mp4.items.vehicles.ATAT;
+import ca.ubc.ece.cpen221.mp4.items.vehicles.Landspeeder;
+import ca.ubc.ece.cpen221.mp4.items.vehicles.SpeederBike;
 import ca.ubc.ece.cpen221.mp4.staff.WorldImpl;
 import ca.ubc.ece.cpen221.mp4.staff.WorldUI;
 
@@ -29,9 +31,9 @@ public class Main {
 	static final int INITIAL_TIGERS = INITIAL_GRASS / 32;
 	static final int INITIAL_BEARS = INITIAL_GRASS / 40;
 	static final int INITIAL_HYENAS = INITIAL_GRASS / 32;
-	static final int INITIAL_CARS = INITIAL_GRASS / 100;
+	static final int INITIAL_LANDSPEEDER = INITIAL_GRASS / 100;
 	static final int INITIAL_ATAT = INITIAL_GRASS / 150;
-	static final int INITIAL_MOTORCYCLES = INITIAL_GRASS / 64;
+	static final int INITIAL_SPEEDERBIKE = INITIAL_GRASS / 64;
 	static final int INITIAL_MANS = INITIAL_GRASS / 150;
 	static final int INITIAL_WOMANS = INITIAL_GRASS / 100;
 	static final int INITIAL_HUNTERS = INITIAL_GRASS / 150;
@@ -58,8 +60,10 @@ public class Main {
     	addGnats(world);
 		addRabbits(world);
 		addFoxes(world);
-		// TODO: You may add your own creatures here!
+		
 		addATATs(world);
+//		addSpeederBikes(world);
+//		addLandSpeeders(world);
 	}
 
 	private void addGrass(World world) {
@@ -98,12 +102,36 @@ public class Main {
 		}
 	}
 	
-	private void addATATs(World world) {
-        for (int i = 0; i < INITIAL_ATAT; i++) {
+	private void addSpeederBikes(World world) {
+        for (int i = 0; i < INITIAL_SPEEDERBIKE; i++) {
             Location loc = Util.getRandomEmptyLocation(world);
-            ATAT atat = new ATAT(loc);
-            world.addItem(atat);
-            world.addActor(atat);
+            SpeederBike speederBike = new SpeederBike(loc);
+            world.addItem(speederBike);
+            world.addActor(speederBike);
+            System.out.println(speederBike.getName());
+            System.out.println(speederBike.getFuelLevel());
         }
     }
+	
+	   private void addLandSpeeders(World world) {
+	        for (int i = 0; i < INITIAL_LANDSPEEDER; i++) {
+	            Location loc = Util.getRandomEmptyLocation(world);
+	            Landspeeder landspeeder = new Landspeeder(loc);
+	            world.addItem(landspeeder);
+	            world.addActor(landspeeder);
+	            System.out.println(landspeeder.getName());
+	            System.out.println(landspeeder.getFuelLevel());
+	        }
+	    }
+	
+	   private void addATATs(World world) {
+	        for (int i = 0; i < INITIAL_ATAT; i++) {
+	            Location loc = Util.getRandomEmptyLocation(world);
+	            ATAT atat = new ATAT(loc);
+	            world.addItem(atat);
+	            world.addActor(atat);
+	            System.out.println(atat.getName());
+	            System.out.println(atat.getFuelLevel());
+	        }
+	    }
 }
