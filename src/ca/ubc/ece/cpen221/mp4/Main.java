@@ -105,10 +105,7 @@ public class Main {
 		}
 	}
 	
-<<<<<<< HEAD
-	private void addSpeederBikes(World world) {
-        for (int i = 0; i < INITIAL_SPEEDERBIKE; i++) {
-=======
+
 	   private void addJedis(World world) {
 	        JediAI jediAI = new JediAI();
 	        for (int i = 0; i < INITIAL_JEDIS; i++) {
@@ -128,10 +125,9 @@ public class Main {
                world.addActor(clone);
            }
        }
-	
-	private void addATATs(World world) {
-        for (int i = 0; i < INITIAL_ATAT; i++) {
->>>>>>> a8e82813f41a0ee2c18c6bff3f7831198385c782
+       
+       private void addSpeederBikes(World world) {
+           for (int i = 0; i < INITIAL_SPEEDERBIKE; i++) {
             Location loc = Util.getRandomEmptyLocation(world);
             SpeederBike speederBike = new SpeederBike(loc);
             world.addItem(speederBike);

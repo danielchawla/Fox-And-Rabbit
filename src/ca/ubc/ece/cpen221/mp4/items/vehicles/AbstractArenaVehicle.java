@@ -133,34 +133,16 @@ public abstract class AbstractArenaVehicle implements Vehicle {
      */
     @Override
     public Command getNextAction(World world){
-//        if (distanceToEdge(world) <= (this.MAX_COOLDOWN - this.speed)){
-//            this.slowDown();
-//            if (this.speed == MAX_COOLDOWN){
-//                this.setDirection(world);
-//            }
-//        }
-//        else if (speed > MIN_COOLDOWN){
-//            this.speedUp();
-//        }
-        
-
-        
-        if (distanceToEdge(world) >= speed) {
-            if (speed != MIN_COOLDOWN)
-                speed++;
-            else if (speed != MAX_COOLDOWN)
-                speed--;
-            else if (speed == MAX_COOLDOWN)
-                setDirection(world);
-
-        } else {
-            if (distanceToEdge(world) < speed)
-                setDirection(world);
-            else if (speed > MAX_COOLDOWN)
-                speed--;
-            else if (speed == MAX_COOLDOWN)
-                setDirection(world);
+        if (distanceToEdge(world) <= (this.MAX_COOLDOWN - this.speed)){
+            this.slowDown();
+            if (this.speed == MAX_COOLDOWN){
+                this.setDirection(world);
+            }
         }
+        else if (speed > MIN_COOLDOWN){
+            this.speedUp();
+        }
+
 
         collide(world);
         return new MoveCommand(this, new Location(location, this.direction));
@@ -172,37 +154,19 @@ public abstract class AbstractArenaVehicle implements Vehicle {
      * @return
      */
     public int distanceToEdge(World world){
+        
       Location location = this.getLocation();
       
-//      if(this.direction == Direction.WEST){
-//          return location.getY();
-//      } else if (this.direction == Direction.NORTH){
-//          return location.getY();
-//      } else if (this.direction == Direction.EAST) {
-//          return (-1)*(location.getX()-(world.getWidth()-1));
-//      } else if (this.direction == Direction.SOUTH){
-//          return (-1)*(location.getY()-(world.getHeight()-1));
-//      } else
-//        return -1;
-      
-      int distance = 1;
-
-      for (int i = 1; i <= speed; i++, distance++) {
-          if (this.direction == Direction.NORTH) {
-              if (!Util.isValidLocation(world, new Location(location.getX(), location.getY() - i)))
-                  break;
-          } else if (this.direction == Direction.SOUTH) {
-              if (!Util.isValidLocation(world, new Location(location.getX(), location.getY() + i)))
-                  break;
-          } else if (this.direction == Direction.EAST) {
-              if (!Util.isValidLocation(world, new Location(location.getX() + i, location.getY())))
-                  break;
-          } else {
-              if (!Util.isValidLocation(world, new Location(location.getX() - i, location.getY())))
-                  break;
-          }
-      }
-      return distance;
+      if(this.direction == Direction.WEST){
+          return location.getY();
+      } else if (this.direction == Direction.NORTH){
+          return location.getY();
+      } else if (this.direction == Direction.EAST) {
+          return (-1)*(location.getX()-(world.getWidth()-1));
+      } else if (this.direction == Direction.SOUTH){
+          return (-1)*(location.getY()-(world.getHeight()-1));
+      } else
+        return -1;
     }
     
     /**
