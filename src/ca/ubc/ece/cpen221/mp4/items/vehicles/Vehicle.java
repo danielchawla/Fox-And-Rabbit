@@ -26,7 +26,7 @@ public interface Vehicle extends MoveableItem, Actor {
      * 
      * @return num of square vehicle may move
      */
-    int getVehicleSpeed();
+    int getCoolDownPeriod();
     
     /**
      * 
