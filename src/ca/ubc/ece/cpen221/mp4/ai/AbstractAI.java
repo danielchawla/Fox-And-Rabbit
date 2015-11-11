@@ -1,6 +1,9 @@
 package ca.ubc.ece.cpen221.mp4.ai;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -18,6 +21,7 @@ import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
 
 public class AbstractAI implements AI {
+    public static final Random RAND = new Random(2013);
 
 	public Direction oppositeDir(Direction dir) { 
 		if (dir == Direction.EAST) {
@@ -116,6 +120,23 @@ public class AbstractAI implements AI {
 	    targetLoc = new Location(currentLoc, dir);
 	    if (Util.isValidLocation(world, targetLoc) && Util.isLocationEmpty((World) world, targetLoc)) { return targetLoc;}
 	    else {return Util.getRandomLegalMoveLoc((World) world, currentLoc);}
+	}
+	
+	public Location spreadOut(ArenaWorld world, ArenaAnimal animal){
+	    Location targetLoc = Util.getRandomLegalMoveLoc((World) world, animal.getLocation());
+	    Set<Item> neighbours = world.searchSurroundings(animal);
+	    List<Direction> awayDirections = new LinkedList<Direction>();
+	    Location currentLoc = animal.getLocation();
+	    Direction directionAway;
+	    
+	    for (Item item : neighbours){
+	        if (item.getName().equals(animal.getName())){
+	            awayDirections.add(oppositeDir(Util.getDirectionTowards(currentLoc, item.getLocation())));
+	        }
+	    }
+	    if (awayDirections.isEmpty()) return rove(world, animal);
+	    directionAway = awayDirections.get(RAND.nextInt(awayDirections.size())-1);
+	    return targetLoc;
 	}
 	}
 
