@@ -25,8 +25,6 @@ public class Fox extends AbstractArenaAnimal {
 	private static final ImageIcon foxImage = Util.loadImage("fox.gif");
 	private static final String NAME = "Fox";
 
-	private Location location;
-
 	private FoxAI foxAI;
 
 	/**
@@ -41,16 +39,15 @@ public class Fox extends AbstractArenaAnimal {
 	 */
 	public Fox(FoxAI foxAI, Location initialLocation) {
         this.foxAI = foxAI;
-        this.location = initialLocation;
         this.setIsDead(false);
-        this.setINITIAL_ENERGY(INITIAL_ENERGY);
-        this.setMAX_ENERGY(MAX_ENERGY);
-        this.setCOOLDOWN(COOLDOWN);
-        this.setVIEW_RANGE(VIEW_RANGE);
-        this.setSTRENGTH(STRENGTH);
+        this.setInitialEnergy(INITIAL_ENERGY);
+        this.setMaxEnergy(MAX_ENERGY);
+        this.setCoolDown(COOLDOWN);
+        this.setViewRange(VIEW_RANGE);
+        this.setStrength(STRENGTH);
         this.setEnergy(INITIAL_ENERGY);
         this.setMeatCalories(MEAT_CALORIES);
-        this.setMIN_BREEDING_ENERGY(MIN_BREEDING_ENERGY);
+        this.setMinBreedingEnergy(MIN_BREEDING_ENERGY);
         this.setLocation(initialLocation);  
         this.setImage(foxImage);
         this.setName(Fox.NAME);
@@ -62,7 +59,7 @@ public class Fox extends AbstractArenaAnimal {
 
 	@Override
 	public LivingItem breed() {
-		Fox child = new Fox(foxAI, location);
+		Fox child = new Fox(foxAI, this.getLocation());
 		child.setEnergy(this.getEnergy() / 2);
 		this.setEnergy(this.getEnergy() / 2);
 		return child;

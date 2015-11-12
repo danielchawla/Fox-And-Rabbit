@@ -17,13 +17,14 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	private int viewRange;
 	private int minBreedingEnergy;
 	private int coolDown;
+	private int energy;
 	private ImageIcon image;
 	private String name;
 
 	private AI ai;
     private boolean isDead;
 	private Location location;
-	private int energy;
+
 
 	@Override
 	public abstract LivingItem breed();
@@ -33,7 +34,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 		energy = Math.min(maxEnergy, energy + food.getMeatCalories());
 	}
 
-	protected void setINITIAL_ENERGY(int i) {
+	protected void setInitialEnergy(int i) {
 		this.initialEnergy = i;
 	}
 
@@ -45,7 +46,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
         this.isDead = isDead;
     }
 	
-	protected void setMAX_ENERGY(int i) {
+	protected void setMaxEnergy(int i) {
 		this.maxEnergy = i;
 	}
 
@@ -53,15 +54,15 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
      * Sets the strength of the animal.
      * @param strength of animal
      */
-	protected void setSTRENGTH(int i) {
+	protected void setStrength(int i) {
 		this.strength = i;
 	}
 
-	protected void setVIEW_RANGE(int i) {
+	protected void setViewRange(int i) {
 		this.viewRange = i;
 	}
 
-	protected void setMIN_BREEDING_ENERGY(int i) {
+	protected void setMinBreedingEnergy(int i) {
 		this.minBreedingEnergy = i;
 	}
 	
@@ -73,7 +74,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
      * Sets animal's cool down rate.
      * @param cooldown rate
      */
-	protected void setCOOLDOWN(int i) {
+	protected void setCoolDown(int i) {
 		this.coolDown = i;
 	}
 

@@ -33,11 +33,11 @@ public class Sith extends AbstractArenaAnimal {
    */
   public Sith (RandomMovementAI ai, Location initialLocation){
       this.randomAI = ai;
-      this.setINITIAL_ENERGY(INITIAL_ENERGY);
-      this.setMAX_ENERGY(MAX_ENERGY);
-      this.setCOOLDOWN(COOLDOWN);
-      this.setVIEW_RANGE(VIEW_RANGE);
-      this.setSTRENGTH(STRENGTH);
+      this.setInitialEnergy(INITIAL_ENERGY);
+      this.setMaxEnergy(MAX_ENERGY);
+      this.setCoolDown(COOLDOWN);
+      this.setViewRange(VIEW_RANGE);
+      this.setStrength(STRENGTH);
       this.setEnergy(INITIAL_ENERGY);
       this.setLocation(initialLocation); 
       this.setName(Sith.name);

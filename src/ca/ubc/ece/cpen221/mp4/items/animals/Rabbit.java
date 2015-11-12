@@ -26,7 +26,7 @@ public class Rabbit extends AbstractArenaAnimal {
 	private static final int COOLDOWN = 2;
 	private static final ImageIcon RABBITIMAGE = Util.loadImage("rabbit.gif");
 	private static final String NAME = "Rabbit";
-	
+
 	private final RabbitAI rabbitAI;
 
 	/**
@@ -41,14 +41,14 @@ public class Rabbit extends AbstractArenaAnimal {
 	 */
 	public Rabbit(RabbitAI rabbitAI, Location initialLocation) {
         this.rabbitAI = rabbitAI;
-        this.setINITIAL_ENERGY(INITIAL_ENERGY);
-        this.setMAX_ENERGY(MAX_ENERGY);
-        this.setCOOLDOWN(COOLDOWN);
-        this.setVIEW_RANGE(VIEW_RANGE);
+        this.setInitialEnergy(INITIAL_ENERGY);
+        this.setMaxEnergy(MAX_ENERGY);
+        this.setCoolDown(COOLDOWN);
+        this.setViewRange(VIEW_RANGE);
         this.setIsDead(false);
-        this.setSTRENGTH(STRENGTH);
+        this.setStrength(STRENGTH);
         this.setEnergy(INITIAL_ENERGY);
-        this.setMIN_BREEDING_ENERGY(MIN_BREEDING_ENERGY);
+        this.setMinBreedingEnergy(MIN_BREEDING_ENERGY);
         this.setLocation(initialLocation);  
         this.setImage(RABBITIMAGE);
         this.setName(Rabbit.NAME);

@@ -24,8 +24,6 @@ public class Gnat extends AbstractArenaAnimal {
 	private static final int ENERGY = 100;
 	private static final int STRENGTH = 10;
 
-	private int energy = ENERGY;
-
 	/**
 	 * Create a new Gnat at <code>initialLocation</code>. The
 	 * <code>initialLocation</code> must be valid and empty.
@@ -37,7 +35,7 @@ public class Gnat extends AbstractArenaAnimal {
 		this.setImage(IMAGE);
 		this.setEnergy(ENERGY);
 		this.setName(Gnat.NAME);
-		this.setSTRENGTH(STRENGTH);
+		this.setStrength(STRENGTH);
 		this.setLocation(initialLocation);
 		this.setMeatCalories(MEAT_CALORIES);
 	}
@@ -63,11 +61,6 @@ public class Gnat extends AbstractArenaAnimal {
 		return new WaitCommand();
 	}
 
-	@Override
-	public int getEnergy() {
-		// doesn't ever die, except when run over by a Vehicle
-		return energy;
-	}
 
 	@Override
 	public LivingItem breed() {

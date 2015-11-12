@@ -33,11 +33,11 @@ public class R2D2 extends AbstractArenaAnimal {
      */
     public R2D2 (R2D2AI ai, Location initialLocation){
         this.r2d2AI = ai;
-        this.setINITIAL_ENERGY(INITIAL_ENERGY);
-        this.setMAX_ENERGY(MAX_ENERGY);
-        this.setCOOLDOWN(COOLDOWN);
-        this.setVIEW_RANGE(VIEW_RANGE);
-        this.setSTRENGTH(STRENGTH);
+        this.setInitialEnergy(INITIAL_ENERGY);
+        this.setMaxEnergy(MAX_ENERGY);
+        this.setCoolDown(COOLDOWN);
+        this.setViewRange(VIEW_RANGE);
+        this.setStrength(STRENGTH);
         this.setEnergy(INITIAL_ENERGY);
         this.setLocation(initialLocation); 
         this.setName(R2D2.name);

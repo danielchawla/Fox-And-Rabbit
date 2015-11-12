@@ -40,14 +40,15 @@ public class Jedi extends AbstractArenaAnimal {
      *            the location where this clone will be created
      */
     public Jedi(JediAI jediAI, Location initialLocation) {
-        this.jediAI = jediAI;        
-        this.setINITIAL_ENERGY(INITIAL_ENERGY);
-        this.setMAX_ENERGY(MAX_ENERGY);
-        this.setCOOLDOWN(COOLDOWN);
-        this.setVIEW_RANGE(VIEW_RANGE);
-        this.setSTRENGTH(STRENGTH);
+        this.jediAI = jediAI; 
+        this.setIsDead(false);
+        this.setInitialEnergy(INITIAL_ENERGY);
+        this.setMaxEnergy(MAX_ENERGY);
+        this.setCoolDown(COOLDOWN);
+        this.setViewRange(VIEW_RANGE);
+        this.setStrength(STRENGTH);
         this.setEnergy(INITIAL_ENERGY);
-        this.setMIN_BREEDING_ENERGY(MIN_BREEDING_ENERGY);
+        this.setMinBreedingEnergy(MIN_BREEDING_ENERGY);
         this.setLocation(initialLocation);  
         this.setImage(JEDIIMAGE);
         this.setName(Jedi.NAME);

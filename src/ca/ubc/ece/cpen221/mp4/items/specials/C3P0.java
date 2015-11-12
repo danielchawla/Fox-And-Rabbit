@@ -34,11 +34,11 @@ public class C3P0 extends AbstractArenaAnimal {
      */
     public C3P0 (C3P0AI ai, Location initialLocation){
         this.c3p0AI = ai;
-        this.setINITIAL_ENERGY(INITIAL_ENERGY);
-        this.setMAX_ENERGY(MAX_ENERGY);
-        this.setCOOLDOWN(COOLDOWN);
-        this.setVIEW_RANGE(VIEW_RANGE);
-        this.setSTRENGTH(STRENGTH);
+        this.setInitialEnergy(INITIAL_ENERGY);
+        this.setMaxEnergy(MAX_ENERGY);
+        this.setCoolDown(COOLDOWN);
+        this.setViewRange(VIEW_RANGE);
+        this.setStrength(STRENGTH);
         this.setEnergy(INITIAL_ENERGY);
         this.setLocation(initialLocation);
         this.setName(C3P0.name);
