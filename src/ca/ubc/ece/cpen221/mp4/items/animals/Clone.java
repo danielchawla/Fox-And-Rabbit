@@ -10,7 +10,7 @@ import ca.ubc.ece.cpen221.mp4.ai.AI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
-public class Clone implements ArenaAnimal {
+public class Clone extends AbstractArenaAnimal {
     
     private static final int INITIAL_ENERGY = 100;
     private static final int MAX_ENERGY = 120;
@@ -42,21 +42,11 @@ public class Clone implements ArenaAnimal {
 
         this.energy = INITIAL_ENERGY;
     }
-    
-    @Override
-    public int getEnergy() {
-        return energy;
-    }
 
     @Override
     public LivingItem breed() {
         Clone child = new Clone(ai, location);
         return child;
-    }
-
-    @Override
-    public void eat(Food food) {
-        
     }
 
     @Override
@@ -75,33 +65,13 @@ public class Clone implements ArenaAnimal {
     }
 
     @Override
-    public Location getLocation() {
-        return location;
-    }
-
-    @Override
     public int getStrength() {
         return STRENGTH;
     }
 
     @Override
-    public void loseEnergy(int energyLoss) {
-        this.energy = this.energy - energyLoss;
-    }
-
-    @Override
-    public boolean isDead() {
-        return energy <= 0;
-    }
-
-    @Override
     public int getPlantCalories() {
         return 0;
-    }
-
-    @Override
-    public int getMeatCalories() {
-        return energy;
     }
 
     @Override
@@ -129,10 +99,4 @@ public class Clone implements ArenaAnimal {
     public int getMinimumBreedingEnergy() {
         return MIN_BREEDING_ENERGY;
     }
-    
-    @Override
-    public void moveTo(Location targetLocation) {
-        location = targetLocation;   
-    }
-
 }
