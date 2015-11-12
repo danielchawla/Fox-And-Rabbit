@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
-import ca.ubc.ece.cpen221.mp4.ai.SpecialsAI;
+import ca.ubc.ece.cpen221.mp4.ai.RandomMovementAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
@@ -18,10 +18,10 @@ public class Sith extends AbstractArenaAnimal {
   private static final int MAX_ENERGY = 300;
   private static final int VIEW_RANGE = 3;
   private static final String name = "Sith";
-  private final SpecialsAI specialsAI;
+  private final RandomMovementAI randomAI;
 
-  public Sith (SpecialsAI ai, Location initialLocation){
-      this.specialsAI = ai;
+  public Sith (RandomMovementAI ai, Location initialLocation){
+      this.randomAI = ai;
       this.setINITIAL_ENERGY(INITIAL_ENERGY);
       this.setMAX_ENERGY(MAX_ENERGY);
       this.setCOOLDOWN(COOLDOWN);
@@ -41,7 +41,7 @@ public class Sith extends AbstractArenaAnimal {
   
   @Override
   public Command getNextAction(World world) {
-      Command nextAction = specialsAI.getNextAction(world, this);
+      Command nextAction = randomAI.getNextAction(world, this);
       setEnergy(getEnergy() -1 ); // Loses 1 energy regardless of action.
       return nextAction;
   }

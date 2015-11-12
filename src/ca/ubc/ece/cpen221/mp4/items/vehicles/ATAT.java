@@ -4,9 +4,6 @@ import javax.swing.ImageIcon;
 
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
-import ca.ubc.ece.cpen221.mp4.World;
-import ca.ubc.ece.cpen221.mp4.commands.Command;
-import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 public class ATAT extends AbstractArenaVehicle {
     private static final ImageIcon ATATIMAGE = Util.loadImage("trucks.gif");

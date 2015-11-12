@@ -134,25 +134,25 @@ public class Main {
        }
        
        private void addR2D2(World world) {
-           SpecialsAI specialsAI = new SpecialsAI();
+           RandomMovementAI randomAI = new RandomMovementAI();
            Location loc = Util.getRandomEmptyLocation(world);
-           R2D2 R2D2 = new R2D2(specialsAI, loc);
+           R2D2 R2D2 = new R2D2(randomAI, loc);
            world.addItem(R2D2);
            world.addActor(R2D2);
        }
        
        private void addC3P0(World world) {
-           SpecialsAI specialsAI = new SpecialsAI();
+           RandomMovementAI randomAI = new RandomMovementAI();
            Location loc = Util.getRandomEmptyLocation(world);
-           C3P0 C3P0 = new C3P0(specialsAI, loc);
+           C3P0 C3P0 = new C3P0(randomAI, loc);
            world.addItem(C3P0);
            world.addActor(C3P0);
        }
        
        private void addSith(World world) {
-           SpecialsAI specialsAI = new SpecialsAI();
+           RandomMovementAI randomAI = new RandomMovementAI();
            Location loc = Util.getRandomEmptyLocation(world);
-           Sith sith = new Sith(specialsAI, loc);
+           Sith sith = new Sith(randomAI, loc);
            world.addItem(sith);
            world.addActor(sith);
        }

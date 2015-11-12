@@ -12,8 +12,6 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
-import ca.ubc.ece.cpen221.mp4.items.LivingItem;
-import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
 public abstract class AbstractArenaVehicle implements Vehicle{
     
