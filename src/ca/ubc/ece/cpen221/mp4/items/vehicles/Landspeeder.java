@@ -27,12 +27,7 @@ public class Landspeeder extends AbstractArenaVehicle {
         this.setMinCoolDown(MINCOOLDOWN);
         this.setImage(LANDSPEEDERIMAGE);
         this.setName(Landspeeder.NAME);
-    }
-
-    @Override
-    public Command getNextAction(World world) {
-        // TODO Fill this in
-        return null;
+        this.setDirection(Util.getRandomDirection());
     }
 
 }

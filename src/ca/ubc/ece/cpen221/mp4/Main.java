@@ -158,29 +158,29 @@ public class Main {
        }
        
        private void addSpeederBikes(World world) {
-//           for (int i = 0; i < INITIAL_SPEEDERBIKE; i++) {
+           for (int i = 0; i < INITIAL_SPEEDERBIKE; i++) {
             Location loc = Util.getRandomEmptyLocation(world);
             SpeederBike speederBike = new SpeederBike(loc);
             world.addItem(speederBike);
             world.addActor(speederBike);
-//        }
+        }
     }
 	
 	   private void addLandSpeeders(World world) {
-//	        for (int i = 0; i < INITIAL_LANDSPEEDER; i++) {
+	        for (int i = 0; i < INITIAL_LANDSPEEDER; i++) {
 	            Location loc = Util.getRandomEmptyLocation(world);
 	            Landspeeder landspeeder = new Landspeeder(loc);
 	            world.addItem(landspeeder);
 	            world.addActor(landspeeder);
-//	        }
+	        }
 	    }
 	
 	   private void addATATs(World world) {
-//	        for (int i = 0; i < INITIAL_ATAT; i++) {
+	        for (int i = 0; i < INITIAL_ATAT; i++) {
 	            Location loc = Util.getRandomEmptyLocation(world);
 	            ATAT atat = new ATAT(loc);
 	            world.addItem(atat);
 	            world.addActor(atat);
-//	        }
+	        }
 	    }
 }

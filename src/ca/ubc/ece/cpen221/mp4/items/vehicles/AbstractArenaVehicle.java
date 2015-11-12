@@ -215,4 +215,8 @@ public abstract class AbstractArenaVehicle implements Vehicle{
         this.minCoolDown = vehicleMinCoolDown;
     }
     
+    protected void setDirection(Direction vehicleDirection){
+        this.direction = vehicleDirection;
+    }
+    
 }

@@ -27,12 +27,7 @@ public class ATAT extends AbstractArenaVehicle {
         this.setMaxFuel(MAX_FUEL);
         this.setImage(ATATIMAGE);
         this.setName(ATAT.NAME);
-    }
-
-    @Override
-    public Command getNextAction(World world) {
-        // TODO Fill this in
-        return null;
+        this.setDirection(Util.getRandomDirection());
     }
 
 }

@@ -28,12 +28,7 @@ public class SpeederBike extends AbstractArenaVehicle {
         this.setMinCoolDown(MINCOOLDOWN);
         this.setImage(SPEEDERBIKEIMAGE);
         this.setName(SpeederBike.NAME);
-    }
-
-    @Override
-    public Command getNextAction(World world) {
-        // TODO Fill this in
-        return null;
+        this.setDirection(Util.getRandomDirection());
     }
 
 }
