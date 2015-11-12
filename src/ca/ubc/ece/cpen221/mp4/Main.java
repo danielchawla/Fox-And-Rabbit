@@ -163,8 +163,6 @@ public class Main {
             SpeederBike speederBike = new SpeederBike(loc);
             world.addItem(speederBike);
             world.addActor(speederBike);
-            System.out.println(speederBike.getName());
-            System.out.println(speederBike.getFuelLevel());
         }
     }
 	
@@ -174,8 +172,6 @@ public class Main {
 	            Landspeeder landspeeder = new Landspeeder(loc);
 	            world.addItem(landspeeder);
 	            world.addActor(landspeeder);
-	            System.out.println(landspeeder.getName());
-	            System.out.println(landspeeder.getFuelLevel());
 	        }
 	    }
 	
@@ -185,8 +181,6 @@ public class Main {
 	            ATAT atat = new ATAT(loc);
 	            world.addItem(atat);
 	            world.addActor(atat);
-	            System.out.println(atat.getName());
-	            System.out.println(atat.getFuelLevel());
 	        }
 	    }
 }

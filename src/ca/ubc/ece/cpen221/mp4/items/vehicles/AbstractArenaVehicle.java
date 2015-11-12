@@ -11,47 +11,83 @@ import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
+import ca.ubc.ece.cpen221.mp4.items.LivingItem;
+import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
-public abstract class AbstractArenaVehicle implements Vehicle {
+public abstract class AbstractArenaVehicle implements Vehicle{
     
-    protected int MAX_FUEL;
-    protected int STRENGTH;
-    protected int MAX_COOLDOWN;
-    protected int MIN_COOLDOWN;
-    protected int VIEW_RANGE;
-    protected final int MOVING_RANGE = 1; // all vehicles can only move one space at a time
-    protected Location location;
-    protected ImageIcon image;
+    protected static final int MOVINGRANGE = 1; // all vehicles can only move one space at a time
     
-    protected Direction direction;
-    protected int fuel_level;
-    protected String name;
-    protected int speed;
+    private int viewRange;
+    private int strength;
+    private int initialCoolDown;
+    private int changeDirectionCoolDown;
+    private int maxFuel;
+    private int fuel;
     
-    
-    @Override
-    public ImageIcon getImage(){
-        return this.image;
+    private boolean isDead;
+    private String name;
+    private Location location;
+    private ImageIcon image;
+    private Direction direction;
+
+        
+    protected void setInitialCoolDown (int vehicleCoolDown){
+        this.initialCoolDown = vehicleCoolDown;
     }
-
+    
+    protected void setLocation (Location vehicleLocation){
+        this.location = vehicleLocation;
+    }
+    
+    protected void setViewRange (int vehicleViewRange){
+        this.viewRange = vehicleViewRange;
+    }
+    
+    protected void setStrength (int vehicleStrength){
+        this.strength = vehicleStrength;
+    }
+    
+    protected void setChangeDirectionCoolDown (int vehicleChangeDirectionCoolDown){
+        this.changeDirectionCoolDown = vehicleChangeDirectionCoolDown;
+    }
+    
+    protected void setFuel(int vehicleFuel){
+        this.fuel = vehicleFuel;
+    }
+    
+    protected void setMaxFuel (int vehicleMaxFuel){
+        this.maxFuel = vehicleMaxFuel;
+    }
+   
+    
+    protected void setImage (ImageIcon vehicleImage){
+        this.image = vehicleImage;
+    }
+    
+    protected void setName (String vehicleName){
+        this.name = vehicleName; 
+    }
+    
     @Override
-    public String getName(){
+    public String getName() {
         return this.name;
     }
     
     @Override
-    public void moveTo(Location targetLocation) {
-        location = targetLocation;
+    public ImageIcon getImage() {
+        return this.image;
     }
     
     @Override
-    public int getViewRange() {
-        return this.getViewRange();
+    public void moveTo(Location targetLocation) {
+        this.location = targetLocation;
+        
     }
 
     @Override
     public int getMovingRange() {
-        return this.VIEW_RANGE;
+        return 1; // vehicles can only move one space at a time
     }
 
     @Override
@@ -61,61 +97,39 @@ public abstract class AbstractArenaVehicle implements Vehicle {
 
     @Override
     public int getStrength() {
-        return this.STRENGTH;
+        return this.strength;
     }
 
     @Override
     public void loseEnergy(int energy) {
-        this.fuel_level-= energy; // fuel is energy for vehicles
-        
+       this.fuel -= energy;
     }
 
     @Override
     public boolean isDead() {
-        return this.fuel_level <= 0;
+        return this.isDead;
     }
 
-    @Override
-    public int getFuelLevel() {
-        return this.fuel_level;
-    }
-
-    @Override
-    public int getMaxFuel() {
-        return this.MAX_FUEL;
-    }
-    
     @Override
     public int getPlantCalories() {
-        // assume vehicles run on biodiesel and thus plant calories = fuel level
-        return this.fuel_level; 
-    }
-
-    @Override
-    public int getMeatCalories() {
-     // Vehicles are not meat
+        // Vehicles are not food
         return 0;
     }
 
     @Override
+    public int getMeatCalories() {
+        // Vehicles have no meat
+        return 0;
+    }
+
+
+    @Override
     public int getCoolDownPeriod() {
-        return 10 / this.speed;
+        return 10;
     }
     
-    @Override
-    public int getMaxCoolDown(){
-        return this.MAX_COOLDOWN;
-    }
+
     
-    @Override
-    public int getMinCoolDown(){
-        return this.MIN_COOLDOWN;
-    }
-    
-    @Override
-    public Direction getDirection() {
-        return this.direction;
-    }
     
     /**
      * 
@@ -133,17 +147,6 @@ public abstract class AbstractArenaVehicle implements Vehicle {
      */
     @Override
     public Command getNextAction(World world){
-        if (distanceToEdge(world) <= (this.MAX_COOLDOWN - this.speed)){
-            //this.slowDown();
-            if (this.speed == MAX_COOLDOWN){
-                this.setDirection(world);
-            }
-        }
-        else if (speed > MIN_COOLDOWN){
-            //this.speedUp();
-        }
-
-
         collide(world);
         return new MoveCommand(this, new Location(location, this.direction));
     }
@@ -182,15 +185,15 @@ public abstract class AbstractArenaVehicle implements Vehicle {
             if (neighbor.getLocation().equals(new Location(location, this.direction)))
 
                 if (this.getStrength() > neighbor.getStrength()){
-                    this.fuel_level += neighbor.getMeatCalories() + neighbor.getPlantCalories();
-                    if (this.fuel_level > MAX_FUEL){
-                        this.fuel_level = MAX_FUEL;
+                    this.fuel += neighbor.getMeatCalories() + neighbor.getPlantCalories();
+                    if (this.fuel > maxFuel){
+                        this.fuel = maxFuel;
                     }
                     neighbor.loseEnergy(neighbor.getMeatCalories());
                     neighbor.loseEnergy(neighbor.getPlantCalories());
                 }
                 else if (this.getStrength() < neighbor.getStrength()){
-                    this.loseEnergy(this.fuel_level);
+                    this.loseEnergy(this.fuel);
                 }
         }       
     }    
