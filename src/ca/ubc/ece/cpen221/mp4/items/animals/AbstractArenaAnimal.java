@@ -25,27 +25,34 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
     private boolean isDead;
 	private Location location;
 
-
-	@Override
-	public abstract LivingItem breed();
-
-	@Override
-	public void eat(Food food) {
-		energy = Math.min(maxEnergy, energy + food.getMeatCalories());
-	}
-
+    /**
+    * Sets the initial energy of the animal.
+    * @param initial energy of animal
+    */
 	protected void setInitialEnergy(int i) {
 		this.initialEnergy = i;
 	}
 
+    /**
+     * Sets energy of the animal at any point in time.
+     * @param energy of animal
+     */
 	protected void setEnergy(int i) {
 		this.energy = i;
 	}
 	
+    /**
+     * Sets whether animal is dead or not.
+     * @param isDead - true if animal is dead, false otherwise 
+     */
     protected void setIsDead (boolean isDead){
         this.isDead = isDead;
     }
 	
+    /**
+     * Sets max energy an animal can have.
+     * @param max energy of animal.
+     */
 	protected void setMaxEnergy(int i) {
 		this.maxEnergy = i;
 	}
@@ -57,15 +64,28 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	protected void setStrength(int i) {
 		this.strength = i;
 	}
-
+	
+	/**
+	 * Sets view range of animal.
+	 * @param view range of animal.
+	 */
 	protected void setViewRange(int i) {
 		this.viewRange = i;
 	}
-
+	
+    /**
+     * Sets the min breeding energy of the animal.
+     * 
+     * @param min breeding energy of animal.
+     */
 	protected void setMinBreedingEnergy(int i) {
 		this.minBreedingEnergy = i;
 	}
 	
+	/**
+	 * Sets the meat calories of the animal.
+	 * @param meat calories of animal.
+	 */
     protected void setMeatCalories(int i) {
         this.meatCalories = i;
     }
@@ -191,4 +211,12 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	public void moveTo(Location targetLocation) {
 		location = targetLocation;
 	}
+	
+    @Override
+    public abstract LivingItem breed();
+
+    @Override
+    public void eat(Food food) {
+        energy = Math.min(maxEnergy, energy + food.getMeatCalories());
+    }
 }

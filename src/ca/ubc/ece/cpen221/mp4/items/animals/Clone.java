@@ -10,7 +10,8 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 /**
- * Clone is rapid cloning animal like character based off Star Wars series. 
+ * Clone is based off Star Wars series. It is a rapidly cloning animal-like
+ * character with. If you aren't careful, it'll take over everything.  
  * 
  * @author Annabelle Harvey and Daniel Chawla
  */
