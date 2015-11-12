@@ -15,7 +15,7 @@ import ca.ubc.ece.cpen221.mp4.items.animals.*;
  * Your Fox AI.
  */
 public class FoxAI extends AbstractAI {
-	private int closest = 2; // max number; greater than fox's view range
+
 	private final int MAX_FOXES = 3;
 
 	public FoxAI() {
