@@ -18,7 +18,7 @@ import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 public class R2D2 extends AbstractArenaAnimal {
     private static final ImageIcon R2D2IMAGE = Util.loadImage("R2D2.gif");
     private static final int STRENGTH = 10;
-    private static final int COOLDOWN = 10;
+    private static final int COOLDOWN = 2;
     private static final int INITIAL_ENERGY = 1000;
     private static final int MAX_ENERGY = 1000;
     private static final int VIEW_RANGE = 200;

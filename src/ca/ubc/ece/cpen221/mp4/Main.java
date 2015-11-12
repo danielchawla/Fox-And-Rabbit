@@ -65,7 +65,7 @@ public class Main {
 		addRabbits(world);
 		addFoxes(world);
 
-//		addClones(world);
+		addClones(world);
 		addJedis(world);
 		addWookies(world);
 		
@@ -154,9 +154,9 @@ public class Main {
        }
        
        private void addC3P0(World world) {
-           RandomMovementAI randomAI = new RandomMovementAI();
+           C3P0AI c3p0AI = new C3P0AI();
            Location loc = Util.getRandomEmptyLocation(world);
-           C3P0 C3P0 = new C3P0(randomAI, loc);
+           C3P0 C3P0 = new C3P0(c3p0AI, loc);
            world.addItem(C3P0);
            world.addActor(C3P0);
        }

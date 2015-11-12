@@ -10,9 +10,9 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
-public class R2D2AI extends AbstractAI {
+public class C3P0AI extends AbstractAI{
     
-    public R2D2AI(){
+    public C3P0AI(){
         
     }
 
@@ -23,27 +23,15 @@ public class R2D2AI extends AbstractAI {
       
        if (!neighbours.isEmpty()){
         for(Item item : neighbours){
-            if (((item.getLocation().getX() == currentLocation.getX())
-                    || (item.getLocation().getY() == currentLocation.getY())) 
-                    && (item.getName().equals("Clone") || item.getName().equals("grass"))){
+            if ((item.getName().equals("Clone") || item.getName().equals("grass")) 
+                    && (item.getLocation().getDistance(currentLocation) < 3)){
                 item.loseEnergy(9999);
             }
         }
        }
-       
-       
-       if (!neighbours.isEmpty() && (Math.random() > 0.75)){
-           for(Item item : neighbours){
-               if (((item.getLocation().getDistance(currentLocation) < 20)
-                       && (item.getLocation().getDistance(currentLocation) > 10) 
-                       && (item.getName().equals("Clone")))){
-                   item.loseEnergy(9999);
-               }
-           }
-          }
-        
+
         if (getRandomLegalMoveLoc(world, animal, currentLocation) != null){
-            return new MoveCommand(animal,getRandomLegalMoveLoc(world, animal, currentLocation));
+            return new MoveCommand(animal,towardsItem(world, animal, "R2D2"));
         }
         
         return new WaitCommand();

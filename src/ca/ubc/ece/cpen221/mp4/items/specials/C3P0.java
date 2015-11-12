@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
+import ca.ubc.ece.cpen221.mp4.ai.C3P0AI;
 import ca.ubc.ece.cpen221.mp4.ai.RandomMovementAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
@@ -18,12 +19,12 @@ import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 public class C3P0 extends AbstractArenaAnimal {
     private static final ImageIcon C3P0IMAGE = Util.loadImage("C3P0.gif");
     private static final int STRENGTH = 50;
-    private static final int COOLDOWN = 4;
+    private static final int COOLDOWN = 2;
     private static final int INITIAL_ENERGY = 200;
     private static final int MAX_ENERGY = 200;
-    private static final int VIEW_RANGE = 1;
+    private static final int VIEW_RANGE = 1000;
     private static final String name = "C3P0";
-    private final RandomMovementAI randomAI;
+    private final C3P0AI c3p0AI;
     
     /**
      * Constructs a C3P0 animal robot. The initialLocation must be
@@ -31,8 +32,8 @@ public class C3P0 extends AbstractArenaAnimal {
      * @param ai that cause C3P0 to move around randomly
      * @param initialLocation to be placed
      */
-    public C3P0 (RandomMovementAI ai, Location initialLocation){
-        this.randomAI = ai;
+    public C3P0 (C3P0AI ai, Location initialLocation){
+        this.c3p0AI = ai;
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
         this.setMAX_ENERGY(MAX_ENERGY);
         this.setCOOLDOWN(COOLDOWN);
@@ -56,7 +57,7 @@ public class C3P0 extends AbstractArenaAnimal {
     
     @Override
     public Command getNextAction(World world) {
-        Command nextAction = randomAI.getNextAction(world, this);
+        Command nextAction = c3p0AI.getNextAction(world, this);
         setEnergy(getEnergy() -1 ); // Loses 1 energy regardless of action.
         return nextAction;
     }
