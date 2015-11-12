@@ -12,6 +12,11 @@ import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
+/**
+ * R2D2 robot based off Star Wars Series. R2D2 is a robotic animal.
+ * 
+ * @author Annabelle Harvey and Daniel Chawla.
+ */
 public class R2D2 extends AbstractArenaAnimal {
     private static final ImageIcon R2D2IMAGE = Util.loadImage("R2D2.gif");
     private static final int STRENGTH = 10;
@@ -22,6 +27,11 @@ public class R2D2 extends AbstractArenaAnimal {
     private static final String name = "R2D2";
     private final R2D2AI r2d2AI;
 
+    /**
+     * Constructs a R2D2 animal robot. 
+     * @param ai that cause R2D2 to move around randomly
+     * @param initialLocation to be placed
+     */
     public R2D2 (R2D2AI ai, Location initialLocation){
         this.r2d2AI = ai;
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
@@ -35,6 +45,10 @@ public class R2D2 extends AbstractArenaAnimal {
         this.setImage(R2D2IMAGE);
     }
     
+    /**
+     * Methods below all have specs already.
+     */
+    
     @Override
     public LivingItem breed() {
         // R2D2 is incapable of breeding.
@@ -43,7 +57,7 @@ public class R2D2 extends AbstractArenaAnimal {
     
     @Override
     public Command getNextAction(World world) {
-        Command nextAction = r2d2AI.getNextAction(world, this);
+        Command nextAction = r2d2AI.getNextAction(world, this);        
         return nextAction;
     }
 

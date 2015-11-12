@@ -10,6 +10,11 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
+/**
+ * Evil Sith Lord based off Star Wars Series. C3P0 is a cruel animal.
+ * 
+ * @author Annabelle Harvey and Daniel Chawla.
+ */
 public class Sith extends AbstractArenaAnimal {
   private static final ImageIcon SITHIMAGE = Util.loadImage("sith.gif");
   private static final int STRENGTH = 100;
@@ -20,6 +25,11 @@ public class Sith extends AbstractArenaAnimal {
   private static final String name = "Sith";
   private final RandomMovementAI randomAI;
 
+  /**
+   * Constructs a wicked Sith animal. 
+   * @param ai that cause Sith to move around randomly
+   * @param initialLocation to be placed
+   */
   public Sith (RandomMovementAI ai, Location initialLocation){
       this.randomAI = ai;
       this.setINITIAL_ENERGY(INITIAL_ENERGY);
@@ -32,6 +42,10 @@ public class Sith extends AbstractArenaAnimal {
       this.setName(Sith.name);
       this.setImage(SITHIMAGE);
   }
+  
+  /**
+   * Methods below all have specs already.
+   */
   
   @Override
   public LivingItem breed() {
