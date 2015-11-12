@@ -6,6 +6,7 @@ import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
+import ca.ubc.ece.cpen221.mp4.ai.FoxAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
@@ -24,7 +25,7 @@ public class Fox extends AbstractArenaAnimal {
 
 	private Location location;
 	private int energy;
-	private AI ai;
+	private FoxAI foxAI;
 
 	/**
 	 * Create a new {@link Fox} with an {@link AI} at
@@ -36,8 +37,8 @@ public class Fox extends AbstractArenaAnimal {
 	 * @param initialLocation
 	 *            the location where this Fox will be created
 	 */
-	public Fox(AI foxAI, Location initialLocation) {
-        this.ai = foxAI;
+	public Fox(FoxAI foxAI, Location initialLocation) {
+        this.foxAI = foxAI;
         this.location = initialLocation;
         this.energy = INITIAL_ENERGY;
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
@@ -51,10 +52,14 @@ public class Fox extends AbstractArenaAnimal {
         this.setImage(foxImage);
         this.setName("Fox");
 	}
+	
+    /**
+     * Methods below all have specs already.
+     */
 
 	@Override
 	public LivingItem breed() {
-		Fox child = new Fox(ai, location);
+		Fox child = new Fox(foxAI, location);
 		child.energy = energy / 2;
 		this.energy = energy / 2;
 		return child;
@@ -62,10 +67,8 @@ public class Fox extends AbstractArenaAnimal {
 
     @Override
     public Command getNextAction(World world) {
-        Command nextAction = ai.getNextAction(world, this);
+        Command nextAction = foxAI.getNextAction(world, this);
         this.energy--; // Loses 1 energy regardless of action.
         return nextAction;
     }
-
-	
 }

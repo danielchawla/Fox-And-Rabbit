@@ -5,10 +5,15 @@ import javax.swing.ImageIcon;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
-import ca.ubc.ece.cpen221.mp4.ai.AI;
+import ca.ubc.ece.cpen221.mp4.ai.CloneAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
+/**
+ * Clone is rapid cloning animal like character based off Star Wars series. 
+ * 
+ * @author Annabelle Harvey and Daniel Chawla
+ */
 public class Clone extends AbstractArenaAnimal {
     
     private static final int INITIAL_ENERGY = 100;
@@ -21,7 +26,7 @@ public class Clone extends AbstractArenaAnimal {
     private static final String NAME = "Clone";
 
     private Location location;
-    private AI ai;
+    private final CloneAI cloneAI;
     
     
     /**
@@ -34,8 +39,8 @@ public class Clone extends AbstractArenaAnimal {
      * @param initialLocation
      *            the location where this clone will be created
      */
-    public Clone(AI cloneAI, Location initialLocation) {
-        this.ai = cloneAI;
+    public Clone(CloneAI cloneAI, Location initialLocation) {
+        this.cloneAI = cloneAI;
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
         this.setMAX_ENERGY(MAX_ENERGY);
         this.setCOOLDOWN(COOLDOWN);
@@ -48,15 +53,19 @@ public class Clone extends AbstractArenaAnimal {
         this.setName(Clone.NAME);
     }
 
+    /**
+     * Methods below all have specs already.
+     */
+    
     @Override
     public LivingItem breed() {
-        Clone child = new Clone(ai, location);
+        Clone child = new Clone(cloneAI, location);
         return child;
     }
 
     @Override
     public Command getNextAction(World world) {
-        Command nextAction = ai.getNextAction(world, this);
+        Command nextAction = cloneAI.getNextAction(world, this);
         return nextAction;
     }
 
