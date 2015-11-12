@@ -26,7 +26,7 @@ public class Fox extends AbstractArenaAnimal {
 	private static final String NAME = "Fox";
 
 	private Location location;
-	private int energy;
+
 	private FoxAI foxAI;
 
 	/**
@@ -43,7 +43,6 @@ public class Fox extends AbstractArenaAnimal {
         this.foxAI = foxAI;
         this.location = initialLocation;
         this.setIsDead(false);
-        this.energy = INITIAL_ENERGY;
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
         this.setMAX_ENERGY(MAX_ENERGY);
         this.setCOOLDOWN(COOLDOWN);
@@ -64,21 +63,16 @@ public class Fox extends AbstractArenaAnimal {
 	@Override
 	public LivingItem breed() {
 		Fox child = new Fox(foxAI, location);
-		child.energy = energy / 2;
-		this.energy = energy / 2;
+		child.setEnergy(this.getEnergy() / 2);
+		this.setEnergy(this.getEnergy() / 2);
 		return child;
 	}
 
     @Override
     public Command getNextAction(World world) {
         Command nextAction = foxAI.getNextAction(world, this);
-        this.energy--; // Loses 1 energy regardless of action.
+        this.setEnergy(this.getEnergy() - 1); // Loses 1 energy regardless of action.
         return nextAction;
     }
-    
-//    @Override
-//    public boolean isDead() {
-//        return energy <= 0;
-//    }
     
 }

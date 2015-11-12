@@ -10,13 +10,13 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 public abstract class AbstractArenaAnimal implements ArenaAnimal { 
-	private int INITIAL_ENERGY;
+	private int initialEnergy;
 	private int meatCalories;
-	private int MAX_ENERGY;
-	private int STRENGTH;
-	private int VIEW_RANGE;
-	private int MIN_BREEDING_ENERGY;
-	private int COOLDOWN;
+	private int maxEnergy;
+	private int strength;
+	private int viewRange;
+	private int minBreedingEnergy;
+	private int coolDown;
 	private ImageIcon image;
 	private String name;
 
@@ -30,23 +30,23 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 
 	@Override
 	public void eat(Food food) {
-		energy = Math.min(MAX_ENERGY, energy + food.getMeatCalories());
+		energy = Math.min(maxEnergy, energy + food.getMeatCalories());
 	}
 
 	protected void setINITIAL_ENERGY(int i) {
-		this.INITIAL_ENERGY = i;
+		this.initialEnergy = i;
 	}
 
 	protected void setEnergy(int i) {
 		this.energy = i;
 	}
 	
-	protected void setIsDead(boolean isDead){
-	    this.isDead = isDead;
-	}
+    protected void setIsDead (boolean isDead){
+        this.isDead = isDead;
+    }
 	
 	protected void setMAX_ENERGY(int i) {
-		this.MAX_ENERGY = i;
+		this.maxEnergy = i;
 	}
 
 	 /**
@@ -54,15 +54,15 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
      * @param strength of animal
      */
 	protected void setSTRENGTH(int i) {
-		this.STRENGTH = i;
+		this.strength = i;
 	}
 
 	protected void setVIEW_RANGE(int i) {
-		this.VIEW_RANGE = i;
+		this.viewRange = i;
 	}
 
 	protected void setMIN_BREEDING_ENERGY(int i) {
-		this.MIN_BREEDING_ENERGY = i;
+		this.minBreedingEnergy = i;
 	}
 	
     protected void setMeatCalories(int i) {
@@ -74,7 +74,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
      * @param cooldown rate
      */
 	protected void setCOOLDOWN(int i) {
-		this.COOLDOWN = i;
+		this.coolDown = i;
 	}
 
     /**
@@ -111,7 +111,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	
 	@Override
 	public int getCoolDownPeriod() {
-		return COOLDOWN;
+		return coolDown;
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 
 	@Override
 	public int getMaxEnergy() {
-		return MAX_ENERGY;
+		return maxEnergy;
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 
 	@Override
 	public int getMinimumBreedingEnergy() {
-		return MIN_BREEDING_ENERGY;
+		return minBreedingEnergy;
 	}
 
 	@Override
@@ -168,23 +168,22 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 
 	@Override
 	public int getStrength() {
-		return STRENGTH;
+		return strength;
 	}
 
 	@Override
 	public int getViewRange() {
-		return VIEW_RANGE;
+		return viewRange;
 	}
 
 	@Override
 	public boolean isDead() {
-		isDead = (energy <= 0);
-		return isDead;
+		return energy <= 0;
 	}
 
 	@Override
     public void loseEnergy(int energyLoss) {
-        this.energy -= energyLoss;
+        energy -= energyLoss;
     }
 
 	@Override
