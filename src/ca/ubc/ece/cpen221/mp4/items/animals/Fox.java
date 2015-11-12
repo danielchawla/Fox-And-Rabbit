@@ -72,7 +72,7 @@ public class Fox extends AbstractArenaAnimal {
     @Override
     public Command getNextAction(World world) {
         Command nextAction = foxAI.getNextAction(world, this);
-        this.energy--; // Loses 1 energy regardless of action.
+        energy--; // Loses 1 energy regardless of action.
         return nextAction;
     }
     
