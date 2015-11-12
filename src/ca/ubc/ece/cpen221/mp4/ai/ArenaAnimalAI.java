@@ -16,11 +16,21 @@ import ca.ubc.ece.cpen221.mp4.items.animals.*;
 
 public class ArenaAnimalAI implements AI {
 	private int energy;
-
+	
+	/**
+	 * Sets energy. 
+	 * @param energy of animal
+	 */
 	public ArenaAnimalAI(int energy) {
 		this.energy = energy;
 	}
-
+	/**
+	 * Checks if a location is empty
+	 * @param world that object to check is in
+	 * @param animal 
+	 * @param location - specific location
+	 * @return
+	 */
 	public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) {
 		if (!Util.isValidLocation(world, location)) {
 			return false;

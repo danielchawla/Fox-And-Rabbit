@@ -11,11 +11,12 @@ import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
- * AI for R2D2.
+ * AI to help R2D2 kills massive amounts of clones and wander about.
  * 
  * @author Annabelle Harvey and Daniel Chawla.
  */
 public class R2D2AI extends AbstractAI {
+    private static final int MIN_KILLING_DISTANCE_AWAY = 10;
     
     public R2D2AI(){
         
@@ -31,7 +32,7 @@ public class R2D2AI extends AbstractAI {
             if (((item.getLocation().getX() == currentLocation.getX())
                     || (item.getLocation().getY() == currentLocation.getY())) 
                     && (item.getName().equals("Clone") || item.getName().equals("grass"))){
-                item.loseEnergy(9999);
+                item.loseEnergy(Integer.MAX_VALUE);
             }
         }
        }
@@ -39,10 +40,10 @@ public class R2D2AI extends AbstractAI {
        
        if (!neighbours.isEmpty() && (Math.random() > 0.75)){
            for(Item item : neighbours){
-               if (((item.getLocation().getDistance(currentLocation) < 20)
-                       && (item.getLocation().getDistance(currentLocation) > 10) 
-                       && (item.getName().equals("Clone")))){
-                   item.loseEnergy(9999);
+               if (((item.getLocation().getDistance(currentLocation) < animal.getViewRange())
+                       && (item.getLocation().getDistance(currentLocation) > MIN_KILLING_DISTANCE_AWAY) 
+                       && (item.getName().equals("Clone")))){ // kills all clones with specified range
+                   item.loseEnergy(Integer.MAX_VALUE);
                }
            }
           }

@@ -11,7 +11,7 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
- * AI for clones.
+ * AI to help clones avoid Jedi and breed.
  * 
  * @author Annabelle Harvey and Daniel Chawla.
  */
@@ -27,11 +27,11 @@ public class CloneAI extends AbstractAI {
         Location currentLoc = animal.getLocation();
         
         if(!jediLocations.isEmpty() && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)){
-            return new MoveCommand(animal, awayFromItem(world, animal, "Jedi"));
+            return new MoveCommand(animal, awayFromItem(world, animal, "Jedi")); // tries to avoid Jedi
         }
         
         if (getRandomLegalMoveLoc(world, animal, currentLoc) != null) {
-            return new BreedCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc));
+            return new BreedCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc)); 
         }
         
         

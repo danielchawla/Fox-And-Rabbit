@@ -20,7 +20,7 @@ public class Jedi extends AbstractArenaAnimal {
     private static final int MAX_ENERGY = 100;
     private static final int MIN_BREEDING_ENERGY = 100;
     private static final int STRENGTH = 200;
-    private static final int VIEW_RANGE = 50;
+    private static final int VIEW_RANGE = 10;
     private static final int COOLDOWN = 1;
     private static final ImageIcon JEDIIMAGE = Util.loadImage("jedi.gif");
     private static final String NAME = "JEDI";

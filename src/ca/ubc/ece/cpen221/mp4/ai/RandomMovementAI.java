@@ -7,7 +7,7 @@ import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 /**
- * AI Class that finds random legal moves and makes them
+ * AI Class that finds random legal moves and creates Move comands towards them.
  * 
  * @author Annabelle Harvey and Daniel Chawla
  */
@@ -23,7 +23,8 @@ public class RandomMovementAI extends AbstractAI {
         Location currentLocation = animal.getLocation();
   
         if (getRandomLegalMoveLoc(world, animal, currentLocation) != null){
-            return new MoveCommand(animal,getRandomLegalMoveLoc(world, animal, currentLocation));
+            // if random move is possible, move there.
+            return new MoveCommand(animal,getRandomLegalMoveLoc(world, animal, currentLocation)); 
         }
         
         return new WaitCommand();

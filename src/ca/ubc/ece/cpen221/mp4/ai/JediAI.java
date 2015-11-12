@@ -12,13 +12,15 @@ import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
- * AI for Jedi.
+ * AI to help kill clones within a given radius, if two or more Jedi are close
+ * enough together their killing radius increases.
  * 
  * @author Annabelle Harvey and Daniel Chawla.
  */
 public class JediAI extends AbstractAI {
     
-    private final int HELPER_RANGE = 7;
+    private static final int FEEL_OTHER_JEDI_RANGE = 7;
+    private static final int RANGE_INCREASE = 3;
     
     public JediAI() {
 
@@ -30,12 +32,12 @@ public class JediAI extends AbstractAI {
         List<Location> jediLocations = itemLocations(world, animal, "Jedi");
         Location currentLoc = animal.getLocation();
         Set<Item> neighbours = world.searchSurroundings(animal);
-        int killRange = 5;
+        int killRange = animal.getViewRange();
         
         if (!jediLocations.isEmpty()) {
             for (Item item : neighbours){
-                if (item.getName().equals("Jedi") && (item.getLocation().getDistance(currentLoc) < HELPER_RANGE)){
-                    killRange += 3;
+                if (item.getName().equals("Jedi") && (item.getLocation().getDistance(currentLoc) < FEEL_OTHER_JEDI_RANGE)){
+                    killRange += RANGE_INCREASE; // if another Jedi is around, range increases
                 }
             }
         }
@@ -43,13 +45,13 @@ public class JediAI extends AbstractAI {
         if (!cloneLocations.isEmpty()) {
             for (Item item : neighbours){
                 if (item.getName().equals("Clone") && (item.getLocation().getDistance(currentLoc) < killRange)){
-                    item.loseEnergy(9999);
+                    item.loseEnergy(Integer.MAX_VALUE); // kills clones if within range
                 }
             }
         }
         
         if (!cloneLocations.isEmpty() && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)){
-            return new MoveCommand(animal, towardsItem(world, animal, "Clone"));
+            return new MoveCommand(animal, towardsItem(world, animal, "Clone")); // moves towards clones
         }
         
         

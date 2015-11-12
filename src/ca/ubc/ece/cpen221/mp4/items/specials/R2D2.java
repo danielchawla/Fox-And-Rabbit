@@ -21,7 +21,7 @@ public class R2D2 extends AbstractArenaAnimal {
     private static final int COOLDOWN = 2;
     private static final int INITIAL_ENERGY = 1000;
     private static final int MAX_ENERGY = 1000;
-    private static final int VIEW_RANGE = 200;
+    private static final int VIEW_RANGE = 10;
     private static final String name = "R2D2";
     private final R2D2AI r2d2AI;
 

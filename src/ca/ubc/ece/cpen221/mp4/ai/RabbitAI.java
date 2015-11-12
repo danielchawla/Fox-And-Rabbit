@@ -12,14 +12,15 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 
 /**
- * AI for rabbits.
+ * Rabbits try and survive as long as possible, eating grass, keeping away from
+ * foxes, and breeding when possible. 
  * 
  * @author Annabelle Harvey and Daniel Chawla
  */
 public class RabbitAI extends AbstractAI {
 
-	private final int MAX_RABBITS = 2;
-	private final int ENERGY_THRESH_EAT = 40;
+	private static final int MAX_RABBITS = 2;
+	private static final int ENERGY_THRESH_EAT = 40;
 
 	public RabbitAI() {
 	}
@@ -32,22 +33,22 @@ public class RabbitAI extends AbstractAI {
 	    Location currentLoc = animal.getLocation();
 	    
 	    if(!foxLocations.isEmpty() && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)){
-	        return new MoveCommand(animal, awayFromItem(world, animal, "Fox"));
+	        return new MoveCommand(animal, awayFromItem(world, animal, "Fox")); // dodges foxes
 	    }
 	    
 	    if(animal.getEnergy() < ENERGY_THRESH_EAT){
 	        if (eatYourNeighbour(world, animal, "grass") != null) {
-	            return new EatCommand(animal, eatYourNeighbour(world, animal, "grass"));
+	            return new EatCommand(animal, eatYourNeighbour(world, animal, "grass")); // eats grass if hungry
 	        }
 	      }
 	    
 	    if (!grassLocations.isEmpty() && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)){
-	        return new MoveCommand(animal, towardsItem(world, animal, "grass"));
+	        return new MoveCommand(animal, towardsItem(world, animal, "grass")); // moves towards grass
 	    }
 	    
 	    if ((rabbitLocations.size() < MAX_RABBITS) && (animal.getEnergy() > animal.getMinimumBreedingEnergy())
-	            && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)) {
-	        return new BreedCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc));
+	            && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)) { 
+	        return new BreedCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc)); //breeds if possible
 	    }
 	    
 	    if (getRandomLegalMoveLoc(world, animal, currentLoc) != null){

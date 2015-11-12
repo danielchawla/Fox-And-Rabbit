@@ -11,7 +11,7 @@ import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
- * AI for Sith.
+ * The Sith tries to find and kill R2D2 before is destroyed. 
  * 
  * @author Annabelle Harvey and Daniel Chawla.
  */
@@ -29,14 +29,14 @@ public class SithAI extends AbstractAI {
        if (!neighbours.isEmpty()){
         for(Item item : neighbours){
             
-            if ((item.getName().equals("R2D2") && (item.getLocation().getDistance(currentLocation) < 3))){
-                item.loseEnergy(9999);
+            if ((item.getName().equals("R2D2") && (item.getLocation().getDistance(currentLocation) < animal.getViewRange()))){
+                item.loseEnergy(Integer.MAX_VALUE); // Tries to kill R2D2
             }
         }
        }
 
         if (getRandomLegalMoveLoc(world, animal, currentLocation) != null){
-            return new MoveCommand(animal,towardsItem(world, animal, "R2D2"));
+            return new MoveCommand(animal,towardsItem(world, animal, "R2D2")); // moves towards R2D2. 
         }
         
         return new WaitCommand();

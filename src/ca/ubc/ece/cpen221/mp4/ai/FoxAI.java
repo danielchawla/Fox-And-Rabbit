@@ -12,13 +12,13 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
 
 /**
- * AI for foxes.
+ * AI to help foxes eat rabbits and breed.
  * 
  * @author Annabelle Harvey and Daniel Chawla.
  */
 public class FoxAI extends AbstractAI {
 
-	private final int MAX_FOXES = 3;
+	private static final int MAX_FOXES = 3;
 
 	public FoxAI() {
 
@@ -31,16 +31,16 @@ public class FoxAI extends AbstractAI {
 	    Location currentLoc = animal.getLocation();
         
 	    if (eatYourNeighbour(world, animal, "Rabbit") != null) {
-	        return new EatCommand(animal,(eatYourNeighbour(world, animal, "Rabbit")));
+	        return new EatCommand(animal,(eatYourNeighbour(world, animal, "Rabbit"))); // eats rabbits
 	    }
 	    
 	    if (!rabbitLocations.isEmpty() && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)){
-	        return new MoveCommand(animal, towardsItem(world, animal, "Rabbit"));
+	        return new MoveCommand(animal, towardsItem(world, animal, "Rabbit")); // moves towards rabbits
 	    }
 	    
 	    if ((foxLocations.size() < MAX_FOXES) && (animal.getEnergy() > animal.getMinimumBreedingEnergy())
                 && (getRandomLegalMoveLoc(world, animal, currentLoc) != null)) {
-            return new BreedCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc));
+            return new BreedCommand(animal,getRandomLegalMoveLoc(world, animal, currentLoc)); 
         }
 	    
 	    if (getRandomLegalMoveLoc(world, animal, currentLoc) != null){

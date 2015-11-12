@@ -23,6 +23,11 @@ import ca.ubc.ece.cpen221.mp4.items.animals.*;
 public class AbstractAI implements AI {
     public static final Random RAND = new Random(2013);
     
+    /**
+     * Returns opposite direction to inputted direction
+     * @param direction 
+     * @return opposite direction
+     */
 	public Direction oppositeDir(Direction dir) { 
 		if (dir == Direction.EAST) {
 			return Direction.WEST;
@@ -35,6 +40,13 @@ public class AbstractAI implements AI {
 		}
 	}
 
+	/**
+	 * Checks if a specific location doesn't contain animal items in it.
+	 * @param world world that contains the animal and its surroundings.
+     * @param animal animal doing the moving.
+     * @param loc current location of the animal.
+     * @return true if location is empty. false if empty
+	 */
 	public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) { 
 		if (!Util.isValidLocation(world, location)) {
 			return false;
@@ -48,11 +60,6 @@ public class AbstractAI implements AI {
 			}
 		}
 		return true;
-	}
-
-	@Override
-	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
-		return new WaitCommand();
 	}
 	
 	/**
@@ -176,6 +183,11 @@ public class AbstractAI implements AI {
 	    
 	    return targetLoc;
 	}
+	
+    @Override
+    public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
+        return new WaitCommand();
+    }
 	
 }
 
