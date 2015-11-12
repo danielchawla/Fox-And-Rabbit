@@ -18,69 +18,61 @@ import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 public abstract class AbstractArenaVehicle implements Vehicle{
     
     protected static final int MOVINGRANGE = 1; // all vehicles can only move one space at a time
-    private static final int VIEWRANGE = 1;
     private int strength;
     private int currentCoolDown;
     private int minCoolDown; // corresponds with max speed
     private int changeDirectionCoolDown;
     private int maxFuel;
     private int fuel;
-    
     private boolean isDead;
+    
     private String name;
     private Location location;
     private ImageIcon image;
     private Direction direction;
-
-
-    @Override
-    public int getCoolDownPeriod() {
-        return 10;
-    }
     
     /**
-     * 
+     * Gets next action for vehicle. If at the world's end,  
      */
     @Override
     public Command getNextAction(World world){
-        
+        this.fuel--;
         Direction previousDirection = this.direction;
         Direction newDirection = Util.getRandomDirection();
         
         if (atWorldsEdge(world) == true) {    
-            if (this.currentCoolDown >= this.changeDirectionCoolDown){
+            if (this.currentCoolDown >= this.changeDirectionCoolDown){ // if slow enough
                 while (previousDirection.equals(newDirection)){
                     newDirection = Util.getRandomDirection(); // gets new direction if at world's edge
                 }
                 this.direction = newDirection;
                 if (Util.isLocationEmpty(world, new Location(location, newDirection))) {
-                    return new MoveCommand(this, new Location(location, this.direction));
+                    return new MoveCommand(this, new Location(location, this.direction)); // if nothing is in the way, move
                 }
                 else{
-                    collide(world);
+                    collide(world); // else, collide into object
                 }
             } else {
-                 currentCoolDown++;
+                 currentCoolDown++; // if not slow enough to turn, slow down
                  return new WaitCommand();
             }
         }
         else {
             if(this.currentCoolDown > this.minCoolDown){
-                this.currentCoolDown--;
+                this.currentCoolDown--; // speed up if not near world's edge and can travel faster
             } 
-            collide(world);
-            Location nextStep = new Location(this.location, this.direction);
+            collide(world); 
+            Location nextStep = new Location(this.location, this.direction); 
             return new MoveCommand(this, nextStep);
         }
-        
         return new WaitCommand();
     }
     
     
     /**
-     * Test to see if at the worlds edge
-     * @param world
-     * @return true if at world's edge, false otherwise
+     * Test to see if at the world's edge.
+     * @param current world.
+     * @return true if at world's edge, false otherwise.
      */
     private boolean atWorldsEdge(World world){
         if (location.getX() == 0 || location.getY() == 0){
@@ -93,7 +85,8 @@ public abstract class AbstractArenaVehicle implements Vehicle{
     }
     
     /**
-     * 
+     * If there is an item in front of vehicle with weaker strength, removes item. Takes energy from item.
+     * If item in front of vehicle is stronger than vehicle, removes vehicle.
      * @param world
      * @param collided
      */
@@ -122,7 +115,10 @@ public abstract class AbstractArenaVehicle implements Vehicle{
         return new WaitCommand();     
     }
     
-
+    @Override
+    public int getCoolDownPeriod() {
+        return currentCoolDown;
+    }
     
     @Override
     public String getName() {
