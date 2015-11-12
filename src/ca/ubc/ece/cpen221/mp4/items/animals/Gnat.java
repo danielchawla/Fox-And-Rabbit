@@ -24,8 +24,6 @@ public class Gnat extends AbstractArenaAnimal {
 	private static final int ENERGY = 100;
 	private static final int STRENGTH = 10;
 
-	private Location location;
-	private boolean isDead;
 	private int energy = ENERGY;
 
 	/**
@@ -36,8 +34,6 @@ public class Gnat extends AbstractArenaAnimal {
 	 *            the location where the Gnat will be created
 	 */
 	public Gnat(Location initialLocation) {
-		this.location = initialLocation;
-		this.isDead = false;
 		this.setImage(IMAGE);
 		this.setEnergy(ENERGY);
 		this.setName(Gnat.NAME);

@@ -21,7 +21,9 @@ public class Fox extends AbstractArenaAnimal {
 	private static final int VIEW_RANGE = 5;
 	private static final int MIN_BREEDING_ENERGY = 20;
 	private static final int COOLDOWN = 3;
+	private static final int MEAT_CALORIES = 100;
 	private static final ImageIcon foxImage = Util.loadImage("fox.gif");
+	private static final String NAME = "Fox";
 
 	private Location location;
 	private int energy;
@@ -40,6 +42,7 @@ public class Fox extends AbstractArenaAnimal {
 	public Fox(FoxAI foxAI, Location initialLocation) {
         this.foxAI = foxAI;
         this.location = initialLocation;
+        this.setIsDead(false);
         this.energy = INITIAL_ENERGY;
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
         this.setMAX_ENERGY(MAX_ENERGY);
@@ -47,10 +50,11 @@ public class Fox extends AbstractArenaAnimal {
         this.setVIEW_RANGE(VIEW_RANGE);
         this.setSTRENGTH(STRENGTH);
         this.setEnergy(INITIAL_ENERGY);
+        this.setMeatCalories(MEAT_CALORIES);
         this.setMIN_BREEDING_ENERGY(MIN_BREEDING_ENERGY);
         this.setLocation(initialLocation);  
         this.setImage(foxImage);
-        this.setName("Fox");
+        this.setName(Fox.NAME);
 	}
 	
     /**
@@ -71,4 +75,10 @@ public class Fox extends AbstractArenaAnimal {
         this.energy--; // Loses 1 energy regardless of action.
         return nextAction;
     }
+    
+    @Override
+    public boolean isDead() {
+        return energy <= 0;
+    }
+    
 }

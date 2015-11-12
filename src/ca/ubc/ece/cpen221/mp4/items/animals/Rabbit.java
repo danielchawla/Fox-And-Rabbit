@@ -20,6 +20,7 @@ public class Rabbit extends AbstractArenaAnimal {
 	private static final int INITIAL_ENERGY = 40;
 	private static final int MAX_ENERGY = 60;
 	private static final int STRENGTH = 60;
+	private static final int MEAT_CALORIES = 60;
 	private static final int MIN_BREEDING_ENERGY = 10;
 	private static final int VIEW_RANGE = 3;
 	private static final int COOLDOWN = 2;
@@ -47,12 +48,14 @@ public class Rabbit extends AbstractArenaAnimal {
         this.setMAX_ENERGY(MAX_ENERGY);
         this.setCOOLDOWN(COOLDOWN);
         this.setVIEW_RANGE(VIEW_RANGE);
+        this.setIsDead(false);
         this.setSTRENGTH(STRENGTH);
         this.setEnergy(INITIAL_ENERGY);
         this.setMIN_BREEDING_ENERGY(MIN_BREEDING_ENERGY);
         this.setLocation(initialLocation);  
         this.setImage(RABBITIMAGE);
         this.setName(Rabbit.NAME);
+        this.setMeatCalories(MEAT_CALORIES);
 	}
 	
     /**
