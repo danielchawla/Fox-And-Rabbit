@@ -14,16 +14,18 @@ public class SpeederBike extends AbstractArenaVehicle {
     private static final ImageIcon SPEEDERBIKEIMAGE = Util.loadImage("speederbike.gif");
     private static final int STRENGTH = 50;
     private static final int CHANGE_DIRECTION_COOLDOWN = 4; // speed vehicle needs to slow down to in order to turn
-    private static final int INITIAL_FUEL = 50;
-    private static final int MAX_FUEL = 50;
+    private static final int INITIAL_FUEL = 10;
+    private static final int MAX_FUEL = 10;
     private static final int MINCOOLDOWN = 1;
     private static final String NAME = "SpeederBike";
+    private final boolean isDead;
     
     /**
      * Creates a new SpeederBike with an initial start location
      * @param startPoint - the initial location SpeederBike will be placed in the world
      */
     public SpeederBike(Location startPoint) {
+        this.isDead = false;
         this.setLocation(startPoint);  
         this.setInitialCoolDown(CHANGE_DIRECTION_COOLDOWN); 
         this.setChangeDirectionCoolDown(CHANGE_DIRECTION_COOLDOWN); 
@@ -34,6 +36,11 @@ public class SpeederBike extends AbstractArenaVehicle {
         this.setImage(SPEEDERBIKEIMAGE);
         this.setName(SpeederBike.NAME);
         this.setDirection(Util.getRandomDirection());
+    }
+    
+    @Override
+    public boolean isDead() {
+        return this.isDead;
     }
 
 }

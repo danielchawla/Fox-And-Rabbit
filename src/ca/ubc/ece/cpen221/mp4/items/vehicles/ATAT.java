@@ -18,12 +18,14 @@ public class ATAT extends AbstractArenaVehicle {
     private static final int INITIAL_FUEL = 1000;
     private static final int MAX_FUEL = 1000;
     private static final String NAME = "ATAT";
+    private final boolean isDead;
 
     /**
      * Creates a new ATAT with an initial start location
      * @param startPoint - the initial location ATAT will be placed in the world
      */
     public ATAT(Location startPoint) {
+        this.isDead = false;
         this.setLocation(startPoint);  
         this.setInitialCoolDown(CHANGE_DIRECTION_COOLDOWN); 
         this.setChangeDirectionCoolDown(CHANGE_DIRECTION_COOLDOWN); 
@@ -34,6 +36,11 @@ public class ATAT extends AbstractArenaVehicle {
         this.setImage(ATATIMAGE);
         this.setName(ATAT.NAME);
         this.setDirection(Util.getRandomDirection());
+    }
+    
+    @Override
+    public boolean isDead() {
+        return this.isDead;
     }
 
 }

@@ -76,9 +76,9 @@ public class Fox extends AbstractArenaAnimal {
         return nextAction;
     }
     
-    @Override
-    public boolean isDead() {
-        return energy <= 0;
-    }
+//    @Override
+//    public boolean isDead() {
+//        return energy <= 0;
+//    }
     
 }
