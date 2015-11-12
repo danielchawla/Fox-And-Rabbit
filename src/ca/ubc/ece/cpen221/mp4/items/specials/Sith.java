@@ -11,13 +11,13 @@ import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
 /**
- * Evil Sith Lord based off Star Wars Series. C3P0 is a cruel animal.
+ * Evil Sith Lord based off Star Wars Series. Sith is a cruel animal.
  * 
  * @author Annabelle Harvey and Daniel Chawla.
  */
 public class Sith extends AbstractArenaAnimal {
   private static final ImageIcon SITHIMAGE = Util.loadImage("sith.gif");
-  private static final int STRENGTH = 100;
+  private static final int STRENGTH = 1000;
   private static final int COOLDOWN = 5;
   private static final int INITIAL_ENERGY = 300;
   private static final int MAX_ENERGY = 300;
