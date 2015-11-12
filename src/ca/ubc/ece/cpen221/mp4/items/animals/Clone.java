@@ -16,16 +16,16 @@ public class Clone extends AbstractArenaAnimal {
     private static final int MAX_ENERGY = 120;
     private static final int STRENGTH = 10;
     private static final int VIEW_RANGE = 5;
-    private static final int MOVING_RANGE = 1;
-    private static final int MIN_BREEDING_ENERGY = 20;
+    private static final int MIN_BREEDING_ENERGY = 0;
     private static final int COOLDOWN = 3;
     private static final ImageIcon cloneImage = Util.loadImage("clone.gif");
 
-    private final AI ai;
-
     private Location location;
+    private AI ai;
+    
     private int energy;
-
+    
+    
     /**
      * Create a new clone with an AI at
      * initialLocation. The initialLocation must be
@@ -39,8 +39,17 @@ public class Clone extends AbstractArenaAnimal {
     public Clone(AI cloneAI, Location initialLocation) {
         this.ai = cloneAI;
         this.location = initialLocation;
-
         this.energy = INITIAL_ENERGY;
+//        this.setINITIAL_ENERGY(INITIAL_ENERGY);
+//        this.setMAX_ENERGY(MAX_ENERGY);
+//        this.setCOOLDOWN(COOLDOWN);
+//        this.setVIEW_RANGE(VIEW_RANGE);
+//        this.setSTRENGTH(STRENGTH);
+//        this.setEnergy(INITIAL_ENERGY);
+//        this.setMIN_BREEDING_ENERGY(MIN_BREEDING_ENERGY);
+//        this.setLocation(initialLocation);  
+//        this.setImage(cloneImage);
+//        this.setName("Clone");
     }
 
     @Override
@@ -50,8 +59,25 @@ public class Clone extends AbstractArenaAnimal {
     }
 
     @Override
-    public int getMovingRange() {
-        return MOVING_RANGE;
+    public Command getNextAction(World world) {
+        Command nextAction = ai.getNextAction(world, this);
+        return nextAction;
+    }
+
+    @Override
+    public void eat(Food food) {
+
+    }
+    
+    //DO I NEED THESE
+    @Override
+    public int getCoolDownPeriod() {
+        return COOLDOWN;
+    }
+
+    @Override
+    public int getEnergy() {
+        return energy;
     }
 
     @Override
@@ -60,29 +86,8 @@ public class Clone extends AbstractArenaAnimal {
     }
 
     @Override
-    public String getName() {
-        return "Clone";
-    }
-
-    @Override
-    public int getStrength() {
-        return STRENGTH;
-    }
-
-    @Override
-    public int getPlantCalories() {
-        return 0;
-    }
-
-    @Override
-    public int getCoolDownPeriod() {
-        return COOLDOWN;
-    }
-
-    @Override
-    public Command getNextAction(World world) {
-        Command nextAction = ai.getNextAction(world, this);
-        return nextAction;
+    public Location getLocation() {
+        return location;
     }
 
     @Override
@@ -91,12 +96,54 @@ public class Clone extends AbstractArenaAnimal {
     }
 
     @Override
-    public int getViewRange() {
-        return VIEW_RANGE;
+    public int getMeatCalories() {
+        return energy;
     }
 
     @Override
     public int getMinimumBreedingEnergy() {
         return MIN_BREEDING_ENERGY;
     }
+
+    @Override
+    public int getMovingRange() {
+        return 1; // Can only move to adjacent locations.
+    }
+
+    @Override
+    public String getName(){
+        return "Clone";
+    }
+
+    @Override
+    public int getPlantCalories() { // arena animals dont eat plants
+        return 0;
+    }
+
+    @Override
+    public int getStrength() {
+        return STRENGTH;
+    }
+
+    @Override
+    public int getViewRange() {
+        return VIEW_RANGE;
+    }
+
+    @Override
+    public boolean isDead() {
+        return energy <= 0;
+    }
+
+    @Override
+    public void loseEnergy(int energyLoss) {
+        energy = this.energy - energyLoss;
+    }
+
+    @Override
+    public void moveTo(Location targetLocation) {
+        location = targetLocation;
+    }
+    
+    
 }

@@ -18,11 +18,12 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	private int MIN_BREEDING_ENERGY;
 	private int COOLDOWN;
 	private ImageIcon image;
+	private String name;
 
 	private AI ai;
-
+    private boolean isDead;
 	private Location location;
-	private int energy = INITIAL_ENERGY;
+	private int energy;
 
 	@Override
 	public abstract LivingItem breed();
@@ -63,6 +64,14 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	protected void setLocation(Location l) {
 		this.location = l;
 	}
+	
+	protected void setImage(ImageIcon i){
+	    this.image = i;
+	}
+	
+	protected void setName(String n){
+	    this.name = n;
+	}
 
 	@Override
 	public int getCoolDownPeriod() {
@@ -81,7 +90,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 
 	@Override
 	public Location getLocation() {
-		return this.location;
+		return location;
 	}
 
 	@Override
@@ -105,7 +114,9 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	}
 
 	@Override
-	public abstract String getName();
+	public String getName(){
+	    return name;
+	}
 
 	@Override
 	public Command getNextAction(World world) {
@@ -131,12 +142,12 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 
 	@Override
 	public boolean isDead() {
-		return this.energy <= 0;
+		return energy <= 0;
 	}
 
 	@Override
 	public void loseEnergy(int energyLoss) {
-		this.energy = this.energy - energyLoss;
+		energy = this.energy - energyLoss;
 	}
 
 	@Override
