@@ -40,6 +40,7 @@ public class Main {
 	static final int INITIAL_MANS = INITIAL_GRASS / 150;
 	static final int INITIAL_CLONES = 4;
 	static final int INITIAL_JEDIS = 7;
+	static final int INITIAL_WOOKIES = 4;
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -66,6 +67,7 @@ public class Main {
 
 		addClones(world);
 		addJedis(world);
+		addWookies(world);
 		
 		addR2D2(world);
 		addC3P0(world);
@@ -130,6 +132,16 @@ public class Main {
                Clone clone = new Clone(cloneAI, loc);
                world.addItem(clone);
                world.addActor(clone);
+           }
+       }
+       
+       private void addWookies(World world) {
+           RandomMovementAI randomAI = new RandomMovementAI();
+           for (int i = 0; i < INITIAL_WOOKIES; i++) {
+               Location loc = Util.getRandomEmptyLocation(world);
+               Wookie wookie = new Wookie(randomAI, loc);
+               world.addItem(wookie);
+               world.addActor(wookie);
            }
        }
        
