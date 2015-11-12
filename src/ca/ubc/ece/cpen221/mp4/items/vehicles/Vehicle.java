@@ -5,6 +5,10 @@ import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.MoveableItem;
 
+/**
+ * The Vehicle interface for all vehicles. Includes methods that all vehicles need.
+ * @author Annabelle Harvey and Daniel Chawla
+ */
 public interface Vehicle extends MoveableItem, Actor {
     
     

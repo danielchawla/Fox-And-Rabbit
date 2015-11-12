@@ -5,6 +5,11 @@ import javax.swing.ImageIcon;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 
+/**
+ * A speeder bike based off the Star Wars series. Fastest moving vehicle
+ * in this world. 
+ * @author Annabelle Harvey and Daniel Chawla
+ */
 public class SpeederBike extends AbstractArenaVehicle {
     private static final ImageIcon SPEEDERBIKEIMAGE = Util.loadImage("speederbike.gif");
     private static final int STRENGTH = 50;
@@ -13,11 +18,15 @@ public class SpeederBike extends AbstractArenaVehicle {
     private static final int MAX_FUEL = 50;
     private static final int MINCOOLDOWN = 1;
     private static final String NAME = "SpeederBike";
-
+    
+    /**
+     * Creates a new SpeederBike with an initial start location
+     * @param startPoint - the initial location SpeederBike will be placed in the world
+     */
     public SpeederBike(Location startPoint) {
         this.setLocation(startPoint);  
-        this.setInitialCoolDown(CHANGE_DIRECTION_COOLDOWN); // initial speed
-        this.setChangeDirectionCoolDown(CHANGE_DIRECTION_COOLDOWN); // speed at which it can turn
+        this.setInitialCoolDown(CHANGE_DIRECTION_COOLDOWN); 
+        this.setChangeDirectionCoolDown(CHANGE_DIRECTION_COOLDOWN); 
         this.setStrength(STRENGTH);
         this.setFuel(INITIAL_FUEL);
         this.setMaxFuel(MAX_FUEL);
