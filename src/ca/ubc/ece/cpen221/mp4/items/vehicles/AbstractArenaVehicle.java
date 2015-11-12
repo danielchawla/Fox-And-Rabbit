@@ -11,111 +11,111 @@ import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
+import ca.ubc.ece.cpen221.mp4.items.LivingItem;
+import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
-public abstract class AbstractArenaVehicle implements Vehicle {
+public abstract class AbstractArenaVehicle implements Vehicle{
     
-    protected int MAX_FUEL;
-    protected int STRENGTH;
-    protected int MAX_COOLDOWN;
-    protected int MIN_COOLDOWN;
-    protected int VIEW_RANGE;
-    protected final int MOVING_RANGE = 1; // all vehicles can only move one space at a time
+    protected static final int MOVINGRANGE = 1; // all vehicles can only move one space at a time
+    
+    protected int viewRange;
+    protected int strength;
+    protected int initialCoolDown;
+    protected int changeDirectionCoolDown;
+    protected int maxFuel;
+    protected int fuel;
+    
+    protected boolean isDead;
+    protected String name;
     protected Location location;
     protected ImageIcon image;
-    
     protected Direction direction;
-    protected int fuel_level;
-    protected String name;
-    protected int speed;
-    
-    
-    @Override
-    public ImageIcon getImage(){
-        return this.image;
-    }
 
-    @Override
-    public String getName(){
-        return this.name;
+        
+    protected void setInitialCoolDown (int vehicleCoolDown){
+        this.initialCoolDown = vehicleCoolDown;
+    }
+    
+    protected void setLocation (Location vehicleLocation){
+        this.location = vehicleLocation;
+    }
+    
+    protected void setViewRange (int vehicleViewRange){
+        this.viewRange = vehicleViewRange;
+    }
+    
+    protected void setStrength (int vehicleStrength){
+        this.strength = vehicleStrength;
+    }
+    
+    protected void setChangeDirectionCoolDown (int vehicleChangeDirectionCoolDown){
+        this.changeDirectionCoolDown = vehicleChangeDirectionCoolDown;
+    }
+    
+    protected void setFuel(int vehicleFuel){
+        this.fuel = vehicleFuel;
+    }
+    
+    protected void setMaxFuel (int vehicleMaxFuel){
+        this.maxFuel = vehicleMaxFuel;
     }
     
     @Override
     public void moveTo(Location targetLocation) {
-        location = targetLocation;
-    }
-    
-    @Override
-    public int getViewRange() {
-        return this.getViewRange();
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
     public int getMovingRange() {
-        return this.VIEW_RANGE;
+        // TODO Auto-generated method stub
+        return 0;
     }
 
     @Override
     public Location getLocation() {
-        return this.location;
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
     public int getStrength() {
-        return this.STRENGTH;
+        // TODO Auto-generated method stub
+        return 0;
     }
 
     @Override
     public void loseEnergy(int energy) {
-        this.fuel_level-= energy; // fuel is energy for vehicles
+        // TODO Auto-generated method stub
         
     }
 
     @Override
     public boolean isDead() {
-        return this.fuel_level <= 0;
+        // TODO Auto-generated method stub
+        return false;
     }
 
-    @Override
-    public int getFuelLevel() {
-        return this.fuel_level;
-    }
-
-    @Override
-    public int getMaxFuel() {
-        return this.MAX_FUEL;
-    }
-    
     @Override
     public int getPlantCalories() {
-        // assume vehicles run on biodiesel and thus plant calories = fuel level
-        return this.fuel_level; 
-    }
-
-    @Override
-    public int getMeatCalories() {
-     // Vehicles are not meat
+        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
+    public int getMeatCalories() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+
+    @Override
     public int getCoolDownPeriod() {
-        return 10 / this.speed;
+        return 10;
     }
     
-    @Override
-    public int getMaxCoolDown(){
-        return this.MAX_COOLDOWN;
-    }
+
     
-    @Override
-    public int getMinCoolDown(){
-        return this.MIN_COOLDOWN;
-    }
-    
-    @Override
-    public Direction getDirection() {
-        return this.direction;
-    }
     
     /**
      * 
@@ -133,17 +133,6 @@ public abstract class AbstractArenaVehicle implements Vehicle {
      */
     @Override
     public Command getNextAction(World world){
-        if (distanceToEdge(world) <= (this.MAX_COOLDOWN - this.speed)){
-            //this.slowDown();
-            if (this.speed == MAX_COOLDOWN){
-                this.setDirection(world);
-            }
-        }
-        else if (speed > MIN_COOLDOWN){
-            //this.speedUp();
-        }
-
-
         collide(world);
         return new MoveCommand(this, new Location(location, this.direction));
     }
@@ -182,15 +171,15 @@ public abstract class AbstractArenaVehicle implements Vehicle {
             if (neighbor.getLocation().equals(new Location(location, this.direction)))
 
                 if (this.getStrength() > neighbor.getStrength()){
-                    this.fuel_level += neighbor.getMeatCalories() + neighbor.getPlantCalories();
-                    if (this.fuel_level > MAX_FUEL){
-                        this.fuel_level = MAX_FUEL;
+                    this.fuel += neighbor.getMeatCalories() + neighbor.getPlantCalories();
+                    if (this.fuel > maxFuel){
+                        this.fuel = maxFuel;
                     }
                     neighbor.loseEnergy(neighbor.getMeatCalories());
                     neighbor.loseEnergy(neighbor.getPlantCalories());
                 }
                 else if (this.getStrength() < neighbor.getStrength()){
-                    this.loseEnergy(this.fuel_level);
+                    this.loseEnergy(this.fuel);
                 }
         }       
     }    
