@@ -40,6 +40,10 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	protected void setEnergy(int i) {
 		this.energy = i;
 	}
+	
+	protected void setIsDead(boolean isDead){
+	    this.isDead = isDead;
+	}
 
 	protected void setMAX_ENERGY(int i) {
 		this.MAX_ENERGY = i;
@@ -151,9 +155,9 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	}
 
 	@Override
-	public void loseEnergy(int energyLoss) {
-		energy = this.energy - energyLoss;
-	}
+    public void loseEnergy(int energyLoss) {
+        this.energy = this.energy - energyLoss;
+    }
 
 	@Override
 	public void moveTo(Location targetLocation) {
