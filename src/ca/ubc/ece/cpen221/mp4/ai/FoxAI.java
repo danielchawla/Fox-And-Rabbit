@@ -12,7 +12,7 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
 
 /**
- * Your Fox AI.
+ * AI for foxes.
  */
 public class FoxAI extends AbstractAI {
 

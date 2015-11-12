@@ -11,7 +11,7 @@ import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
 /**
- * Evil Sith Lord based off Star Wars Series. C3P0 is a cruel animal.
+ * Evil Sith Lord based off Star Wars Series. Sith hunts R2D2.
  * 
  * @author Annabelle Harvey and Daniel Chawla.
  */
@@ -26,9 +26,9 @@ public class Sith extends AbstractArenaAnimal {
   private final SithAI sithAI;
 
   /**
-   * Constructs a wicked Sith animal. The initialLocation must be
-     * valid and empty. 
-   * @param ai that cause Sith to move around randomly
+   * Constructs a wicked sith animal. Sith chases R2D2 and kills it if its within range.
+   * The initialLocation must be valid and empty. 
+   * @param ai ai for sith
    * @param initialLocation to be placed
    */
   public Sith (SithAI ai, Location initialLocation){
@@ -50,7 +50,7 @@ public class Sith extends AbstractArenaAnimal {
   
   @Override
   public LivingItem breed() {
-      // Thankfully, Sith is incapable of breeding.
+      // Sith is incapable of breeding.
       return null;
   }
   

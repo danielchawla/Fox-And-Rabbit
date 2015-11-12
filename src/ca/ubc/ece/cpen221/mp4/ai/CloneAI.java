@@ -10,6 +10,9 @@ import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
+/**
+ * AI for clones.
+ */
 public class CloneAI extends AbstractAI {
 
     public CloneAI() {

@@ -9,8 +9,8 @@ import ca.ubc.ece.cpen221.mp4.ai.JediAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 /**
- * Male Jedi based off Star Wars series with unique abilities
- * as seen in corresponding AI. 
+ * Jedi based off Star Wars series. Jedi kill clones within a given radius, if two or more Jedi are close
+ * enough together their killing radius increases.
  * 
  * @author Annabelle Harvey and Daniel Chawla
  */
@@ -28,9 +28,8 @@ public class Jedi extends AbstractArenaAnimal {
     private final JediAI jediAI;
     
     /**
-     * Create a new Jedi with an AI at
-     * initialLocation. The initialLocation must be
-     * valid and empty
+     * Create a new Jedi with an AI at initialLocation. The initialLocation must be
+     * valid and empty.
      *
      * @param jediAI
      *            the AI designed for clones

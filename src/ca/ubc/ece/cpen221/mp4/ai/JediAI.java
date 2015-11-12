@@ -11,9 +11,12 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
+/**
+ * AI for Jedi.
+ */
 public class JediAI extends AbstractAI {
     
-    private int helperRange = 7;
+    private final int HELPER_RANGE = 7;
     
     public JediAI() {
 
@@ -29,7 +32,7 @@ public class JediAI extends AbstractAI {
         
         if (!jediLocations.isEmpty()) {
             for (Item item : neighbours){
-                if (item.getName().equals("Jedi") && (item.getLocation().getDistance(currentLoc) < helperRange)){
+                if (item.getName().equals("Jedi") && (item.getLocation().getDistance(currentLoc) < HELPER_RANGE)){
                     killRange += 3;
                 }
             }

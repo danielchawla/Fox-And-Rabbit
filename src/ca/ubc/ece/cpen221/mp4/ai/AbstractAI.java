@@ -23,11 +23,6 @@ import ca.ubc.ece.cpen221.mp4.items.animals.*;
 public class AbstractAI implements AI {
     public static final Random RAND = new Random(2013);
     
-    /**
-     * 
-     * @param dir the known cardinal direction.
-     * @return The opposite cardinal direction from dir.
-     */
 	public Direction oppositeDir(Direction dir) { 
 		if (dir == Direction.EAST) {
 			return Direction.WEST;
@@ -40,14 +35,6 @@ public class AbstractAI implements AI {
 		}
 	}
 
-	/**
-	 * 
-	 * @param world world to search for location in.
-	 * @param animal animal that is searching for location, location must be within the animal's
-	 *         view range for method to return true.
-	 * @param location location to check.
-	 * @return True if location is empty and within bounds of the world, false otherwise.
-	 */
 	public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) { 
 		if (!Util.isValidLocation(world, location)) {
 			return false;
@@ -62,9 +49,7 @@ public class AbstractAI implements AI {
 		}
 		return true;
 	}
-	/**
-	 * 
-	 */
+
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
 		return new WaitCommand();
@@ -72,10 +57,11 @@ public class AbstractAI implements AI {
 	
 	/**
 	 * 
-	 * @param world
-	 * @param animal
-	 * @param loc
-	 * @return
+	 * @param world world that contains the animal and its surroundings.
+	 * @param animal animal doing the moving.
+	 * @param loc current location of the animal.
+	 * @return a legal location for the animal to move to (of distance one from the animal), or null if 
+	 *         none exist.
 	 */
     public Location getRandomLegalMoveLoc(ArenaWorld world, ArenaAnimal animal, Location loc){
         List<Location> neighbours = new LinkedList<Location>();
@@ -90,12 +76,15 @@ public class AbstractAI implements AI {
         return neighbours.get(RAND.nextInt(neighbours.size()));
 
     }
+    
     /**
      * 
-     * @param world
-     * @param animal
-     * @param itemName
-     * @return
+     * @param world world to search through.
+     * @param animal animal doing the searching. This defines the view range and current location.
+     * @param itemName the string name of the item to search for eg "Fox" or "grass"
+     * @return A list of locations where the type of item is found within the view range of the given animal.
+     *         if type of item is the same as the animal, the current location of the animal will be included
+     *         in this list.
      */
 	public List<Location> itemLocations (ArenaWorld world, ArenaAnimal animal, String itemName){
 	    Set<Item> neighbours = world.searchSurroundings(animal);
@@ -110,10 +99,11 @@ public class AbstractAI implements AI {
 	
 	/**
 	 * 
-	 * @param world
-	 * @param animal
-	 * @param preyName
-	 * @return
+	 * @param world world that contains both animal and prey.
+	 * @param animal animal doing the eating.
+	 * @param preyName they string name of the item type that the animal eats.
+	 * @return an item within the range of the animal for it to eat. If there are no prey in the
+	 *         animal's range the method will return null.
 	 */
 	public Item eatYourNeighbour (ArenaWorld world, ArenaAnimal animal, String preyName){
 	    Set<Item> neighbours = world.searchSurroundings(animal);
@@ -127,12 +117,15 @@ public class AbstractAI implements AI {
         
         return null;
 	}
+	
 	/**
 	 * 
-	 * @param world
-	 * @param animal
-	 * @param itemName
-	 * @return
+	 * @param world the world that contains the animal and its surroundings.
+	 * @param animal the animal doing the moving.
+	 * @param itemName the name of the type of item to search for and move towards.
+	 * @return if there is an item to move towards within the animal's range, method returns the
+	 *         a legal location in that direction. If there is no move in the correct direction available
+	 *         it returns a random legal location, and null if there are none.
 	 */
 	public Location towardsItem(ArenaWorld world, ArenaAnimal animal, String itemName){
 	    List<Location> itemLocs = itemLocations(world, animal, itemName);
@@ -157,10 +150,12 @@ public class AbstractAI implements AI {
 	
 	/**
 	 * 
-	 * @param world
-	 * @param animal
-	 * @param itemName
-	 * @return
+     * @param world the world that contains the animal and its surroundings.
+     * @param animal the animal doing the moving.
+     * @param itemName the name of the type of item to search for and move away from.
+     * @return if there is an item to move away from within the animal's range, method returns the
+     *         a legal location in that direction. If there is no move in the correct direction available
+     *         it returns a random legal location, and null if there are none.
 	 */
 	public Location awayFromItem(ArenaWorld world, ArenaAnimal animal, String itemName){
 	    List<Location> itemLocs = itemLocations(world, animal, itemName);

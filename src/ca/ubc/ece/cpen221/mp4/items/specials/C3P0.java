@@ -12,7 +12,8 @@ import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
 /**
- * C3P0 robot based off Star Wars Series. C3P0 is a robotic animal.
+ * C3P0 robot based off Star Wars Series. C3P0 tries to find R2D2 and protect him from the Sith, 
+ * and he kills grass and clones within a small radius.
  * 
  * @author Annabelle Harvey and Daniel Chawla.
  */
@@ -27,9 +28,10 @@ public class C3P0 extends AbstractArenaAnimal {
     private final C3P0AI c3p0AI;
     
     /**
-     * Constructs a C3P0 animal robot. The initialLocation must be
-     * valid and empty.
-     * @param ai that cause C3P0 to move around randomly
+     * Constructs a C3P0 animal robot. C3P0 tries to find R2D2 and protect him from the sith.
+     * It kills clones and grass within a given range.
+     * The initialLocation must be valid and empty.
+     * @param ai ai for C3P0
      * @param initialLocation to be placed
      */
     public C3P0 (C3P0AI ai, Location initialLocation){

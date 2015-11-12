@@ -11,7 +11,7 @@ import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
 /**
- * R2D2 robot based off Star Wars Series. R2D2 is a robotic animal.
+ * R2D2 robot based off Star Wars Series. R2D2 kills massive amounts of clones and wanders around.
  * 
  * @author Annabelle Harvey and Daniel Chawla.
  */
@@ -26,9 +26,10 @@ public class R2D2 extends AbstractArenaAnimal {
     private final R2D2AI r2d2AI;
 
     /**
-     * Constructs a R2D2 animal robot. The initialLocation must be
-     * valid and empty.
-     * @param ai that cause R2D2 to move around randomly
+     * Constructs a R2D2 animal robot.
+     * 
+     * The initialLocation must be valid and empty.
+     * @param ai ai for R2D2
      * @param initialLocation to be placed
      */
     public R2D2 (R2D2AI ai, Location initialLocation){

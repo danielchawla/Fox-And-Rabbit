@@ -10,6 +10,9 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
+/**
+ * AI for R2D2.
+ */
 public class R2D2AI extends AbstractAI {
     
     public R2D2AI(){

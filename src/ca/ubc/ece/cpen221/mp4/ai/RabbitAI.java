@@ -12,7 +12,7 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 
 /**
- * Rabbit AI.
+ * AI for rabbits.
  * 
  * @author Annabelle Harvey and Daniel Chawla
  */

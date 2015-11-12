@@ -10,6 +10,9 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
+/**
+ * AI for Sith.
+ */
 public class SithAI extends AbstractAI {
     
     public SithAI(){
@@ -23,10 +26,6 @@ public class SithAI extends AbstractAI {
       
        if (!neighbours.isEmpty()){
         for(Item item : neighbours){
-//            if ((item.getName().equals("Clone") || item.getName().equals("grass")) 
-//                    && (item.getLocation().getDistance(currentLocation) < 3)){
-//                item.loseEnergy(9999);
-//            }
             
             if ((item.getName().equals("R2D2") && (item.getLocation().getDistance(currentLocation) < 3))){
                 item.loseEnergy(9999);
