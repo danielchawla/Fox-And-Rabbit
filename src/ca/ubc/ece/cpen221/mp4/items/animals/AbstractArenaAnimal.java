@@ -156,7 +156,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 
 	@Override
     public void loseEnergy(int energyLoss) {
-        this.energy = this.energy - energyLoss;
+        energy -= energyLoss;
     }
 
 	@Override
