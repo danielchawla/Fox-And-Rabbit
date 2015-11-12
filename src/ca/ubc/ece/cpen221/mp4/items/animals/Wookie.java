@@ -26,9 +26,7 @@ public class Wookie extends AbstractArenaAnimal {
     private static final ImageIcon WOOKIEIMAGE = Util.loadImage("wookie.gif");
     private static final String WOOKIENAME = "Wookie";
     
-    
     private final RandomMovementAI randomAI;
-    private Location location;
     
     
     /**
