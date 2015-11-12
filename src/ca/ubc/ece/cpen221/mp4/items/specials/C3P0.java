@@ -10,6 +10,11 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
+/**
+ * C3P0 robot based off Star Wars Series. C3P0 is a robotic animal.
+ * 
+ * @author Annabelle Harvey and Daniel Chawla.
+ */
 public class C3P0 extends AbstractArenaAnimal {
     private static final ImageIcon C3P0IMAGE = Util.loadImage("C3P0.gif");
     private static final int STRENGTH = 50;
@@ -19,7 +24,13 @@ public class C3P0 extends AbstractArenaAnimal {
     private static final int VIEW_RANGE = 1;
     private static final String name = "C3P0";
     private final RandomMovementAI randomAI;
-
+    
+    /**
+     * Constructs a C3P0 animal robot. The initialLocation must be
+     * valid and empty.
+     * @param ai that cause C3P0 to move around randomly
+     * @param initialLocation to be placed
+     */
     public C3P0 (RandomMovementAI ai, Location initialLocation){
         this.randomAI = ai;
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
@@ -32,6 +43,10 @@ public class C3P0 extends AbstractArenaAnimal {
         this.setName(C3P0.name);
         this.setImage(C3P0IMAGE);
     }
+    
+    /**
+     * Methods below all have specs already.
+     */
     
     @Override
     public LivingItem breed() {

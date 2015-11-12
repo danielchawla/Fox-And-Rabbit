@@ -7,9 +7,15 @@ import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
+import ca.ubc.ece.cpen221.mp4.ai.JediAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
-
+/**
+ * Male Jedi based off Star Wars series with unique abilities
+ * as seen in corresponding AI. 
+ * 
+ * @author Annabelle Harvey and Daniel Chawla
+ */
 public class Jedi extends AbstractArenaAnimal {
     
     private static final int INITIAL_ENERGY = 100;
@@ -18,14 +24,13 @@ public class Jedi extends AbstractArenaAnimal {
     private static final int STRENGTH = 200;
     private static final int VIEW_RANGE = 50;
     private static final int COOLDOWN = 1;
-    private static final ImageIcon jediImage = Util.loadImage("jedi.gif");
+    private static final ImageIcon JEDIIMAGE = Util.loadImage("jedi.gif");
+    private static final String NAME = "JEDI";
 
-    private AI ai;
-    private int energy;
-    private Location location;
+    private final JediAI jediAI;
     
     /**
-     * Create a new jedi with an AI at
+     * Create a new Jedi with an AI at
      * initialLocation. The initialLocation must be
      * valid and empty
      *
@@ -34,11 +39,8 @@ public class Jedi extends AbstractArenaAnimal {
      * @param initialLocation
      *            the location where this clone will be created
      */
-    public Jedi(AI jediAI, Location initialLocation) {
-        this.ai = jediAI;
-//        this.location = initialLocation;
-//        this.energy = INITIAL_ENERGY;
-        
+    public Jedi(JediAI jediAI, Location initialLocation) {
+        this.jediAI = jediAI;        
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
         this.setMAX_ENERGY(MAX_ENERGY);
         this.setCOOLDOWN(COOLDOWN);
@@ -47,101 +49,24 @@ public class Jedi extends AbstractArenaAnimal {
         this.setEnergy(INITIAL_ENERGY);
         this.setMIN_BREEDING_ENERGY(MIN_BREEDING_ENERGY);
         this.setLocation(initialLocation);  
-        this.setImage(jediImage);
-        this.setName("Jedi");
+        this.setImage(JEDIIMAGE);
+        this.setName(Jedi.NAME);
     }
-
+    
+    /**
+     * Methods below all have specs already.
+     */
+    
     @Override
     public LivingItem breed() {
+        // I guess there's no females for male Jedi to breed with.
         return null;
     }
 
     @Override
-    public void eat(Food food) {
-  
-    }
-
-    @Override
     public Command getNextAction(World world) {
-        Command nextAction = ai.getNextAction(world, this);
+        Command nextAction = jediAI.getNextAction(world, this);
         return nextAction;
     }
-    
-    //DO I NEED THESE
-//
-//    @Override
-//    public int getCoolDownPeriod() {
-//        return COOLDOWN;
-//    }
-//
-//    @Override
-//    public int getEnergy() {
-//        return energy;
-//    }
-//
-//    @Override
-//    public ImageIcon getImage() {
-//        return jediImage;
-//    }
-//
-//    @Override
-//    public Location getLocation() {
-//        return location;
-//    }
-//
-//    @Override
-//    public int getMaxEnergy() {
-//        return MAX_ENERGY;
-//    }
-//
-//    @Override
-//    public int getMeatCalories() {
-//        return energy;
-//    }
-//
-//    @Override
-//    public int getMinimumBreedingEnergy() {
-//        return MIN_BREEDING_ENERGY;
-//    }
-//
-//    @Override
-//    public int getMovingRange() {
-//        return 1; // Can only move to adjacent locations.
-//    }
-//
-//    @Override
-//    public String getName(){
-//        return "Jedi";
-//    }
-//
-//    @Override
-//    public int getPlantCalories() { // arena animals dont eat plants
-//        return 0;
-//    }
-//
-//    @Override
-//    public int getStrength() {
-//        return STRENGTH;
-//    }
-//
-//    @Override
-//    public int getViewRange() {
-//        return VIEW_RANGE;
-//    }
-//
-//    @Override
-//    public boolean isDead() {
-//        return energy <= 0;
-//    }
-//
-//    @Override
-//    public void loseEnergy(int energyLoss) {
-//        energy = this.energy - energyLoss;
-//    }
-//
-//    @Override
-//    public void moveTo(Location targetLocation) {
-//        location = targetLocation;
-//    }
 
 }

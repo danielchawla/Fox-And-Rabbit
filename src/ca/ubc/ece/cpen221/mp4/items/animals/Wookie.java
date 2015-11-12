@@ -9,6 +9,12 @@ import ca.ubc.ece.cpen221.mp4.ai.RandomMovementAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
+/**
+ * Wookie animal based off Star Wars series. 
+ * 
+ * @author Annabelle Harvey and Daniel Chawla
+ *
+ */
 public class Wookie extends AbstractArenaAnimal {
     
     private static final int INITIAL_ENERGY = 100;
@@ -20,20 +26,15 @@ public class Wookie extends AbstractArenaAnimal {
     private static final ImageIcon WOOKIEIMAGE = Util.loadImage("wookie.gif");
     private static final String WOOKIENAME = "Wookie";
     
-    
     private final RandomMovementAI randomAI;
-    private Location location;
     
     
     /**
-     * Create a new clone with an AI at
-     * initialLocation. The initialLocation must be
-     * valid and empty
+     * Create a new Wookie with an AI that causes wookie to trot around randomly.
+     * The initialLocation must be valid and empty
      *
-     * @param cloneAI
-     *            the AI designed for clones
-     * @param initialLocation
-     *            the location where this clone will be created
+     * @param RandomMovementAI - causes wookie to move randomly throughout world
+     * @param initialLocation - the location where this clone will be created
      */
     public Wookie(RandomMovementAI ai, Location initialLocation) {
         this.randomAI = ai;
@@ -49,10 +50,13 @@ public class Wookie extends AbstractArenaAnimal {
         this.setName(WOOKIENAME);
     }
 
+    /**
+     * Methods below all have specs already.
+     */
+    
     @Override
     public LivingItem breed() {
-        Wookie child = new Wookie(randomAI, location);
-        return child;
+        return null; // These wookies are too hairy to breed here
     }
 
     @Override
