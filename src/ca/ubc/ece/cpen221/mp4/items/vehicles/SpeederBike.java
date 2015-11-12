@@ -6,7 +6,7 @@ import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 
 public class SpeederBike extends AbstractArenaVehicle {
-    private static final ImageIcon SPEEDERBIKEIMAGE = Util.loadImage("motorcycles.gif");
+    private static final ImageIcon SPEEDERBIKEIMAGE = Util.loadImage("speederbike.gif");
     private static final int STRENGTH = 50;
     private static final int CHANGE_DIRECTION_COOLDOWN = 6; // speed vehicle needs to slow down to in order to turn
     private static final int INITIAL_FUEL = 50;
