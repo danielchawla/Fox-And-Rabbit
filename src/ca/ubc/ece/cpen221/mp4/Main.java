@@ -65,7 +65,7 @@ public class Main {
 		addRabbits(world);
 		addFoxes(world);
 
-//		addClones(world);
+		addClones(world);
 		addJedis(world);
 		addWookies(world);
 		
