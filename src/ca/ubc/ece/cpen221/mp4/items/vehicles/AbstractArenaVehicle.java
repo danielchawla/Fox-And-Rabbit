@@ -18,18 +18,18 @@ public abstract class AbstractArenaVehicle implements Vehicle{
     
     protected static final int MOVINGRANGE = 1; // all vehicles can only move one space at a time
     
-    protected int viewRange;
-    protected int strength;
-    protected int initialCoolDown;
-    protected int changeDirectionCoolDown;
-    protected int maxFuel;
-    protected int fuel;
+    private int viewRange;
+    private int strength;
+    private int initialCoolDown;
+    private int changeDirectionCoolDown;
+    private int maxFuel;
+    private int fuel;
     
-    protected boolean isDead;
-    protected String name;
-    protected Location location;
-    protected ImageIcon image;
-    protected Direction direction;
+    private boolean isDead;
+    private String name;
+    private Location location;
+    private ImageIcon image;
+    private Direction direction;
 
         
     protected void setInitialCoolDown (int vehicleCoolDown){
@@ -59,52 +59,66 @@ public abstract class AbstractArenaVehicle implements Vehicle{
     protected void setMaxFuel (int vehicleMaxFuel){
         this.maxFuel = vehicleMaxFuel;
     }
+   
+    
+    protected void setImage (ImageIcon vehicleImage){
+        this.image = vehicleImage;
+    }
+    
+    protected void setName (String vehicleName){
+        this.name = vehicleName; 
+    }
+    
+    @Override
+    public String getName() {
+        return this.name;
+    }
+    
+    @Override
+    public ImageIcon getImage() {
+        return this.image;
+    }
     
     @Override
     public void moveTo(Location targetLocation) {
-        // TODO Auto-generated method stub
+        this.location = targetLocation;
         
     }
 
     @Override
     public int getMovingRange() {
-        // TODO Auto-generated method stub
-        return 0;
+        return 1; // vehicles can only move one space at a time
     }
 
     @Override
     public Location getLocation() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.location;
     }
 
     @Override
     public int getStrength() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.strength;
     }
 
     @Override
     public void loseEnergy(int energy) {
-        // TODO Auto-generated method stub
-        
+       this.fuel -= energy;
     }
 
     @Override
     public boolean isDead() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.isDead;
     }
 
     @Override
     public int getPlantCalories() {
-        // TODO Auto-generated method stub
+        // Vehicles are not food
         return 0;
     }
 
     @Override
     public int getMeatCalories() {
-        // TODO Auto-generated method stub
+        // Vehicles have no meat
         return 0;
     }
 

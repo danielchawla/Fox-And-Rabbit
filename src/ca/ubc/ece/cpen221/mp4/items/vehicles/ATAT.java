@@ -26,22 +26,14 @@ public class ATAT extends AbstractArenaVehicle {
         this.setStrength(STRENGTH);
         this.setFuel(INITIAL_FUEL);
         this.setMaxFuel(MAX_FUEL);
+        this.setImage(ATATIMAGE);
+        this.setName(ATAT.NAME);
     }
 
     @Override
     public Command getNextAction(World world) {
         // TODO Fill this in
         return null;
-    }
-    
-    @Override
-    public ImageIcon getImage() {
-        return ATATIMAGE;
-    }
-
-    @Override
-    public String getName() {
-        return ATAT.NAME;
     }
 
 }

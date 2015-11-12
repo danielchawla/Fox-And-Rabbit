@@ -27,6 +27,8 @@ public class SpeederBike extends AbstractArenaVehicle {
         this.setStrength(STRENGTH);
         this.setFuel(INITIAL_FUEL);
         this.setMaxFuel(MAX_FUEL);
+        this.setImage(SPEEDERBIKEIMAGE);
+        this.setName(SpeederBike.NAME);
     }
 
     @Override
@@ -34,17 +36,5 @@ public class SpeederBike extends AbstractArenaVehicle {
         // TODO Fill this in
         return null;
     }
-
-    @Override
-    public String getName() {
-        return SpeederBike.NAME;
-    }
-    
-    @Override
-    public ImageIcon getImage() {
-        return SPEEDERBIKEIMAGE;
-    }
-    
-
 
 }
