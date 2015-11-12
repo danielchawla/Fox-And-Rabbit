@@ -12,7 +12,9 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 
 /**
- * Your Rabbit AI.
+ * Rabbit AI.
+ * 
+ * @author Annabelle Harvey and Daniel Chawla
  */
 public class RabbitAI extends AbstractAI {
 

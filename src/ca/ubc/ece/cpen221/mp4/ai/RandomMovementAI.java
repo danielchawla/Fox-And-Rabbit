@@ -5,9 +5,12 @@ import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
-import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
-
+/**
+ * AI Class that finds random legal moves and makes them
+ * 
+ * @author Annabelle Harvey and Daniel Chawla
+ */
 public class RandomMovementAI extends AbstractAI {
     
     public RandomMovementAI(){
