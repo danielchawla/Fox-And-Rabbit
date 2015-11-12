@@ -13,6 +13,8 @@ import ca.ubc.ece.cpen221.mp4.items.animals.*;
 
 /**
  * AI for foxes.
+ * 
+ * @author Annabelle Harvey and Daniel Chawla.
  */
 public class FoxAI extends AbstractAI {
 

@@ -17,7 +17,7 @@ import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
  */
 public class Sith extends AbstractArenaAnimal {
   private static final ImageIcon SITHIMAGE = Util.loadImage("sith.gif");
-  private static final int STRENGTH = 100;
+  private static final int STRENGTH = 600;
   private static final int COOLDOWN = 5;
   private static final int INITIAL_ENERGY = 300;
   private static final int MAX_ENERGY = 300;

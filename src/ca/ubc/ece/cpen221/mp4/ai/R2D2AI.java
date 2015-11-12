@@ -12,6 +12,8 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
  * AI for R2D2.
+ * 
+ * @author Annabelle Harvey and Daniel Chawla.
  */
 public class R2D2AI extends AbstractAI {
     

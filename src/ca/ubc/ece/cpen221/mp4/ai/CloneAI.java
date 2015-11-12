@@ -12,6 +12,8 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
  * AI for clones.
+ * 
+ * @author Annabelle Harvey and Daniel Chawla.
  */
 public class CloneAI extends AbstractAI {
 

@@ -12,6 +12,8 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
  * AI for Sith.
+ * 
+ * @author Annabelle Harvey and Daniel Chawla.
  */
 public class SithAI extends AbstractAI {
     

@@ -13,6 +13,8 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
  * AI for Jedi.
+ * 
+ * @author Annabelle Harvey and Daniel Chawla.
  */
 public class JediAI extends AbstractAI {
     

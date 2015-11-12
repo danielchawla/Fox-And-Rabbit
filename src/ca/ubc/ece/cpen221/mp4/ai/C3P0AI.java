@@ -12,6 +12,8 @@ import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
 /**
  * AI for C3P0.
+ * 
+ * @author Annabelle Harvey and Daniel Chawla.
  */
 public class C3P0AI extends AbstractAI{
     
