@@ -8,9 +8,9 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
-public class SpecialsAI extends AbstractAI {
+public class RandomMovementAI extends AbstractAI {
     
-    public SpecialsAI(){
+    public RandomMovementAI(){
         
     }
 

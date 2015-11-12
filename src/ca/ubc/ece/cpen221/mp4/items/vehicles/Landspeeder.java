@@ -4,12 +4,9 @@ import javax.swing.ImageIcon;
 
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
-import ca.ubc.ece.cpen221.mp4.World;
-import ca.ubc.ece.cpen221.mp4.commands.Command;
-import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 public class Landspeeder extends AbstractArenaVehicle {
-    private static final ImageIcon LANDSPEEDERIMAGE = Util.loadImage("cars.gif");
+    private static final ImageIcon LANDSPEEDERIMAGE = Util.loadImage("landspeeder.gif");
     private static final int STRENGTH = 100;
     private static final int CHANGE_DIRECTION_COOLDOWN = 7; // speed vehicle needs to slow down to in order to turn
     private static final int MINCOOLDOWN = 4;

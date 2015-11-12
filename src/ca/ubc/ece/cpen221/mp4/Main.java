@@ -40,6 +40,7 @@ public class Main {
 	static final int INITIAL_MANS = INITIAL_GRASS / 150;
 	static final int INITIAL_CLONES = 4;
 	static final int INITIAL_JEDIS = 7;
+	static final int INITIAL_WOOKIES = 4;
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -66,6 +67,7 @@ public class Main {
 
 		addClones(world);
 		addJedis(world);
+		addWookies(world);
 		
 		addR2D2(world);
 		addC3P0(world);
@@ -133,26 +135,36 @@ public class Main {
            }
        }
        
+       private void addWookies(World world) {
+           RandomMovementAI randomAI = new RandomMovementAI();
+           for (int i = 0; i < INITIAL_WOOKIES; i++) {
+               Location loc = Util.getRandomEmptyLocation(world);
+               Wookie wookie = new Wookie(randomAI, loc);
+               world.addItem(wookie);
+               world.addActor(wookie);
+           }
+       }
+       
        private void addR2D2(World world) {
-           SpecialsAI specialsAI = new SpecialsAI();
+           RandomMovementAI randomAI = new RandomMovementAI();
            Location loc = Util.getRandomEmptyLocation(world);
-           R2D2 R2D2 = new R2D2(specialsAI, loc);
+           R2D2 R2D2 = new R2D2(randomAI, loc);
            world.addItem(R2D2);
            world.addActor(R2D2);
        }
        
        private void addC3P0(World world) {
-           SpecialsAI specialsAI = new SpecialsAI();
+           RandomMovementAI randomAI = new RandomMovementAI();
            Location loc = Util.getRandomEmptyLocation(world);
-           C3P0 C3P0 = new C3P0(specialsAI, loc);
+           C3P0 C3P0 = new C3P0(randomAI, loc);
            world.addItem(C3P0);
            world.addActor(C3P0);
        }
        
        private void addSith(World world) {
-           SpecialsAI specialsAI = new SpecialsAI();
+           RandomMovementAI randomAI = new RandomMovementAI();
            Location loc = Util.getRandomEmptyLocation(world);
-           Sith sith = new Sith(specialsAI, loc);
+           Sith sith = new Sith(randomAI, loc);
            world.addItem(sith);
            world.addActor(sith);
        }
