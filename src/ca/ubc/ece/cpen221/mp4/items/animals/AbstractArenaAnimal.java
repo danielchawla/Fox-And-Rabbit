@@ -146,7 +146,8 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 
 	@Override
 	public boolean isDead() {
-		return this.energy <= 0;
+		isDead = (energy <= 0);
+		return isDead;
 	}
 
 	@Override
