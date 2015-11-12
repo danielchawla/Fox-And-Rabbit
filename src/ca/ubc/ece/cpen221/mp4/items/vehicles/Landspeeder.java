@@ -9,23 +9,22 @@ import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 public class Landspeeder extends AbstractArenaVehicle {
-    private static final ImageIcon LANDSPEEDERIMAGE = Util.loadImage("car.gif");
-    private static final int STRENGTH = 10;
-    private static final int INTIAL_COOLDOWN = 5;
-    private static final int CHANGE_DIRECTION_COOLDOWN = 8;
-    private static final int VIEW_RANGE = 3;
-    private static final int INITIAL_FUEL = 100;
-    private static final int MAX_FUEL = 100;
+    private static final ImageIcon LANDSPEEDERIMAGE = Util.loadImage("cars.gif");
+    private static final int STRENGTH = 100;
+    private static final int CHANGE_DIRECTION_COOLDOWN = 7; // speed vehicle needs to slow down to in order to turn
+    private static final int MINCOOLDOWN = 4;
+    private static final int INITIAL_FUEL = 300;
+    private static final int MAX_FUEL = 300;
     private static final String NAME = "Landspeeder";
 
     public Landspeeder(Location startPoint) {
         this.setLocation(startPoint);  
-        this.setViewRange(VIEW_RANGE);
-        this.setInitialCoolDown(INTIAL_COOLDOWN); // initial speed
+        this.setInitialCoolDown(CHANGE_DIRECTION_COOLDOWN); // initial speed
         this.setChangeDirectionCoolDown(CHANGE_DIRECTION_COOLDOWN); // speed at which it can turn
         this.setStrength(STRENGTH);
         this.setFuel(INITIAL_FUEL);
         this.setMaxFuel(MAX_FUEL);
+        this.setMinCoolDown(MINCOOLDOWN);
         this.setImage(LANDSPEEDERIMAGE);
         this.setName(Landspeeder.NAME);
     }
