@@ -26,9 +26,6 @@ public class Rabbit extends AbstractArenaAnimal {
 	private static final int COOLDOWN = 2;
 	private static final ImageIcon RABBITIMAGE = Util.loadImage("rabbit.gif");
 	private static final String NAME = "Rabbit";
-
-	private Location location;
-	private int energy;
 	
 	private final RabbitAI rabbitAI;
 
@@ -64,16 +61,16 @@ public class Rabbit extends AbstractArenaAnimal {
 
 	@Override
 	public LivingItem breed() {
-		Rabbit child = new Rabbit(rabbitAI, location);
-		child.energy = energy / 2;
-		this.energy = energy / 2;
+		Rabbit child = new Rabbit(rabbitAI, this.getLocation());
+		child.setEnergy(this.getEnergy()/ 2);
+		this.setEnergy(this.getEnergy()/ 2);
 		return child;
 	}
 
     @Override
     public Command getNextAction(World world) {
         Command nextAction = rabbitAI.getNextAction(world, this);
-        energy--; // Loses 1 energy regardless of action.
+        this.setEnergy(this.getEnergy() - 1); // Loses 1 energy regardless of action.
         return nextAction;
     }
 
