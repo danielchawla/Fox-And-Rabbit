@@ -15,8 +15,8 @@ public class Landspeeder extends AbstractArenaVehicle {
     private static final int STRENGTH = 100;
     private static final int CHANGE_DIRECTION_COOLDOWN = 6; // speed vehicle needs to slow down to in order to turn
     private static final int MINCOOLDOWN = 3;
-    private static final int INITIAL_FUEL = 300;
-    private static final int MAX_FUEL = 300;
+    private static final int INITIAL_FUEL = 10000;
+    private static final int MAX_FUEL = 10000;
     private static final String NAME = "Landspeeder";
 
     /**
@@ -24,6 +24,7 @@ public class Landspeeder extends AbstractArenaVehicle {
      * @param startPoint - the initial location Landspeeder will be placed in the world
      */
     public Landspeeder(Location startPoint) {
+        this.setIsDead(false);
         this.setLocation(startPoint);  
         this.setInitialCoolDown(CHANGE_DIRECTION_COOLDOWN); 
         this.setChangeDirectionCoolDown(CHANGE_DIRECTION_COOLDOWN); 

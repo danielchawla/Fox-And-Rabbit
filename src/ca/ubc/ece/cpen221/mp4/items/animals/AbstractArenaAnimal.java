@@ -44,11 +44,15 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	protected void setIsDead(boolean isDead){
 	    this.isDead = isDead;
 	}
-
+	
 	protected void setMAX_ENERGY(int i) {
 		this.MAX_ENERGY = i;
 	}
 
+	 /**
+     * Sets the strength of the animal.
+     * @param strength of animal
+     */
 	protected void setSTRENGTH(int i) {
 		this.STRENGTH = i;
 	}
@@ -65,22 +69,46 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
         this.meatCalories = i;
     }
 
+    /**
+     * Sets animal's cool down rate.
+     * @param cooldown rate
+     */
 	protected void setCOOLDOWN(int i) {
 		this.COOLDOWN = i;
 	}
 
+    /**
+     * Sets animal's initial location.
+     * @param location
+     */
 	protected void setLocation(Location l) {
 		this.location = l;
 	}
 	
+    /**
+     * Sets animal's image.
+     * @param image of animal.
+     */
 	protected void setImage(ImageIcon i){
 	    this.image = i;
 	}
 	
+    /**
+     * Sets the name of the animal.
+     * @param animal's name
+     */
 	protected void setName(String n){
 	    this.name = n;
 	}
 
+	
+	/**
+	 * 
+	 * NOTE: Specifications have already been written for all the methods below in superclass or implented class.
+	 * 
+	 */
+	
+	
 	@Override
 	public int getCoolDownPeriod() {
 		return COOLDOWN;
@@ -134,7 +162,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	}
 
 	@Override
-	public int getPlantCalories() { // arena animals dont eat plants
+	public int getPlantCalories() { // arena animals don't eat plants
 		return 0;
 	}
 
@@ -156,7 +184,7 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 
 	@Override
     public void loseEnergy(int energyLoss) {
-        energy -= energyLoss;
+        this.energy -= energyLoss;
     }
 
 	@Override
