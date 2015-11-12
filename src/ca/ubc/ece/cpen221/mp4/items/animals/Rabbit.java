@@ -7,6 +7,8 @@ import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
+import ca.ubc.ece.cpen221.mp4.ai.JediAI;
+import ca.ubc.ece.cpen221.mp4.ai.RabbitAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.Grass;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
@@ -29,7 +31,7 @@ public class Rabbit extends AbstractArenaAnimal {
 	private Location location;
 	private int energy;
 	
-	private AI ai;
+	private final RabbitAI rabbitAI;
 
 	/**
 	 * Create a new {@link Rabbit} with an {@link AI} at
@@ -41,8 +43,8 @@ public class Rabbit extends AbstractArenaAnimal {
 	 * @param initialLocation
 	 *            : the location where this rabbit will be created
 	 */
-	public Rabbit(AI rabbitAI, Location initialLocation) {
-        this.ai = rabbitAI;
+	public Rabbit(RabbitAI rabbitAI, Location initialLocation) {
+        this.rabbitAI = rabbitAI;
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
         this.setMAX_ENERGY(MAX_ENERGY);
         this.setCOOLDOWN(COOLDOWN);
@@ -61,7 +63,7 @@ public class Rabbit extends AbstractArenaAnimal {
 
 	@Override
 	public LivingItem breed() {
-		Rabbit child = new Rabbit(ai, location);
+		Rabbit child = new Rabbit(rabbitAI, location);
 		child.energy = energy / 2;
 		this.energy = energy / 2;
 		return child;
@@ -69,7 +71,7 @@ public class Rabbit extends AbstractArenaAnimal {
 
     @Override
     public Command getNextAction(World world) {
-        Command nextAction = ai.getNextAction(world, this);
+        Command nextAction = rabbitAI.getNextAction(world, this);
         this.energy--; // Loses 1 energy regardless of action.
         return nextAction;
     }

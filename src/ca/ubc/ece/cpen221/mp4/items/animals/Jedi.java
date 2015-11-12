@@ -7,14 +7,14 @@ import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
+import ca.ubc.ece.cpen221.mp4.ai.JediAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 /**
- * Jedi based off Star Wars series. There Jedi are a unique animal in this world
- * with unique abilities. 
+ * Male Jedi based off Star Wars series with unique abilities
+ * as seen in corresponding AI. 
  * 
  * @author Annabelle Harvey and Daniel Chawla
- *
  */
 public class Jedi extends AbstractArenaAnimal {
     
@@ -27,7 +27,7 @@ public class Jedi extends AbstractArenaAnimal {
     private static final ImageIcon JEDIIMAGE = Util.loadImage("jedi.gif");
     private static final String NAME = "JEDI";
 
-    private AI ai;
+    private final JediAI jediAI;
     
     /**
      * Create a new Jedi with an AI at
@@ -39,8 +39,8 @@ public class Jedi extends AbstractArenaAnimal {
      * @param initialLocation
      *            the location where this clone will be created
      */
-    public Jedi(AI jediAI, Location initialLocation) {
-        this.ai = jediAI;        
+    public Jedi(JediAI jediAI, Location initialLocation) {
+        this.jediAI = jediAI;        
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
         this.setMAX_ENERGY(MAX_ENERGY);
         this.setCOOLDOWN(COOLDOWN);
@@ -65,7 +65,7 @@ public class Jedi extends AbstractArenaAnimal {
 
     @Override
     public Command getNextAction(World world) {
-        Command nextAction = ai.getNextAction(world, this);
+        Command nextAction = jediAI.getNextAction(world, this);
         return nextAction;
     }
 
