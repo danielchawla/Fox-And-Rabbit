@@ -5,23 +5,25 @@ import javax.swing.ImageIcon;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
+import ca.ubc.ece.cpen221.mp4.ai.R2D2AI;
 import ca.ubc.ece.cpen221.mp4.ai.RandomMovementAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
+import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 
 public class R2D2 extends AbstractArenaAnimal {
     private static final ImageIcon R2D2IMAGE = Util.loadImage("R2D2.gif");
     private static final int STRENGTH = 10;
-    private static final int COOLDOWN = 5;
+    private static final int COOLDOWN = 10;
     private static final int INITIAL_ENERGY = 1000;
     private static final int MAX_ENERGY = 1000;
-    private static final int VIEW_RANGE = 2;
+    private static final int VIEW_RANGE = 200;
     private static final String name = "R2D2";
-    private final RandomMovementAI randomAI;
+    private final R2D2AI r2d2AI;
 
-    public R2D2 (RandomMovementAI ai, Location initialLocation){
-        this.randomAI = ai;
+    public R2D2 (R2D2AI ai, Location initialLocation){
+        this.r2d2AI = ai;
         this.setINITIAL_ENERGY(INITIAL_ENERGY);
         this.setMAX_ENERGY(MAX_ENERGY);
         this.setCOOLDOWN(COOLDOWN);
@@ -41,8 +43,7 @@ public class R2D2 extends AbstractArenaAnimal {
     
     @Override
     public Command getNextAction(World world) {
-        Command nextAction = randomAI.getNextAction(world, this);
-        setEnergy(getEnergy() -1 ); // Loses 1 energy regardless of action.
+        Command nextAction = r2d2AI.getNextAction(world, this);
         return nextAction;
     }
 
