@@ -10,9 +10,9 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
-public class C3P0AI extends AbstractAI{
+public class SithAI extends AbstractAI {
     
-    public C3P0AI(){
+    public SithAI(){
         
     }
 
@@ -20,20 +20,15 @@ public class C3P0AI extends AbstractAI{
     public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
         Set<Item> neighbours = world.searchSurroundings(animal);
         Location currentLocation = animal.getLocation();
-        Boolean r2d2inRange = false;
       
        if (!neighbours.isEmpty()){
         for(Item item : neighbours){
-            if (item.getName().equals("R2D2") && (item.getLocation().getDistance(currentLocation) < 6)){
-                r2d2inRange = true;
-            }
-            if ((item.getName().equals("Clone") || item.getName().equals("grass")) 
-                    && (item.getLocation().getDistance(currentLocation) < 3)){
-                item.loseEnergy(9999);
-            }
-            if (item.getName().equals("Sith")
-                    && r2d2inRange
-                    && (item.getLocation().getDistance(currentLocation) < 4)){
+//            if ((item.getName().equals("Clone") || item.getName().equals("grass")) 
+//                    && (item.getLocation().getDistance(currentLocation) < 3)){
+//                item.loseEnergy(9999);
+//            }
+            
+            if ((item.getName().equals("R2D2") && (item.getLocation().getDistance(currentLocation) < 3))){
                 item.loseEnergy(9999);
             }
         }

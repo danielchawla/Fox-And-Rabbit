@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
-import ca.ubc.ece.cpen221.mp4.ai.RandomMovementAI;
+import ca.ubc.ece.cpen221.mp4.ai.SithAI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
@@ -18,12 +18,12 @@ import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 public class Sith extends AbstractArenaAnimal {
   private static final ImageIcon SITHIMAGE = Util.loadImage("sith.gif");
   private static final int STRENGTH = 100;
-  private static final int COOLDOWN = 2;
+  private static final int COOLDOWN = 5;
   private static final int INITIAL_ENERGY = 300;
   private static final int MAX_ENERGY = 300;
-  private static final int VIEW_RANGE = 3;
+  private static final int VIEW_RANGE = 100;
   private static final String name = "Sith";
-  private final RandomMovementAI randomAI;
+  private final SithAI sithAI;
 
   /**
    * Constructs a wicked Sith animal. The initialLocation must be
@@ -31,8 +31,8 @@ public class Sith extends AbstractArenaAnimal {
    * @param ai that cause Sith to move around randomly
    * @param initialLocation to be placed
    */
-  public Sith (RandomMovementAI ai, Location initialLocation){
-      this.randomAI = ai;
+  public Sith (SithAI ai, Location initialLocation){
+      this.sithAI = ai;
       this.setInitialEnergy(INITIAL_ENERGY);
       this.setMaxEnergy(MAX_ENERGY);
       this.setCoolDown(COOLDOWN);
@@ -56,7 +56,7 @@ public class Sith extends AbstractArenaAnimal {
   
   @Override
   public Command getNextAction(World world) {
-      Command nextAction = randomAI.getNextAction(world, this);
+      Command nextAction = sithAI.getNextAction(world, this);
       setEnergy(getEnergy() -1 ); // Loses 1 energy regardless of action.
       return nextAction;
   }

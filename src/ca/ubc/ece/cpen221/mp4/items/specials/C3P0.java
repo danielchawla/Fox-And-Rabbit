@@ -19,7 +19,7 @@ import ca.ubc.ece.cpen221.mp4.items.animals.AbstractArenaAnimal;
 public class C3P0 extends AbstractArenaAnimal {
     private static final ImageIcon C3P0IMAGE = Util.loadImage("C3P0.gif");
     private static final int STRENGTH = 50;
-    private static final int COOLDOWN = 2;
+    private static final int COOLDOWN = 1;
     private static final int INITIAL_ENERGY = 200;
     private static final int MAX_ENERGY = 200;
     private static final int VIEW_RANGE = 1000;

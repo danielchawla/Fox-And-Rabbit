@@ -162,9 +162,9 @@ public class Main {
        }
        
        private void addSith(World world) {
-           RandomMovementAI randomAI = new RandomMovementAI();
+           SithAI sithAI = new SithAI();
            Location loc = Util.getRandomEmptyLocation(world);
-           Sith sith = new Sith(randomAI, loc);
+           Sith sith = new Sith(sithAI, loc);
            world.addItem(sith);
            world.addActor(sith);
        }

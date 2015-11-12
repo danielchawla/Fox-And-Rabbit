@@ -25,8 +25,8 @@ public class AbstractAI implements AI {
     
     /**
      * 
-     * @param dir
-     * @return
+     * @param dir the known cardinal direction.
+     * @return The opposite cardinal direction from dir.
      */
 	public Direction oppositeDir(Direction dir) { 
 		if (dir == Direction.EAST) {
@@ -42,10 +42,11 @@ public class AbstractAI implements AI {
 
 	/**
 	 * 
-	 * @param world
-	 * @param animal
-	 * @param location
-	 * @return
+	 * @param world world to search for location in.
+	 * @param animal animal that is searching for location, location must be within the animal's
+	 *         view range for method to return true.
+	 * @param location location to check.
+	 * @return True if location is empty and within bounds of the world, false otherwise.
 	 */
 	public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) { 
 		if (!Util.isValidLocation(world, location)) {
