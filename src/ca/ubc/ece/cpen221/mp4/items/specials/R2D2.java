@@ -28,7 +28,8 @@ public class R2D2 extends AbstractArenaAnimal {
     private final R2D2AI r2d2AI;
 
     /**
-     * Constructs a R2D2 animal robot. 
+     * Constructs a R2D2 animal robot. The initialLocation must be
+     * valid and empty.
      * @param ai that cause R2D2 to move around randomly
      * @param initialLocation to be placed
      */

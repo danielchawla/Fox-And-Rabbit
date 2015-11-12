@@ -26,7 +26,8 @@ public class C3P0 extends AbstractArenaAnimal {
     private final RandomMovementAI randomAI;
     
     /**
-     * Constructs a C3P0 animal robot. 
+     * Constructs a C3P0 animal robot. The initialLocation must be
+     * valid and empty.
      * @param ai that cause C3P0 to move around randomly
      * @param initialLocation to be placed
      */

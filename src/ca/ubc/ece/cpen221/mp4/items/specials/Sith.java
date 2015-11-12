@@ -26,7 +26,8 @@ public class Sith extends AbstractArenaAnimal {
   private final RandomMovementAI randomAI;
 
   /**
-   * Constructs a wicked Sith animal. 
+   * Constructs a wicked Sith animal. The initialLocation must be
+     * valid and empty. 
    * @param ai that cause Sith to move around randomly
    * @param initialLocation to be placed
    */
