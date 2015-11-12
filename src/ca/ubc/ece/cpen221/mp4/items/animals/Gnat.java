@@ -16,9 +16,10 @@ import ca.ubc.ece.cpen221.mp4.items.LivingItem;
  * This is a simple implementation of a Gnat. It never loses energy and moves in
  * random directions.
  */
-public class Gnat implements LivingItem {
-	private static final ImageIcon image = Util.loadImage("gnat.gif");
-
+public class Gnat extends AbstractArenaAnimal {
+    
+	private static final ImageIcon IMAGE = Util.loadImage("gnat.gif");
+	private static final String NAME = "Gnat";
 	private static final int MEAT_CALORIES = 100;
 	private static final int ENERGY = 100;
 	private static final int STRENGTH = 10;
@@ -37,47 +38,14 @@ public class Gnat implements LivingItem {
 	public Gnat(Location initialLocation) {
 		this.location = initialLocation;
 		this.isDead = false;
+		this.setImage(IMAGE);
+		this.setEnergy(ENERGY);
+		this.setName(Gnat.NAME);
+		this.setSTRENGTH(STRENGTH);
+		this.setLocation(initialLocation);
+		this.setMeatCalories(MEAT_CALORIES);
 	}
 
-	@Override
-	public ImageIcon getImage() {
-		return image;
-	}
-
-	@Override
-	public String getName() {
-		return "Gnat";
-	}
-
-	@Override
-	public Location getLocation() {
-		return location;
-	}
-
-	@Override
-	public int getPlantCalories() {
-		return 0;
-	}
-
-	@Override
-	public int getMeatCalories() {
-		return MEAT_CALORIES;
-	}
-
-	@Override
-	public void loseEnergy(int energy) {
-		isDead = true; // Dies if it loses energy.
-	}
-
-	@Override
-	public boolean isDead() {
-		return isDead;
-	}
-
-	@Override
-	public void moveTo(Location targetLocation) {
-		location = targetLocation;
-	}
 
 	@Override
 	public int getCoolDownPeriod() {
@@ -100,13 +68,8 @@ public class Gnat implements LivingItem {
 	}
 
 	@Override
-	public int getStrength() {
-		return STRENGTH;
-	}
-
-	@Override
 	public int getEnergy() {
-		// doesn't every die, except when run over by a Vehicle
+		// doesn't ever die, except when run over by a Vehicle
 		return energy;
 	}
 
@@ -120,8 +83,4 @@ public class Gnat implements LivingItem {
 		// Never eats.
 	}
 
-	@Override
-	public int getMovingRange() {
-		return 1; // Can only move to adjacent locations.
-	}
 }

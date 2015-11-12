@@ -4,7 +4,6 @@ import javax.swing.ImageIcon;
 
 import ca.ubc.ece.cpen221.mp4.Food;
 import ca.ubc.ece.cpen221.mp4.Location;
-import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
@@ -12,6 +11,7 @@ import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 public abstract class AbstractArenaAnimal implements ArenaAnimal { 
 	private int INITIAL_ENERGY;
+	private int meatCalories;
 	private int MAX_ENERGY;
 	private int STRENGTH;
 	private int VIEW_RANGE;
@@ -56,6 +56,10 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal {
 	protected void setMIN_BREEDING_ENERGY(int i) {
 		this.MIN_BREEDING_ENERGY = i;
 	}
+	
+    protected void setMeatCalories(int i) {
+        this.meatCalories = i;
+    }
 
 	protected void setCOOLDOWN(int i) {
 		this.COOLDOWN = i;
