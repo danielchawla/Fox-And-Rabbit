@@ -51,8 +51,7 @@ public class Wookie extends AbstractArenaAnimal {
 
     @Override
     public LivingItem breed() {
-        Wookie child = new Wookie(randomAI, location);
-        return child;
+        return null; // Wookies are too cool to breed here
     }
 
     @Override

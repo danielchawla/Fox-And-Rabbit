@@ -8,8 +8,8 @@ import ca.ubc.ece.cpen221.mp4.Util;
 public class ATAT extends AbstractArenaVehicle {
     private static final ImageIcon ATATIMAGE = Util.loadImage("atat.gif");
     private static final int STRENGTH = 1000;
-    private static final int MINCOOLDOWN = 10;
-    private static final int CHANGE_DIRECTION_COOLDOWN = 15; // speed vehicle needs to slow down to in order to turn
+    private static final int MINCOOLDOWN = 7;
+    private static final int CHANGE_DIRECTION_COOLDOWN = 10; // speed vehicle needs to slow down to in order to turn
     private static final int INITIAL_FUEL = 1000;
     private static final int MAX_FUEL = 1000;
     private static final String NAME = "ATAT";

@@ -15,6 +15,7 @@ import ca.ubc.ece.cpen221.mp4.items.Item;
 
 public abstract class AbstractArenaVehicle implements Vehicle{
     
+    protected static final int ULTIMATEMAXFUEL = 100000; // max fuel any vehicle can have
     protected static final int MOVINGRANGE = 1; // all vehicles can only move one space at a time
     private int strength;
     private int currentCoolDown;
@@ -61,7 +62,12 @@ public abstract class AbstractArenaVehicle implements Vehicle{
             } 
             collide(world); 
             Location nextStep = new Location(this.location, this.direction); 
-            return new MoveCommand(this, nextStep);
+            if (Util.isLocationEmpty(world, new Location(location, this.direction))){
+                return new MoveCommand(this, nextStep);
+            }
+            else {
+                collide(world);
+        }
         }
         return new WaitCommand();
     }
@@ -97,11 +103,12 @@ public abstract class AbstractArenaVehicle implements Vehicle{
 
                 if (this.getStrength() > neighbor.getStrength()) {
                     this.fuel += neighbor.getMeatCalories() + neighbor.getPlantCalories();
+                    
                     if (this.fuel > maxFuel) {
                         this.fuel = maxFuel;
                     }
-                    neighbor.loseEnergy(neighbor.getMeatCalories());
-                    neighbor.loseEnergy(neighbor.getPlantCalories());
+                    neighbor.loseEnergy(ULTIMATEMAXFUEL);
+                    currentCoolDown++;
                     return new WaitCommand();
                 } else if (this.getStrength() < neighbor.getStrength()) {
                     this.loseEnergy(this.fuel);

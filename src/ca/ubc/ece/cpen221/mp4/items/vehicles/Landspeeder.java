@@ -8,8 +8,8 @@ import ca.ubc.ece.cpen221.mp4.Util;
 public class Landspeeder extends AbstractArenaVehicle {
     private static final ImageIcon LANDSPEEDERIMAGE = Util.loadImage("landspeeder.gif");
     private static final int STRENGTH = 100;
-    private static final int CHANGE_DIRECTION_COOLDOWN = 7; // speed vehicle needs to slow down to in order to turn
-    private static final int MINCOOLDOWN = 4;
+    private static final int CHANGE_DIRECTION_COOLDOWN = 6; // speed vehicle needs to slow down to in order to turn
+    private static final int MINCOOLDOWN = 3;
     private static final int INITIAL_FUEL = 300;
     private static final int MAX_FUEL = 300;
     private static final String NAME = "Landspeeder";
