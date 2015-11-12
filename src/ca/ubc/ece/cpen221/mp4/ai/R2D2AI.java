@@ -8,9 +8,9 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
-public class RandomMovementAI extends AbstractAI {
+public class R2D2AI extends AbstractAI {
     
-    public RandomMovementAI(){
+    public R2D2AI(){
         
     }
 
@@ -18,7 +18,14 @@ public class RandomMovementAI extends AbstractAI {
     public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
 
         Location currentLocation = animal.getLocation();
-  
+        
+//        for(Item item : world.searchSurroundings(animal)){
+//            if ((item.getLocation().getX() == currentLocation.getX())
+//                    || (item.getLocation().getY() == currentLocation.getY())){
+//                item.loseEnergy(9999);
+//            }
+//        }
+//        
         if (getRandomLegalMoveLoc(world, animal, currentLocation) != null){
             return new MoveCommand(animal,getRandomLegalMoveLoc(world, animal, currentLocation));
         }

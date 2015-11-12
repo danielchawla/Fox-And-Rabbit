@@ -146,9 +146,9 @@ public class Main {
        }
        
        private void addR2D2(World world) {
-           RandomMovementAI randomAI = new RandomMovementAI();
+           R2D2AI r2d2AI = new R2D2AI();
            Location loc = Util.getRandomEmptyLocation(world);
-           R2D2 R2D2 = new R2D2(randomAI, loc);
+           R2D2 R2D2 = new R2D2(r2d2AI, loc);
            world.addItem(R2D2);
            world.addActor(R2D2);
        }

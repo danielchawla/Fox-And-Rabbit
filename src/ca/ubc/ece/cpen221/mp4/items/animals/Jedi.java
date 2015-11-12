@@ -36,19 +36,19 @@ public class Jedi extends AbstractArenaAnimal {
      */
     public Jedi(AI jediAI, Location initialLocation) {
         this.ai = jediAI;
-        this.location = initialLocation;
-        this.energy = INITIAL_ENERGY;
+//        this.location = initialLocation;
+//        this.energy = INITIAL_ENERGY;
         
-//        this.setINITIAL_ENERGY(INITIAL_ENERGY);
-//        this.setMAX_ENERGY(MAX_ENERGY);
-//        this.setCOOLDOWN(COOLDOWN);
-//        this.setVIEW_RANGE(VIEW_RANGE);
-//        this.setSTRENGTH(STRENGTH);
-//        this.setEnergy(INITIAL_ENERGY);
-//        this.setMIN_BREEDING_ENERGY(MIN_BREEDING_ENERGY);
-//        this.setLocation(initialLocation);  
-//        this.setImage(jediImage);
-//        this.setName("Jedi");
+        this.setINITIAL_ENERGY(INITIAL_ENERGY);
+        this.setMAX_ENERGY(MAX_ENERGY);
+        this.setCOOLDOWN(COOLDOWN);
+        this.setVIEW_RANGE(VIEW_RANGE);
+        this.setSTRENGTH(STRENGTH);
+        this.setEnergy(INITIAL_ENERGY);
+        this.setMIN_BREEDING_ENERGY(MIN_BREEDING_ENERGY);
+        this.setLocation(initialLocation);  
+        this.setImage(jediImage);
+        this.setName("Jedi");
     }
 
     @Override
@@ -68,80 +68,80 @@ public class Jedi extends AbstractArenaAnimal {
     }
     
     //DO I NEED THESE
-
-    @Override
-    public int getCoolDownPeriod() {
-        return COOLDOWN;
-    }
-
-    @Override
-    public int getEnergy() {
-        return energy;
-    }
-
-    @Override
-    public ImageIcon getImage() {
-        return jediImage;
-    }
-
-    @Override
-    public Location getLocation() {
-        return location;
-    }
-
-    @Override
-    public int getMaxEnergy() {
-        return MAX_ENERGY;
-    }
-
-    @Override
-    public int getMeatCalories() {
-        return energy;
-    }
-
-    @Override
-    public int getMinimumBreedingEnergy() {
-        return MIN_BREEDING_ENERGY;
-    }
-
-    @Override
-    public int getMovingRange() {
-        return 1; // Can only move to adjacent locations.
-    }
-
-    @Override
-    public String getName(){
-        return "Jedi";
-    }
-
-    @Override
-    public int getPlantCalories() { // arena animals dont eat plants
-        return 0;
-    }
-
-    @Override
-    public int getStrength() {
-        return STRENGTH;
-    }
-
-    @Override
-    public int getViewRange() {
-        return VIEW_RANGE;
-    }
-
-    @Override
-    public boolean isDead() {
-        return energy <= 0;
-    }
-
-    @Override
-    public void loseEnergy(int energyLoss) {
-        energy = this.energy - energyLoss;
-    }
-
-    @Override
-    public void moveTo(Location targetLocation) {
-        location = targetLocation;
-    }
+//
+//    @Override
+//    public int getCoolDownPeriod() {
+//        return COOLDOWN;
+//    }
+//
+//    @Override
+//    public int getEnergy() {
+//        return energy;
+//    }
+//
+//    @Override
+//    public ImageIcon getImage() {
+//        return jediImage;
+//    }
+//
+//    @Override
+//    public Location getLocation() {
+//        return location;
+//    }
+//
+//    @Override
+//    public int getMaxEnergy() {
+//        return MAX_ENERGY;
+//    }
+//
+//    @Override
+//    public int getMeatCalories() {
+//        return energy;
+//    }
+//
+//    @Override
+//    public int getMinimumBreedingEnergy() {
+//        return MIN_BREEDING_ENERGY;
+//    }
+//
+//    @Override
+//    public int getMovingRange() {
+//        return 1; // Can only move to adjacent locations.
+//    }
+//
+//    @Override
+//    public String getName(){
+//        return "Jedi";
+//    }
+//
+//    @Override
+//    public int getPlantCalories() { // arena animals dont eat plants
+//        return 0;
+//    }
+//
+//    @Override
+//    public int getStrength() {
+//        return STRENGTH;
+//    }
+//
+//    @Override
+//    public int getViewRange() {
+//        return VIEW_RANGE;
+//    }
+//
+//    @Override
+//    public boolean isDead() {
+//        return energy <= 0;
+//    }
+//
+//    @Override
+//    public void loseEnergy(int energyLoss) {
+//        energy = this.energy - energyLoss;
+//    }
+//
+//    @Override
+//    public void moveTo(Location targetLocation) {
+//        location = targetLocation;
+//    }
 
 }
