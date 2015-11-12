@@ -34,7 +34,6 @@ public abstract class AbstractArenaVehicle implements Vehicle{
     private ImageIcon image;
     private Direction direction;
     
-
     
     /**
      * Sets vehicle initial cool down level. The lower the number, the faster object travels.
@@ -42,6 +41,14 @@ public abstract class AbstractArenaVehicle implements Vehicle{
      */
     protected void setInitialCoolDown (int vehicleCoolDown){
         this.currentCoolDown = vehicleCoolDown;
+    }
+    
+    /**
+     * Sets vehicle initial cool down level. The lower the number, the faster object travels.
+     * @param vehicleCoolDown rate
+     */
+    protected void setIsDead (boolean isDead){
+        this.isDead = isDead;
     }
     
     /**
@@ -269,7 +276,7 @@ public abstract class AbstractArenaVehicle implements Vehicle{
 
     @Override
     public boolean isDead() {
-        return this.isDead;
+        return this.fuel <= 0;
     }
 
     @Override
