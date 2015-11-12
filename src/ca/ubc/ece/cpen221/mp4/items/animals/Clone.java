@@ -17,7 +17,8 @@ public class Clone extends AbstractArenaAnimal {
     private static final int VIEW_RANGE = 5;
     private static final int MIN_BREEDING_ENERGY = 0;
     private static final int COOLDOWN = 3;
-    private static final ImageIcon cloneImage = Util.loadImage("clone.gif");
+    private static final ImageIcon CLONEIMAGE = Util.loadImage("clone.gif");
+    private static final String NAME = "Clone";
 
     private Location location;
     private AI ai;
@@ -43,8 +44,8 @@ public class Clone extends AbstractArenaAnimal {
         this.setEnergy(INITIAL_ENERGY);
         this.setMIN_BREEDING_ENERGY(MIN_BREEDING_ENERGY);
         this.setLocation(initialLocation);  
-        this.setImage(cloneImage);
-        this.setName("Clone");
+        this.setImage(CLONEIMAGE);
+        this.setName(Clone.NAME);
     }
 
     @Override

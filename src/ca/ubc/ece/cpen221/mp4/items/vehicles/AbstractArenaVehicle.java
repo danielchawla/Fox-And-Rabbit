@@ -78,7 +78,7 @@ public abstract class AbstractArenaVehicle implements Vehicle{
      * @param current world.
      * @return true if at world's edge, false otherwise.
      */
-    private boolean atWorldsEdge(World world){
+    public boolean atWorldsEdge(World world){
         if (location.getX() == 0 || location.getY() == 0){
             return true;
         } else if (location.getX() == world.getWidth() - 1 || location.getY() == world.getHeight() - 1){
@@ -89,10 +89,9 @@ public abstract class AbstractArenaVehicle implements Vehicle{
     }
     
     /**
-     * If there is an item in front of vehicle with weaker strength, removes item. Takes energy from item.
-     * If item in front of vehicle is stronger than vehicle, removes vehicle.
-     * @param world
-     * @param collided
+     * If there is an item in front of vehicle with weaker strength, removes item. Takes all energy from item.
+     * If item in front of vehicle is stronger than vehicle, removes all energy from vehicle.
+     * @param world object is in
      */
     @Override
     public Command collide(World world){
