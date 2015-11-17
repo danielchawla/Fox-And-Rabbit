@@ -1,4 +1,3 @@
-CPEN 221 / Fall 2015: Machine Problem 4 
 Interfaces, Subtypes, and Virtual Worlds
 ====
 
@@ -8,8 +7,6 @@ Your goals for this machine problem are to:
 + Practice encapsulation and code reuse with subtypes and delegation;
 + Program against existing interfaces;
 + Think about code from a design point of view.
-
-> The basic code structure given to you for this machine problem uses the **delegation pattern** in the implementation of the AI. You may want to read more about the delegation pattern starting with the [Wikipedia article](https://en.wikipedia.org/wiki/Delegation_pattern).
 
 ## Overview
 
@@ -95,28 +92,3 @@ To earn full credit you must do the following:
 + In general, adhere to the code organization. You may add classes, abstract classes, and interfaces that you desire to the code base. Place any new files in the appropriate package. For example, a `Bear` would go in the `animals` package.
 + You may not delete or modify any existing interfaces.
 + As usual, make sure your code is readable. Use proper indentation and whitespace, abide by standard Java naming conventions, and add additional comments as necessary to document your code. Hint: use <kbd>Ctrl + Shift + F</kbd> to auto-format your code!
-
-### Additional hints:
-+ The tasks may be underspecified. In case of doubt use your judgment. If you want to communicate your assumptions, use comments in the source code or suitable specifications/Javadoc statements.
-+ Avoid using `instanceof` and downcasts. Avoid casting an interface to a specific implementation. 
-+ Do not use the `java.lang.Class` class or the `java.lang.reflect` package. You do not need -- and should not use -- those techniques for this machine problem.
-+ For this machine problem, we understand that testing code in this virtual environment is very difficult, and we rather you devote your time to practice code reuse. You should try to run your implementations in the GUI and experiment with different behaviors.
-+ You may write test code, but we do not have any testing-related requirements.
-
-### Grading Rubric
-We will use the following approximate rubric to grade your work:
-
-| Task | Grade Contribution |
-|:----|---:|
-| Implementation of 9 additional item classes | 27% |
-| Correctly working `RabbitAI` and `FoxAI` implementations | 30% |
-| Program design: well-designed class hierarchies and code reuse | 33% |
-| Documentation and style | 10% |
-
-#### Bonus: up to 10% of the MP grade 
-
-After the machine problem deadline, we will run all students' `Rabbit` and `Fox` AIs in our own virtual arena with our own Fox and Rabbit implementations and award bonus points to the best competitors. Our animal implementations may use different values for the cool-down periods, the breed limit and similar values. Our `World` implementation will strictly enforce the `World` rules such as the `ArenaAnimal` view limits. Your solution will be disqualified from the tournament if your implementations do not respect the rules (such as the view limit) of our world.
-
----
-
-> **Have fun!**
